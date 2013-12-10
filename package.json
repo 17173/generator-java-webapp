@@ -1,12 +1,12 @@
 {
   "name": "generator-java-webapp",
-  "version": "0.0.0",
-  "description": "A generator for Yeoman",
+  "version": "0.0.1",
+  "description": "A generator for java webapp",
   "keywords": [
     "yeoman-generator"
   ],
-  "homepage": "https://github.com/lynzz/generator-java-webapp",
-  "bugs": "https://github.com/lynzz/generator-java-webapp/issues",
+  "homepage": "https://github.com/17173/generator-java-webapp",
+  "bugs": "https://github.com/17173/generator-java-webapp/issues",
   "author": {
     "name": "lynzz",
     "email": "lynzz168@gmail.com",
@@ -15,7 +15,7 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/lynzz/generator-java-webapp.git"
+    "url": "git://github.com/17173/generator-java-webapp.git"
   },
   "scripts": {
     "test": "mocha"
@@ -24,7 +24,8 @@
     "yeoman-generator": "~0.14.0"
   },
   "devDependencies": {
-    "mocha": "~1.14.0"
+    "mocha": "~1.14.0",
+    "chalk": "~0.3.0"
   },
   "peerDependencies": {
     "yo": ">=1.0.0"
