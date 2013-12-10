@@ -2,59 +2,98 @@
 var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
-
+var chalk = require('chalk');
 
 var JavaWebappGenerator = module.exports = function JavaWebappGenerator(args, options, config) {
-  yeoman.generators.Base.apply(this, arguments);
+    yeoman.generators.Base.apply(this, arguments);
 
-  this.on('end', function () {
-    this.installDependencies({ skipInstall: options['skip-install'] });
-  });
+    this.on('end', function () {
+        //this.installDependencies({ skipInstall: options['skip-install'] });
+        var info = chalk.yellow.bold("\nI'm all done. Please cd webapp, Running bower install & npm install for you to install the required dependencies.")
+        console.log(info)
+    });
 
-  this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
+    this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 };
 
-util.inherits(JavaWebappGenerator, yeoman.generators.Base);
+util.inherits(JavaWebappGenerator, yeoman.generators.NamedBase);
 
 JavaWebappGenerator.prototype.askFor = function askFor() {
-  var cb = this.async();
+    var cb = this.async();
 
-  // have Yeoman greet the user.
-  console.log(this.yeoman);
+    // welcome message
+    var welcome =
+        '\n     _-----_' +
+            '\n    |       |' +
+            '\n    |' + chalk.red('--(o)--') + '|   .--------------------------.' +
+            '\n   `---------´  |    ' + chalk.yellow.bold('Welcome to Yeoman') + ',    |' +
+            '\n    ' + chalk.yellow('(') + ' _' + chalk.yellow('´U`') + '_ ' + chalk.yellow(')') + '   |   ' + chalk.yellow.bold('ladies and gentlemen!') + '  |' +  '\n    /___A___\\   \'__________________________\'' +
+            '\n     ' + chalk.yellow('|  ~  |') +
+            '\n   __' + chalk.yellow('\'.___.\'') + '__' +
+            '\n ´   ' + chalk.red('`  |') + '° ' + chalk.red('´ Y') + ' `\n';
 
-  var prompts = [{
-    type: 'confirm',
-    name: 'someOption',
-    message: 'Would you like to enable this option?',
-    default: true
-  }];
+    console.log(welcome);
+    console.log('This comes with requirejs, jquery, and grunt all ready to go');
 
-  this.prompt(prompts, function (props) {
-    this.someOption = props.someOption;
+    if (this.options.promptDefaults) {
+        this.name = this.options.promptDefaults.name;
+        this.description = this.options.promptDefaults.description;
+        cb();
+        return;
+    }
 
-    cb();
-  }.bind(this));
+    var prompts = [{
+        name: 'name',
+        message: 'What is the name of your app?',
+        default: this.appname
+    }, {
+        name: 'description',
+        message: 'Description:',
+        default: 'An awesome requirejs app'
+    }];
+
+    this.prompt(prompts, function (props) {
+        this.name = props.name;
+        this.description = props.description;
+
+
+        cb();
+    }.bind(this));
 };
 
 JavaWebappGenerator.prototype.app = function app() {
-  this.mkdir('webapp');
+    this.mkdir('webapp');
 
-  this.mkdir('webapp/admin');
-  this.mkdir('webapp/admin/static');
-  this.mkdir('webapp/admin/static/js');
-  this.mkdir('webapp/admin/static/css');
-  this.mkdir('webapp/admin/static/img');
+    //this.mkdir('webapp/admin');
+    //this.mkdir('webapp/admin/static');
 
-  this.mkdir('webapp/cdn');
+    //this.directory('js','webapp/admin/static/js');
+    //this.directory('css','webapp/admin/static/css');
+    //this.directory('img','webapp/admin/static/img');
+    //this.directory('fonts','webapp/admin/static/fonts');
+    this.directory('admin','webapp/admin');
 
+    this.directory('mock','webapp/mock');
+    this.directory('WEB-INF','webapp/WEB-INF');
 
+    this.mkdir('webapp/cdn');
 
-  this.template('_package.json', 'package.json');
-  this.template('_bower.json', 'bower.json');
-  this.template('config.json', 'config.json');
+    //this.template('_package.json', 'package.json');
+    //this.template('_bower.json', 'bower.json');
+    this.template('config.json', 'config.json');
 };
 
-JavaWebappGenerator.prototype.projectfiles = function projectfiles() {
-  this.copy('editorconfig', '.editorconfig');
-  this.copy('jshintrc', '.jshintrc');
+JavaWebappGenerator.prototype.grunt = function grunt() {
+    this.template('_package.json', 'webapp/package.json');
+    this.copy('Gruntfile.js', 'webapp/Gruntfile.js');
+};
+
+JavaWebappGenerator.prototype.bower = function bower() {
+    this.template('.bowerrc', 'webapp/.bowerrc');
+    this.template('_bower.json', 'webapp/bower.json');
+};
+
+JavaWebappGenerator.prototype.configs = function configs() {
+    this.template('editorconfig', 'webapp/.editorconfig');
+    this.template('jshintrc', 'webapp/.jshintrc');
 };

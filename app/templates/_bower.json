@@ -1,6 +1,18 @@
 {
-  "name": "package",
-  "version": "0.0.0",
-  "dependencies": {}
-}
+    "name": "<%= _.slugify(name) %>",
+    "version": "0.0.0",
+    "authors": [
 
+    ],
+    "dependencies": {},
+    "devDependencies": {
+        "bootbox": "3.3.0",
+        "jquery.validation": "~1.11.1",
+        "bootstrap3-grid": "~0.0.6",
+        "selectize": "~0.8.5",
+        "moment": "~2.4.0",
+        "select2": "~3.4.5",
+        "font-awesome": "~4.0.3",
+        "bootstrap": "~3.0.0"
+    }
+}
