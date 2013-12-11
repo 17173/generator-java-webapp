@@ -62,21 +62,12 @@ JavaWebappGenerator.prototype.askFor = function askFor() {
 };
 
 JavaWebappGenerator.prototype.app = function app() {
-    this.mkdir('webapp');
+    this.directory('admin','admin');
 
-    //this.mkdir('webapp/admin');
-    //this.mkdir('webapp/admin/static');
+    this.directory('mock','mock');
+    this.directory('WEB-INF','WEB-INF');
 
-    //this.directory('js','webapp/admin/static/js');
-    //this.directory('css','webapp/admin/static/css');
-    //this.directory('img','webapp/admin/static/img');
-    //this.directory('fonts','webapp/admin/static/fonts');
-    this.directory('admin','webapp/admin');
-
-    this.directory('mock','webapp/mock');
-    this.directory('WEB-INF','webapp/WEB-INF');
-
-    this.mkdir('webapp/cdn');
+    this.mkdir('cdn');
 
     //this.template('_package.json', 'package.json');
     //this.template('_bower.json', 'bower.json');
@@ -84,16 +75,16 @@ JavaWebappGenerator.prototype.app = function app() {
 };
 
 JavaWebappGenerator.prototype.grunt = function grunt() {
-    this.template('_package.json', 'webapp/package.json');
-    this.copy('Gruntfile.js', 'webapp/Gruntfile.js');
+    this.template('_package.json', 'package.json');
+    this.copy('Gruntfile.js', 'Gruntfile.js');
 };
 
 JavaWebappGenerator.prototype.bower = function bower() {
-    this.template('.bowerrc', 'webapp/.bowerrc');
-    this.template('_bower.json', 'webapp/bower.json');
+    this.template('.bowerrc', '.bowerrc');
+    this.template('_bower.json', 'bower.json');
 };
 
 JavaWebappGenerator.prototype.configs = function configs() {
-    this.template('editorconfig', 'webapp/.editorconfig');
-    this.template('jshintrc', 'webapp/.jshintrc');
+    this.template('editorconfig', '.editorconfig');
+    this.template('jshintrc', '.jshintrc');
 };
