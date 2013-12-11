@@ -2,9 +2,9 @@
     "server": {
         "port": "3000",
         "path": {
-            "view": "webapp",
-            "mock": "webapp/mock",
-            "public": "webapp/admin/static"
+            "view": "",
+            "mock": "mock",
+            "public": "admin/static"
         },
         "globals": {
             "baseUrl": "",
