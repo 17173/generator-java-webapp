@@ -1,4 +1,4 @@
-<#global ctx = 'http://localhost:8080'>
+<#global ctx = 'http://localhost:3000'>
 <#global static = ctx>
 <#macro header title>
 <!DOCTYPE HTML>
@@ -18,11 +18,11 @@
 <#macro body menu>
 <body class="contrast-sea-blue fixed-header fixed-navigation">
 
-<#inculde 'header.ftl' />
+<#include 'header.ftl'>
 <div id='wrapper'>
     <div id='main-nav-bg'></div>
     <nav id='main-nav' class="main-nav-fixed">
-        <#inculde 'nav.ftl' />
+        <#include 'nav.ftl'>
     </nav>
     <section id="content">
         <div class='container'>
@@ -41,13 +41,13 @@
                     <#nested>
                 </div>
             </div>
-            <#inculde 'footer.ftl' />
+            <#include 'footer.ftl'>
         </div>
     </section>
 </div>
 </#macro>
 <#macro footer>
     <#nested>
-</#macro>
 </body>
 </html>
+</#macro>
