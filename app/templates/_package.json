@@ -13,6 +13,7 @@
         "test": "grunt qunit"
     },
     "devDependencies": {
+        "fed": "~0.0.17",
         "grunt": "~0.4.1",
         "grunt-contrib-requirejs": "0.4.x",
         "grunt-contrib-qunit": "0.1.x",
