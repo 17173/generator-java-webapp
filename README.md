@@ -1,4 +1,4 @@
-# generator-java-webapp 
+# generator-java-webapp  [![Build Status](https://secure.travis-ci.org/17173/generator-java-webapp.png?branch=master)](https://travis-ci.org/17173/generator-java-webapp)
 
 ```
 快速构建 java web 项目的前端脚手架（bootstrap+requirejs+fed），目前只适合后台的开发
@@ -33,8 +33,6 @@
 
 ```	
 
-[![Build Status](https://secure.travis-ci.org/17173/generator-java-webapp.png?branch=master)](https://travis-ci.org/17173/generator-java-webapp)
-
 ## Usage
 
 安装 generator-java-webapp:
@@ -59,7 +57,7 @@ yo java-webapp [app-name]
 
 可用的生成器：
 
-* [java-webapp](#java-webapp)
+* [java-webapp](#java-webapp)(aka [java-webapp:app](#java-webapp))
 * [java-webapp:page](#page)
 * [java-webapp:mock](#mock)
 
@@ -153,7 +151,7 @@ module.exports = {
 
 ## License
 
-[BSD license](http://opensource.org/licenses/bsd-license.php)
+[MIT License](http://en.wikipedia.org/wiki/MIT_License)
 
 
 
