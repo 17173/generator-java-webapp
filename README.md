@@ -1,4 +1,4 @@
-# generator-java-webapp [![Build Status](https://secure.travis-ci.org/lynzz/generator-java-webapp.png?branch=master)](https://travis-ci.org/lynzz/generator-java-webapp)
+# generator-java-webapp 
 
 ```
 快速构建 java web 项目的前端脚手架（bootstrap+requirejs+fed），目前只适合后台的开发
@@ -32,6 +32,8 @@
 |-- inc-site         # UI/UE推送的静态内容(正式环境将对本目录建立软链接，访问该目录实际访问的是上级同名目录)
 
 ```	
+
+[![Build Status](https://secure.travis-ci.org/17173/generator-java-webapp.png?branch=master)](https://travis-ci.org/17173/generator-java-webapp)
 
 ## Usage
 
