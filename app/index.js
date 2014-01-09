@@ -9,8 +9,8 @@ var JavaWebappGenerator = module.exports = function JavaWebappGenerator(args, op
 
     this.on('end', function () {
         //this.installDependencies({ skipInstall: options['skip-install'] });
-        var info = chalk.yellow.bold("\nI'm all done. Please cd webapp, Running bower install & npm install for you to install the required dependencies.")
-        console.log(info)
+        var info = chalk.yellow.bold("\nI'm all done. Please running bower install & npm install for you to install the required dependencies.")
+        console.log(info);
     });
 
     this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
@@ -44,12 +44,12 @@ JavaWebappGenerator.prototype.askFor = function askFor() {
 
     var prompts = [{
         name: 'name',
-        message: 'What is the name of your app?',
+        message: 'What is the name of your project?',
         default: this.appname
     }, {
         name: 'description',
-        message: 'Description:',
-        default: 'An awesome requirejs app'
+        message: 'Your project description',
+        default: ''
     }];
 
     this.prompt(prompts, function (props) {
