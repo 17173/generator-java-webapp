@@ -18,9 +18,9 @@ module.exports = function(grunt) {
         requirejs: {
             std: {
                 options: {
-                    appDir: 'app',
+                    appDir: '<%= yeoman.app %>',
                     baseUrl: './js/lib',
-                    mainConfigFile: 'app/js/config.js',
+                    mainConfigFile: '<%= yeoman.app %>/js/main.js',
                     optimize: 'uglify2',
                     uglify2: {
                         //Example of a specialized config. If you are fine
@@ -41,13 +41,13 @@ module.exports = function(grunt) {
                     generateSourceMaps: true,
                     preserveLicenseComments: false,
                     // useSourceUrl: true,
-                    dir: 'dist',
+                    dir: '<%= yeoman.dist %>',
                     //skipDirOptimize: true,
                     modules: [
                         //First set up the common build layer.
                         {
                             //module names are relative to baseUrl
-                            name: '../config',
+                            name: '../main',
                             //List common dependencies here. Only need to list
                             //top level dependencies, "include" will find
                             //nested dependencies.
@@ -65,9 +65,9 @@ module.exports = function(grunt) {
                         //require in the page*.js files.
                         {
                             //module names are relative to baseUrl/paths config
-                            name: '../page/page-search',
+                            name: '../page/search',
                             include: ['app/search'],
-                            exclude: ['../config']
+                            exclude: ['../main']
                         }
                     ]
                 }
@@ -76,24 +76,39 @@ module.exports = function(grunt) {
 
         jshint: {
             options: {
-                curly: true,
-                eqeqeq: true,
-                immed: true,
-                latedef: true,
-                newcap: true,
-                noarg: true,
-                sub: true,
-                undef: true,
-                eqnull: true,
-                browser: true,
-                nomen: true,
                 globals: {
                     define: true,
                     requirejs: true,
                     require: true
-                }
+                },
+                "jquery": true,//检查预定义的全局变量，防止出现$未定义，该项根据实际代码修改 
+                "bitwise": false,//不检查位运算
+                "browser": true,//通过浏览器内置的全局变量检测
+                "devel":false,//禁止对调试用的alert和console.log的调用
+                "camelcase": true,//使用驼峰式命名
+                "curly": true,//强制使用花括号
+                "eqeqeq": false,//不强制使用===比较运算符
+                "es3":true,//兼容es3规范，针对旧版浏览器编写的代码
+                "esnext": false, //不使用最新的es6规范
+                "forin":false,//不强制过滤遍历对象继承的属性    
+                "freeze":false,//不限制对内置对象的扩展
+                "immed": true,//禁止未用括号包含立即执行函数
+                "indent": false,//不强制缩进
+                "latedef": true,//禁止先调用后定义
+                "maxdepth":3,//代码块嵌套最多不超过3层
+                "maxparams":3,//函数最多不超过3个参数
+                "newcap": false,//不对首字母大写的函数强制使用new
+                "noarg": false,//不禁止对arguments.caller和arguments.callee的调用
+                "noempty":false,//禁止空代码块
+                "nonew":false,//允许直接new实例化而不赋值给变量
+                "plusplus":false,//允许++和--运算符使用
+                "quotmark": "single",//字符串使用单引号
+                "undef":true,//禁止明确未定义的变量调用，如果你的变量（myvar）是在其他文件中定义的，可以使用/*global myvar */绕过检测
+                "unused": true,//禁止定义没用的变量
+                "strict": false,//不强制使用es5严格模式
+                "multistr": false//禁止多行字符串，改用加号连接
             },
-            all: ['www/js/app/*.js']
+            all: ['<%= yeoman.app %>/js/app/*.js']
         },
 
         open: {
@@ -196,7 +211,7 @@ module.exports = function(grunt) {
         ]);
     });
 
-    grunt.registerTask('build', ['uglify','cssmin','yuidoc']);
+    grunt.registerTask('build', ['jshint','requirejs']);
     grunt.registerTask('default', ['jshint', 'qunit', 'build']);
 
 };
