@@ -23,7 +23,9 @@ define(['jquery','common/util', 'common/class', 'bootstrap-grid'], function ($, 
             var headerTemplates = [];
             var CHECK_ALL_HTML = '<th width="30px"><input type="checkbox" class="checkbox" id="' + options.checkAllId + '"/></th>';
             var CHECK_ITEM_HTML = '<input type="checkbox" class="checkbox">';
-            if (checkColumnIndex) {
+
+            // 有 checkbox
+            if (options.hasCheckbox) {
                 var colSize = options.columnNames.length + 1;
 
                 if (options.cellTemplates !== null) {
@@ -55,20 +57,24 @@ define(['jquery','common/util', 'common/class', 'bootstrap-grid'], function ($, 
 
                 this.options.columnNames.splice(checkColumnIndex, 0, '');
                 this.options.columnKeys.splice(checkColumnIndex, 0, null);
-                this.options.pageRenderedEvent = $.proxy(this.pageRenderedEvent, this);
-                this.options.postDataFunction = function() {
-                    return util.packForm(options.formElement);
-                }
             }
+            this.options.pageRenderedEvent = $.proxy(this.pageRenderedEvent, this);
         },
         postData: function() {
 
         },
         pageRenderedEvent: function() {
+            var self = this;
+            var options = this.options;
             this._parseElement();
             this.initGridBar();
             this._bindEvents();
-            this.options.gridRendered && this.options.gridRendered();
+            if (typeof options.gridRendered == 'function') {
+                this.$element.simplePagingGrid('currentPageData', function(data) {
+                    options.gridRendered.call(self, data);
+                })
+            }
+
         },
         $: function(el) {
             return this.$element.find(el);
@@ -76,7 +82,7 @@ define(['jquery','common/util', 'common/class', 'bootstrap-grid'], function ($, 
         initGridBar: function() {
             this.$gridBar.find('[data-role=multiCheck]').prop('disabled', true).addClass('disabled');
             this.$gridBar.find('[data-role=edit]').prop('disabled', true).addClass('disabled');
-            this.$checkAll.prop('checked', false);
+            this.options.hasCheckbox && this.$checkAll.prop('checked', false);
         },
         _parseElement: function() {
             this.$checkAll = $(this.options.checkAllId);
@@ -84,7 +90,7 @@ define(['jquery','common/util', 'common/class', 'bootstrap-grid'], function ($, 
         },
         _bindEvents: function() {
             this._bindRowEvent();
-            this._bindCheckEvents();
+            this.options.hasCheckbox && this._bindCheckEvents();
         },
         _bindRowEvent: function() {
             var self = this;
@@ -92,9 +98,11 @@ define(['jquery','common/util', 'common/class', 'bootstrap-grid'], function ($, 
             this.$tbody.on('dblclick', 'tr', function() {
                 var $row = $(this);
                 var $check = $row.find('input[type=checkbox]');
-
-                self.$element.find('input[type=checkbox]').prop('checked',false);
-                $check.prop('checked', true);
+                
+                if (options.hasCheckbox) {
+                    self.$element.find('input[type=checkbox]').prop('checked',false);
+                    $check.prop('checked', true);
+                }
                 options.onDblClickRow && options.onDblClickRow.call(self.$gridBar);
             });
         },
@@ -128,6 +136,10 @@ define(['jquery','common/util', 'common/class', 'bootstrap-grid'], function ($, 
             var ret = [];
             var self = this;
 
+            if (!this.this.options.hasCheckbox) {
+                return ret;
+            }
+
             this.$element.simplePagingGrid('currentPageData', function(data) {
                 self.$tbody.find(':checkbox').each(function(i) {
                     $(this).prop('checked') && data[i] && ret.push(data[i].id);
@@ -143,6 +155,10 @@ define(['jquery','common/util', 'common/class', 'bootstrap-grid'], function ($, 
         getSingleData: function() {
             var ret = {};
             var self = this;
+
+            if (!this.this.options.hasCheckbox) {
+                return ret;
+            }
 
             this.$element.simplePagingGrid('currentPageData', function(data) {
                 self.$tbody.find(':checkbox').each(function(i) {
@@ -165,7 +181,7 @@ define(['jquery','common/util', 'common/class', 'bootstrap-grid'], function ($, 
             this.$element.simplePagingGrid('refresh', dataUrl);
         }
     });
-    var buttonBarTemplateNew = '<div class="clearfix form-inline"> \
+    var buttonBarTemplate = '<div class="clearfix form-inline"> \
                                     {{#if showGotoPage}} \
                                         <div class="pull-right form-group" style="padding-left: 1em;"> \
                                             <div class="input-group" style="width: 110px;"> \
@@ -213,67 +229,30 @@ define(['jquery','common/util', 'common/class', 'bootstrap-grid'], function ($, 
                                         {{/unless}} \
                                     </ul> \
                                 </div>';
-    var buttonBarTemplate = '<div class="pagination clearfix"> \
-                                    <div class="page-info pull-left">共{{totalRows}}条记录</div> \
-                                    <div class="pull-left" style="margin-top: 0px"> \
-                                        <ul> \
-                                            {{#if isFirstPage}} \
-                                                {{#if pageNumbersEnabled}} \
-                                                    <li><a href="#" class="first"><i class="icon-fast-backward" style="opacity: 0.5"></i></a></li> \
-                                                {{/if}} \
-                                                <li><a href="#" class="previous"><i class="icon-step-backward" style="opacity: 0.5"></i></a></li> \
-                                            {{/if}} \
-                                            {{#unless isFirstPage}} \
-                                                {{#if pageNumbersEnabled}} \
-                                                    <li><a href="#" class="first"><i class="icon-fast-backward"></i></a></li> \
-                                                {{/if}} \
-                                                <li><a href="#" class="previous"><i class="icon-step-backward"></i></a></li> \
-                                            {{/unless}} \
-                                            {{#if pageNumbersEnabled}} \
-                                                {{#each pages}} \
-                                                    {{#if isCurrentPage}} \
-                                                        <li class="active"><a href="#" class="pagenumber" data-pagenumber="{{pageNumber}}">{{displayPageNumber}}</a></li> \
-                                                    {{/if}} \
-                                                    {{#unless isCurrentPage}} \
-                                                        <li><a href="#" class="pagenumber" data-pagenumber="{{pageNumber}}">{{displayPageNumber}}</a></li> \
-                                                    {{/unless}} \
-                                                {{/each}} \
-                                            {{/if}} \
-                                            {{#if isLastPage}} \
-                                                <li><a href="#" class="next"><i class="icon-step-forward" style="opacity: 0.5"></i></a></li> \
-                                                {{#if pageNumbersEnabled}} \
-                                                    <li><a href="#" class="last"><i class="icon-fast-forward" style="opacity: 0.5"></i></a></li> \
-                                                {{/if}} \
-                                            {{/if}} \
-                                            {{#unless isLastPage}} \
-                                                <li><a href="#" class="next"><i class="icon-step-forward"></i></a></li> \
-                                                {{#if pageNumbersEnabled}} \
-                                                    <li><a href="#" class="last"><i class="icon-fast-forward"></i></a></li> \
-                                                {{/if}} \
-                                            {{/unless}} \
-                                        </ul> \
-                                    </div> \
-                                    {{#if showGotoPage}} \
-                                        <div class="pull-left"  style="padding-left: 10px;"> \
-                                            <div class="input-append" > \
-                                                <input style="width: 3em;" class="pagetextpicker" type="text" value="{{currentPage}}" /> \
-                                                <button class="btn pagetextpickerbtn" type="button">Go</button> \
-                                            </div> \
-                                        </div> \
-                                    {{/if}} \
-                                </div>';
-    var defaults = {
+    
+    var defaults = Grid.defaults = {
         element: '#J_Grid',
         pageSize: 15,
         barElement: '#J_GridBar',
         checkAllId: '#J_CheckAll',
         showLoadingOverlay: false,
         minimumVisibleRows: 15,
+        urlUpdatingEnabled: false,
         templates: {
-            buttonBarTemplate: buttonBarTemplateNew
+            buttonBarTemplate: buttonBarTemplate
         },
+        /**
+         * 是否有 checkbox
+         * @type {Boolean}
+         */
+        hasCheckbox: false,
         checkColumnIndex: 1,
         tableClass: 'table table-bordered table-striped table-hover',
+
+        /**
+         * 表格数据渲染后执行的回调
+         */
+        gridRendered: null,
 
         /**
          * 是否全部选中触发事件

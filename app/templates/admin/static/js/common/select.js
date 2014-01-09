@@ -20,18 +20,12 @@ define(['jquery','common/class','common/util','selectize'], function ($, Class, 
         parseData: function($sel, url, createKey) {
             var self = this;
             if (url) {
-                this.options.valueField = 'id';
-                this.options.labelField = 'name';
-                this.options.searchField = 'name';
                 this.options.create = false;
                 this.options.load = this.load;
                 this.options.onInitialize = function(t) {
                     console.log(t)
                 }
             } else if (createKey) {
-                this.options.valueField = 'id';
-                this.options.labelField = 'name';
-                this.options.searchField = 'name';
                 this.options.create = false;
                 this.options.options = CUI.optionsData[createKey];
 
@@ -40,7 +34,8 @@ define(['jquery','common/class','common/util','selectize'], function ($, Class, 
             }
         },
         load: function(query, callback) {
-            util.post(CUI.getUrl(url),{name:encodeURIComponent(query)}, {
+            var url = this.options.url;
+            util.post(CUI.getUrl(url),{fdName:encodeURIComponent(query)}, {
                 success: function() {
                     var data = this.data;
                     console.log(data)
@@ -54,9 +49,9 @@ define(['jquery','common/class','common/util','selectize'], function ($, Class, 
     });
 
     var defaults = {
-        valueField: 'id',
-        labelField: 'name',
-        searchField: 'name'
+        valueField: 'fdId',
+        labelField: 'fdName',
+        searchField: 'fdName'
     };
 
     return Select;

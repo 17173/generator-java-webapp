@@ -1,4 +1,14 @@
-define(['jquery', 'common/class', 'common/grid', 'common/select','common/form','moment','bootstrap-daterangepicker','jquery.validate'], function($, Class, Grid, Select, Form, moment) {
+define([
+    'jquery',
+    'common/util', 
+    'common/class', 
+    'common/grid', 
+    'common/select',
+    'moment',
+    'bootbox',
+    'bootstrap-daterangepicker',
+    'jquery.validate'
+], function($, util, Class, Grid, Select, moment, bootbox) {
     "use strict";
 
     /**
@@ -9,7 +19,6 @@ define(['jquery', 'common/class', 'common/grid', 'common/select','common/form','
     var Search = Class.create({
         initialize: function(options) {
             this.options = $.extend(true, {}, defaults, options);
-            this.$form = $(this.options.formCfg.formId);
 
             this._init();
         },
@@ -23,21 +32,55 @@ define(['jquery', 'common/class', 'common/grid', 'common/select','common/form','
             this.select = new Select();
             this.grid = new Grid(options.gridCfg);
 
-            this.options.formCfg.onSuccess = function() {
-                //self.render();
-            }
-            this.form = new Form(this.options.formCfg);
+            this._initValidator();
             this._bindEvents();
         },
 
+        _initValidator: function() {
+            if (!this.$form) {
+                return;
+            }
+            var self = this;
+            var options = this.options;
+
+            this.$form.validate({
+                rules: options.rules,
+                messages: options.messages,
+                errorElement: "span",
+                errorClass: "help-inline has-error",
+                errorPlacement: function(e, t) {
+                    return t.append(e);
+                },
+                highlight: function(e) {
+                    return $(e).parents('.form-group').removeClass("has-error has-success").addClass('has-error');
+                },
+                success: function(e) {
+                    return e.parents(".form-group").removeClass("has-error");
+                },
+                submitHandler: $.proxy(this.onSubmit, this)
+            })
+        },
+
+        onSubmit: function() {
+            this.render();
+        },
+
         _initDaterangepicker: function() {
+            var self = this;
+            if (!this.$form) {
+                return;
+            }
             var $datepicker = this.$form.find('[data-role=daterange]');
             if (!$datepicker.length) {
                 return;
             }
+            this.$fromDate = this.$form.find('[name=fromDate]');
+            this.$toDate = this.$form.find('[name=toDate]');
             var startDate = moment().subtract('months', 1);
             var endDate = moment();
             var $val = $datepicker.find('span').html(startDate.format('YYYY-MM-DD') + ' 至 ' + endDate.format('YYYY-MM-DD'));
+            this.$fromDate.val(startDate.format('YYYY-MM-DD'));
+            this.$toDate.val(endDate.format('YYYY-MM-DD'));
             $datepicker.daterangepicker(
                 {
                     startDate: startDate,
@@ -75,6 +118,8 @@ define(['jquery', 'common/class', 'common/grid', 'common/select','common/form','
                     }
                 },
                 function(start, end) {
+                    self.$fromDate.val(start.format('YYYY-MM-DD'));
+                    self.$toDate.val(end.format('YYYY-MM-DD'));
                     $val.html(start.format('YYYY-MM-DD') + ' 至 ' + end.format('YYYY-MM-DD'));
                 }
             )
@@ -114,26 +159,129 @@ define(['jquery', 'common/class', 'common/grid', 'common/select','common/form','
         },
 
         _parseElement: function() {
+            var self = this;
             var options = this.options;
             var url = options.formCfg.url || options.gridCfg.dataUrl;
             this.options.formCfg.url = url;
             this.options.gridCfg.dataUrl = url;
+            this.$form = $(this.options.formCfg.formId);
+            if (this.$form) {
+                this.options.gridCfg.postDataFunction = function() {
+                    var data = util.packForm(self.$form);
+                    return data;
+                };
+                this.$fdStatus = this.$form.find('[name=fdStatus]');
+            }
+            
+            this.$grid = $(this.options.gridCfg.element);
+            this.$gridBar = $(this.options.gridCfg.barElement);
+
         },
 
         _bindEvents: function() {
+            this.$form && this.$form.on('click','[data-role=fdStatus]', $.proxy(this.toggleStatus, this));
+            this.$grid.on('click', '[data-role=delete]', $.proxy(this.delete, this));
+            this.$grid.on('click', '[data-role=edit]', $.proxy(this.edit, this));
+            this.$grid.on('click', '[data-role=resetpwd]', $.proxy(this.resetPwd, this));
 
+        },
+
+        edit: function(e) {
+            var $target = $(e.currentTarget);
+            var source = $('#tpl-RoleDialog').html();
+            var template = Handlebars.compile(source);
+            var data = {
+                isEdit: true,
+                fdId: $target.data('id'),
+                fdName:$target.data('display')
+            };
+            var html = template(data);
+            var cfg = {
+                title: '编辑权限',
+                content: html
+            }
+            this.openDialog(cfg);
+        },
+        openDialog: function(cfg) {
+            bootbox.dialog({
+                message: cfg.content,
+                title: cfg.title,
+                buttons: {
+                    danger: {
+                        label: "取消",
+                        className: "btn"
+                    },
+                    main: {
+                        label: "确定",
+                        className: "btn-primary",
+                        callback: function() {
+                           typeof cfg.handle == 'function' && cfg.handle()
+                        }
+                    }
+                },
+                onShown: function() {
+                    typeof cfg.onShown == 'function' && cfg.onShown()
+                }
+            });
+
+        },
+
+        resetPwd: function(e) {
+            var $target = $(e.currentTarget);
+            var display = $target.data('display');
+            var msg = '确定将' + display + '的密码重置吗？';
+            var url = CUI.getUrl($target.data('url'));
+
+            bootbox.confirm(msg, function(result) {
+                if (result) {
+                    util.post(url, {fdId: $target.data('id')}, function() {
+                        bootbox.alert('密码重置成功！');
+                    })
+                }
+            })
+        },
+
+        delete: function(e) {
+            var self = this;
+            var gridCfg = self.options.gridCfg;
+            var $target = $(e.currentTarget);
+            var id = $target.data('id');
+            var msg = $target.data('display') ? ('确定将' + $target.data('display') + '删除') : gridCfg.deleteMsg;
+            bootbox.confirm(msg, function(result) {
+                if (result) {
+                    util.post(gridCfg.deleteUrl, {fdId: id, fdStatus: '21'}, function() {
+                        self.render();
+                    })
+                }
+            })
+            
+
+        },
+
+        toggleStatus: function(e) {
+            var $target = $(e.target);
+            var val = $target.data('value');
+            $target.addClass('btn-primary').siblings().removeClass('btn-primary');
+            this.$fdStatus.val(val);
         }
     });
 
-    var formCfg = $.extend(true, {}, Form.defaults, {alertError: true});
+    var gridCfg = $.extend(true, {}, Grid.defaults, {
+        deleteMsg: '确定删除？',
+        deleteUrl: null
+    })
     var defaults = {
         /**
          * 表单配置
          *
          * @property formCfg
          */
-        formCfg: formCfg,
-        gridCfg: null
+        formCfg: {
+            formId: '#J_Form',
+            rule: {},
+            messages: {}
+        },
+        gridCfg: gridCfg
     };
 
     return Search;
