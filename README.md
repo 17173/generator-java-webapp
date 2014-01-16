@@ -1,7 +1,7 @@
 # generator-java-webapp  [![Build Status](https://secure.travis-ci.org/17173/generator-java-webapp.png?branch=master)](https://travis-ci.org/17173/generator-java-webapp)
 
 ```
-快速构建 java web 项目的前端脚手架（bootstrap+seajs+fed），目前只适合后台的开发
+快速构建 java web 项目的前端脚手架（bootstrap+seajs+fed）
 ```     
      
  **构建成功后的工程目录结构说明：**
