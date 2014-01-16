@@ -62,15 +62,13 @@ JavaWebappGenerator.prototype.askFor = function askFor() {
 };
 
 JavaWebappGenerator.prototype.app = function app() {
-    this.directory('admin','admin');
+    this.directory('scripts','scripts');
+    this.directory('styles','styles');
+    this.directory('images','images');
 
     this.directory('mock','mock');
     this.directory('WEB-INF','WEB-INF');
 
-    this.mkdir('cdn');
-
-    //this.template('_package.json', 'package.json');
-    //this.template('_bower.json', 'bower.json');
     this.template('config.json', 'config.json');
 };
 
