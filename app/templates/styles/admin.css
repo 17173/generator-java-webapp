@@ -1,0 +1,27 @@
+/* margin, padding, line-height */
+.mr5{ margin-right: 5px}
+.ml5{ margin-left: 5px}
+.pt5{ padding-top: 5px}
+.lh30{ line-height: 30px;}
+/*数据列表*/
+.table td {word-break: break-word;}
+.table td a {margin-right: 5px;}
+.grid-bar{ margin-bottom: 10px}
+
+
+
+/*搜索块*/
+.well {padding: 10px}
+.well .control-group {margin-bottom: 10px}
+
+
+/*提示字体颜色*/
+.help-inline.error, .error {color: #b94a48;}
+
+
+
+.date-range{ padding: 5px 10px; border: 1px solid #ccc; cursor: pointer; background: #fff; display: inline-block}
+.date-range .caret{ vertical-align: middle}
+.selectize-control{ display: inline-block; top: 10px}
+/*.daterangepicker .ranges{width: 200px}
+.daterangepicker .ranges .input-mini{ width: 80px}*/
