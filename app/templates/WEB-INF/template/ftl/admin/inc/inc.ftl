@@ -7,12 +7,15 @@
     <title>${title!''}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" href="${static}/js/components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="${static}/css/bootstrap.css" />
 
     <link rel="stylesheet" href="${static}/css/light-theme.css" />
     <link rel="stylesheet" href="${static}/css/theme-colors.css" />
     <#nested>
     <link rel="stylesheet" href="${static}/css/admin.css" />
+    <script type="text/javascript">
+        window.SEA_BASE = '${static}/js/sea-modules/';
+    </script>
 </head>
 </#macro>
 <#macro body menu>
@@ -47,6 +50,8 @@
 </div>
 </#macro>
 <#macro footer>
+    <script type="text/javascript" src="${static}/js/sea-modules/seajs/seajs/2.1.1/sea.js"></script>
+    <script type="text/javascript" src="${static}/js/sea-config.js"></script>
     <#nested>
 </body>
 </html>
