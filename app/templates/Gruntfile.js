@@ -12,8 +12,9 @@ module.exports = function(grunt) {
     var script = transport.script.init(grunt);
     // configurable paths
     var yeomanConfig = {
-        app: 'admin/static/js/app',
-        dist: 'cdn/admin'
+        app: 'scripts/app',
+        sea: 'scripts/sea-modules',
+        dist: 'dist'
     };
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -23,6 +24,7 @@ module.exports = function(grunt) {
             options: {
                 "globals": {
                     "jQuery": true,
+                    "require": true,
                     "define": true
                 },
                 "jquery": true,//检查预定义的全局变量，防止出现$未定义，该项根据实际代码修改
@@ -55,7 +57,7 @@ module.exports = function(grunt) {
                 "expr": true,
                 "multistr": false//禁止多行字符串，改用加号连接
             },
-            all: ['<%= yeoman.app %>/**/*.js']
+            app: ['<%= yeoman.app %>/**/*.js']
         },
 
         open: {
@@ -76,47 +78,47 @@ module.exports = function(grunt) {
             }
         },
 
-        transport : {
-            options : {
-                paths : ['.'],
+        transport: {
+            options: {
+                paths: ['<%= yeoman.sea %>'],
                 alias: '<%= pkg.spm.alias %>',
-                parsers : {
+                parsers: {
                     '.js' : [script.jsParser],
                     '.css' : [style.css2jsParser],
                     '.html' : [text.html2jsParser]
                 }
             },
 
-            app : {
-                options : {
-                    idleading : 'app/'
+            app: {
+                options: {
+                    idleading: 'app/'
                 },
 
-                files : [
+                files: [
                     {
-                        cwd : '<%= yeoman.app %>/',
-                        src : '**/*',
-                        filter : 'isFile',
-                        dest : '.build/app'
+                        cwd: '<%= yeoman.app %>/',
+                        src: '**/*',
+                        filter: 'isFile',
+                        dest: '.build/app'
                     }
                 ]
             }
         },
-        concat : {
-            options : {
-                paths : ['.'],
-                include : 'relative'
+        concat: {
+            options: {
+                paths: ['<%= yeoman.sea %>'],
+                include: 'relative'
             },
-            app : {
-                options : {
-                    include : 'all'
+            app: {
+                options: {
+                    include: 'all'
                 },
                 files: [
                     {
                         expand: true,
                         cwd: '.build/',
                         src: ['<%= yeoman.app %>/**/*.js'],
-                        dest: 'dist/',
+                        dest: '<%= yeoman.dist %>/',
                         ext: '.js'
                     }
                 ]
@@ -134,21 +136,21 @@ module.exports = function(grunt) {
             }
         },
 
-        uglify : {
-            app : {
+        uglify: {
+            app: {
                 files: [
                     {
                         expand: true,
-                        cwd: 'dist/',
+                        cwd: '<%= yeoman.dist %>/',
                         src: ['<%= yeoman.app %>/**/*.js', '!<%= yeoman.app %>/**/*-debug.js'],
-                        dest: 'dist/',
+                        dest: '<%= yeoman.dist %>/',
                         ext: '.js'
                     }
                 ]
             }
         },
-        clean : {
-            spm : ['.build']
+        clean: {
+            build: ['.build']
         },
         qunit: {
             all: ['test/index.html']
