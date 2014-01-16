@@ -7,5 +7,7 @@
     <p>这是页面内容</p>
 </@inc.body>
 <@inc.footer>
-    <script type="text/javascript" data-main="<%= jsRoot %>/js/<%= _.slugify(name) %>" src="<%= jsRoot %>/js/require.js"></script>
+    <script type="text/javascript">
+        seajs.use('<%= jsRoot %>/js/app/<%= _.slugify(name) %>/main.js');
+    </script>
 </@inc.footer>

@@ -1,3 +1,3 @@
-define(['jquery'],function($) {
-
+define(function(require, exports, module) {
+    //code
 });
