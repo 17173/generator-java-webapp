@@ -8,6 +8,6 @@
 </@inc.body>
 <@inc.footer>
     <script type="text/javascript">
-        seajs.use('<%= jsRoot %>/js/app/<%= _.slugify(name) %>/main.js');
+        seajs.use('<%= jsRoot %>/app/admin/<%= _.slugify(name) %>/main.js');
     </script>
 </@inc.footer>
