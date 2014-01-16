@@ -4,7 +4,7 @@
         "path": {
             "view": "",
             "mock": "mock",
-            "public": "admin/static"
+            "public": ""
         },
         "globals": {
             "baseUrl": "",
