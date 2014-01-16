@@ -12,23 +12,23 @@
     "scripts": {
         "test": "grunt qunit"
     },
+    "spm": {
+        "alias": {
+            "jquery": "jquery/jquery/1.10.1/jquery"
+        }
+    },
     "devDependencies": {
         "fed": "~0.0.17",
         "grunt": "~0.4.1",
-        "grunt-contrib-requirejs": "0.4.x",
         "grunt-contrib-qunit": "0.1.x",
         "grunt-contrib-watch": "~0.4.0",
         "grunt-contrib-copy": "~0.4.1",
         "grunt-contrib-concat": "~0.3.0",
         "grunt-contrib-uglify": "~0.2.0",
         "grunt-contrib-jshint": "~0.6.0",
-        "grunt-contrib-cssmin": "~0.6.2",
-        "grunt-contrib-connect": "~0.3.0",
         "grunt-contrib-yuidoc": "~0.5.0",
         "grunt-open": "~0.2.2",
-        "connect-livereload": "~0.3.0",
         "matchdep": "~0.3.0",
-        "grunt-reload": "~0.2.0",
-        "grunt-cssbeautifier": "~0.1.1"
+        "grunt-cmd-transport": "~0.4.1"
     }
 }

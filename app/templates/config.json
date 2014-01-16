@@ -12,6 +12,6 @@
         }
     },
     "coffeescript": {
-        "debug": true
+        "debug": false
     }
 }

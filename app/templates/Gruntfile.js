@@ -1,96 +1,40 @@
 'use strict';
-var LIVERELOAD_PORT = 35729;
-var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
-var mountFolder = function (connect, dir) {
-    return connect.static(require('path').resolve(dir));
-};
+
+var exec = require('child_process').exec;
+var child;
+
 module.exports = function(grunt) {
     // load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+    var transport = require('grunt-cmd-transport');
+    var style = transport.style.init(grunt);
+    var text = transport.text.init(grunt);
+    var script = transport.script.init(grunt);
     // configurable paths
     var yeomanConfig = {
-        app: 'admin/static',
+        app: 'admin/static/js/app',
         dist: 'cdn/admin'
     };
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        cfg: grunt.file.readJSON('config.json'),
         yeoman: yeomanConfig,
-        requirejs: {
-            std: {
-                options: {
-                    appDir: '<%= yeoman.app %>',
-                    baseUrl: './js/lib',
-                    mainConfigFile: '<%= yeoman.app %>/js/main.js',
-                    optimize: 'uglify2',
-                    uglify2: {
-                        //Example of a specialized config. If you are fine
-                        //with the default options, no need to specify
-                        //any of these properties.
-                        output: {
-                            beautify: false
-                        },
-                        compress: {
-                            sequences: false,
-                            global_defs: {
-                                DEBUG: false
-                            }
-                        },
-                        warnings: true,
-                        mangle: false
-                    },
-                    generateSourceMaps: true,
-                    preserveLicenseComments: false,
-                    // useSourceUrl: true,
-                    dir: '<%= yeoman.dist %>',
-                    //skipDirOptimize: true,
-                    modules: [
-                        //First set up the common build layer.
-                        {
-                            //module names are relative to baseUrl
-                            name: '../main',
-                            //List common dependencies here. Only need to list
-                            //top level dependencies, "include" will find
-                            //nested dependencies.
-                            include: [
-
-                            ]
-                        },
-                        //Now set up a build layer for each page, but exclude
-                        //the common one. "exclude" will exclude nested
-                        //the nested, built dependencies from "common". Any
-                        //"exclude" that includes built modules should be
-                        //listed before the build layer that wants to exclude it.
-                        //"include" the appropriate "app/main*" module since by default
-                        //it will not get added to the build since it is loaded by a nested
-                        //require in the page*.js files.
-                        {
-                            //module names are relative to baseUrl/paths config
-                            name: '../page/search',
-                            include: ['app/search'],
-                            exclude: ['../main']
-                        }
-                    ]
-                }
-            }
-        },
-
         jshint: {
             options: {
-                globals: {
-                    define: true,
-                    requirejs: true,
-                    require: true
+                "globals": {
+                    "jQuery": true,
+                    "define": true
                 },
-                "jquery": true,//检查预定义的全局变量，防止出现$未定义，该项根据实际代码修改 
+                "jquery": true,//检查预定义的全局变量，防止出现$未定义，该项根据实际代码修改
                 "bitwise": false,//不检查位运算
                 "browser": true,//通过浏览器内置的全局变量检测
-                "devel":false,//禁止对调试用的alert和console.log的调用
+                "devel":true,//允许对调试用的alert和console.log的调用
                 "camelcase": true,//使用驼峰式命名
                 "curly": true,//强制使用花括号
                 "eqeqeq": false,//不强制使用===比较运算符
                 "es3":true,//兼容es3规范，针对旧版浏览器编写的代码
                 "esnext": false, //不使用最新的es6规范
-                "forin":false,//不强制过滤遍历对象继承的属性    
+                "forin":false,//不强制过滤遍历对象继承的属性
                 "freeze":false,//不限制对内置对象的扩展
                 "immed": true,//禁止未用括号包含立即执行函数
                 "indent": false,//不强制缩进
@@ -103,17 +47,20 @@ module.exports = function(grunt) {
                 "nonew":false,//允许直接new实例化而不赋值给变量
                 "plusplus":false,//允许++和--运算符使用
                 "quotmark": "single",//字符串使用单引号
-                "undef":true,//禁止明确未定义的变量调用，如果你的变量（myvar）是在其他文件中定义的，可以使用/*global myvar */绕过检测
-                "unused": true,//禁止定义没用的变量
+                "smarttabs": true,//允许混合tab和空格缩进
                 "strict": false,//不强制使用es5严格模式
+                "sub": true,//允许用[]形式访问对象属性
+                "undef": true,//禁止明确未定义的变量调用，如果你的变量（myvar）是在其他文件中定义的，可以使用/*global myvar */绕过检测
+                "unused": false,//允许定义没用的变量，在某些函数回调中，经常出现多个参数，但不一定会用
+                "expr": true,
                 "multistr": false//禁止多行字符串，改用加号连接
             },
-            all: ['<%= yeoman.app %>/js/app/*.js']
+            all: ['<%= yeoman.app %>/**/*.js']
         },
 
         open: {
             server: {
-                url: 'http://localhost:<%= connect.options.port %>/html/search.html'
+                url: 'http://localhost:<%= cfg.server.port %>'
             }
         },
 
@@ -122,96 +69,108 @@ module.exports = function(grunt) {
                 name: '<%= pkg.name %>',
                 description: '<%= pkg.description %>',
                 version: '<%= pkg.version %>',
-                //url: '<%= pkg.homepage %>',
                 options: {
-                    paths: '<%= yeoman.app %>/js/common/',
-                    //themedir: './docs/_site/yuidoc-bootstrap-theme/',
-                    //helpers: ['./docs/_site/yuidoc-bootstrap-theme/helpers/helpers.js'],
+                    paths: '<%= yeoman.app %>/',
                     outdir: './docs/api/'
                 }
             }
         },
 
-        watch: {
-            livereload: {
-                options: {
-                    livereload: LIVERELOAD_PORT
+        transport : {
+            options : {
+                paths : ['.'],
+                alias: '<%= pkg.spm.alias %>',
+                parsers : {
+                    '.js' : [script.jsParser],
+                    '.css' : [style.css2jsParser],
+                    '.html' : [text.html2jsParser]
+                }
+            },
+
+            app : {
+                options : {
+                    idleading : 'app/'
                 },
-                files: [
-                    '<%= yeoman.app %>/{,*/}*.html',
-                    '{.tmp,<%= yeoman.app %>}/css/{,*/}*.css',
-                    '{.tmp,<%= yeoman.app %>}/js/{,*/}*.js',
-                    '<%= yeoman.app %>/img/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+
+                files : [
+                    {
+                        cwd : '<%= yeoman.app %>/',
+                        src : '**/*',
+                        filter : 'isFile',
+                        dest : '.build/app'
+                    }
                 ]
             }
         },
-        connect: {
-            options: {
-                port: 9001,
-                // Change this to '0.0.0.0' to access the server from outside.
-                hostname: 'localhost'
+        concat : {
+            options : {
+                paths : ['.'],
+                include : 'relative'
             },
-            livereload: {
-                options: {
-                    middleware: function (connect) {
-                        return [
-                            lrSnippet,
-                            mountFolder(connect, '.tmp'),
-                            mountFolder(connect, yeomanConfig.app)
-                        ];
+            app : {
+                options : {
+                    include : 'all'
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: '.build/',
+                        src: ['<%= yeoman.app %>/**/*.js'],
+                        dest: 'dist/',
+                        ext: '.js'
                     }
-                }
-            },
-            test: {
+                ]
+            }
+        },
+        watch: {
+            app: {
+                files: ["<%= yeoman.app %>/{,*/}*.js"],
+                tasks: ["jshint"],
                 options: {
-                    middleware: function (connect) {
-                        return [
-                            mountFolder(connect, '.tmp'),
-                            mountFolder(connect, 'test')
-                        ];
-                    }
-                }
-            },
-            dist: {
-                options: {
-                    middleware: function (connect) {
-                        return [
-                            mountFolder(connect, yeomanConfig.dist)
-                        ];
-                    }
+                    nospawn: true,
+                    interrupt: false,
+                    debounceDelay: 100
                 }
             }
         },
-        clean: {
-            dist: {
-                files: [{
-                    dot: true,
-                    src: [
-                        '.tmp'
-                    ]
-                }]
-            },
-            server: '.tmp'
+
+        uglify : {
+            app : {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'dist/',
+                        src: ['<%= yeoman.app %>/**/*.js', '!<%= yeoman.app %>/**/*-debug.js'],
+                        dest: 'dist/',
+                        ext: '.js'
+                    }
+                ]
+            }
+        },
+        clean : {
+            spm : ['.build']
         },
         qunit: {
             all: ['test/index.html']
         }
     });
 
-    grunt.registerTask('server', function (target) {
-        if (target === 'dist') {
-            return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
-        }
+    /*grunt.registerTask('server', function (target) {
+        child = exec('fed server -w -p 3000 config.json', function(error, stdout, stderr) {
+            console.log('stdout: ' + stdout);
+            console.log('stderr: ' + stderr);
+            if (error !== null) {
+                console.log('exec error: ' + error);
+            } else {
+                grunt.task.run([
+                    'open',
+                    'watch'
+                ]);
+            }
+        });
+    });*/
 
-        grunt.task.run([
-            //'clean:server',
-            'connect:livereload',
-            'open',
-            'watch'
-        ]);
-    });
-
-    grunt.registerTask('build', ['jshint','requirejs']);
-    grunt.registerTask('default', ['jshint', 'qunit', 'build']);
+    grunt.registerTask('default', ['watch']);
+    grunt.registerTask('build', ['jshint','transport', 'concat', 'uglify','clean']);
 
 };

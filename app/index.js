@@ -33,7 +33,7 @@ JavaWebappGenerator.prototype.askFor = function askFor() {
             '\n ´   ' + chalk.red('`  |') + '° ' + chalk.red('´ Y') + ' `\n';
 
     console.log(welcome);
-    console.log('This comes with requirejs, jquery, and grunt all ready to go');
+    console.log('This comes with seajs, jquery, and grunt all ready to go');
 
     if (this.options.promptDefaults) {
         this.name = this.options.promptDefaults.name;
@@ -75,7 +75,7 @@ JavaWebappGenerator.prototype.app = function app() {
 };
 
 JavaWebappGenerator.prototype.grunt = function grunt() {
-    this.template('_package.json', 'package.json');
+    this.template('package.json', 'package.json');
     this.copy('Gruntfile.js', 'Gruntfile.js');
 };
 

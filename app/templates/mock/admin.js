@@ -2,6 +2,9 @@ var adminUrl = function(s) {
     return 'WEB-INF/template/ftl/admin/' + s;
 }
 module.exports = {
+    "get /": function() {
+        this.render.ftl(adminUrl('hello'), {});
+    },
     "get /admin/example/search": function(req, res) {
         this.render.ftl(adminUrl('example/search'), {});
     },
