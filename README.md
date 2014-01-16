@@ -4,29 +4,29 @@
 快速构建 java web 项目的前端脚手架（bootstrap+seajs+fed），目前只适合后台的开发
 ```     
      
- webapp下的工程目录结构（只写前端需要的）
+ **构建成功后的工程目录结构说明：**
  
  ```
 | -- WEB-INF
     |-- template                         # 模板文件
         |-- ftl                              # freemarker模版
-            |-- admin                    # 后台模版
-            |-- front                      # 前台模版
-|-- admin                             # 后台
-    |-- static                        # 无需CDN静态资源目录
-        |-- css                         
-        |-- images                    
-        |-- js
-        	|-- app/
-            |-- common/
-            |-- lib/
-            |-- sea-modules/
-            |-- sea-config.js
-|-- front                              # 前台
-    |-- static                         # 无需CDN静态资源目录
-        |-- css                        
-        |-- images                  
-        |-- js                          
+        |-- admin                    # 后台模版
+        |-- front                      # 前台模版
+|-- scripts                               # 脚步资源目录
+    |-- app/                              # 业务脚本
+        |-- admin/                      # 后台业务
+        |-- front/                       # 前台业务
+    |-- lib/
+    |-- sea-modules/               # sea 模块
+    |-- sea-config.js   	             # sea 配置，上线后无需引用
+|-- styles/                              # 样式目录
+|-- images/                            # 图片目录 
+|-- fonts/                              # 字体目录
+|-- config.json                       # fed 配置文件
+|-- package.json
+|-- Gruntfile.js
+|-- mock/                             # 数据模拟
+|-- dist/                               # 最终压缩后的目录
 |-- inc-global       # UI/UE推送的静态内容(正式环境将对本目录建立软链接，访问该目录实际访问的是上级同名目录)
 |-- inc-site         # UI/UE推送的静态内容(正式环境将对本目录建立软链接，访问该目录实际访问的是上级同名目录)
 
@@ -57,7 +57,8 @@ yo java-webapp [app-name]
 可用的生成器：
 
 * [java-webapp](#java-webapp)(aka [java-webapp:app](#java-webapp))
-* [java-webapp:page](#page)
+* [java-webapp:admin](#admin)
+* [java-webapp:front](#front)
 * [java-webapp:mock](#mock)
 
 ### java-webapp
@@ -70,17 +71,17 @@ yo java-webapp [app-name]
 yo java-webapp
 ```
 
-### Page
+### admin
 
-创建一个业务模块，最终生成3个文件
+创建一个后台业务模块，最终生成3个文件
 
 举例：
 
 ```
-yo java-webapp:page mypage
+yo java-webapp:admin mypage
 ```
 
-生成 admin/static/js/app/mypage/main.js
+生成 scripts/app/admin/mypage/main.js
 
 ```
 define(function(require, exports, module) {
@@ -88,7 +89,7 @@ define(function(require, exports, module) {
 });
 ```
 
-生成 admin/static/js/app/mypage/package.json
+生成 scripts/app/admin/mypage/package.json
 
 ```
 {
@@ -117,10 +118,45 @@ define(function(require, exports, module) {
 </@inc.body>
 <@inc.footer>
     <script type="text/javascript">
-        seajs.use('${static}/js/app/mypage/main.js');
+        seajs.use('${jsRoot}/app/admin/mypage/main.js');
     </script>
 </@inc.footer>
 ```
+
+### front
+
+创建一个前台业务模块，最终生成2个文件，因前台的页面模板是可变的，所以不做业务对应 ftl 文件的生成
+
+举例：
+
+```
+yo java-webapp:front mypage
+```
+
+生成 scripts/app/front/mypage/main.js
+
+```
+define(function(require, exports, module) {
+    //code
+});
+```
+
+生成 scripts/app/front/mypage/package.json
+
+```
+{
+    "family": "app",
+    "name": "mypage",
+    "version": "0.0.0",
+    "spm": {
+        "alias": {
+            
+        },
+        "output": ["main.js"]
+    }
+}
+```
+
 ### Mock
 
 创建 mock 文件，采用 [fed](https://github.com/ijse/FED) 模拟的接口数据文件
@@ -157,6 +193,10 @@ module.exports = {
 ## Testing
 
 ## Contribute
+
+## ChangeLog
+
+见 [CHANGELOG.md](https://github.com/17173/generator-java-webapp/blob/master/CHANGELOG.md)
 
 ## License
 

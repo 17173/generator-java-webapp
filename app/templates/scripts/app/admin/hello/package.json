@@ -1,0 +1,11 @@
+{
+    "family": "app",
+    "name": "hello",
+    "version": "1.0.0",
+    "spm": {
+        "alias": {
+            "jquery": "jquery/jquery/1.10.1/jquery"
+        },
+        "output": ["main.js"]
+    }
+}
