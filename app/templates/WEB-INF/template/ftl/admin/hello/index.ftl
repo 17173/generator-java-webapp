@@ -1,7 +1,7 @@
 <#import '/WEB-INF/template/ftl/admin/inc/inc.ftl' as inc />
 
 <@inc.header 'hello'>
-    <link rel="stylesheet" href="${static}/js/app/hello/style.css">
+    <link rel="stylesheet" href="${jsRoot}/app/admin/hello/style.css">
 </@inc.header>
 <@inc.body 'hello'>
     <div id="container">
@@ -20,6 +20,6 @@
 </@inc.body>
 <@inc.footer>
     <script type="text/javascript">
-        seajs.use('${static}/js/app/hello/main.js');
+        seajs.use('${jsRoot}/app/admin/hello/main.js');
     </script>
 </@inc.footer>
