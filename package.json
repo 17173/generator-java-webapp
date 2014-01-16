@@ -1,6 +1,6 @@
 {
     "name": "generator-java-webapp",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "A generator for java webapp",
     "keywords": [
         "yeoman-generator"

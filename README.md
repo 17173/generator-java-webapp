@@ -1,7 +1,7 @@
 # generator-java-webapp  [![Build Status](https://secure.travis-ci.org/17173/generator-java-webapp.png?branch=master)](https://travis-ci.org/17173/generator-java-webapp)
 
 ```
-快速构建 java web 项目的前端脚手架（bootstrap+requirejs+fed），目前只适合后台的开发
+快速构建 java web 项目的前端脚手架（bootstrap+seajs+fed），目前只适合后台的开发
 ```     
      
  webapp下的工程目录结构（只写前端需要的）
@@ -20,9 +20,8 @@
         	|-- app/
             |-- common/
             |-- lib/
-            |-- page/
-            |-- main.js
-            |-- require.js
+            |-- sea-modules/
+            |-- sea-config.js
 |-- front                              # 前台
     |-- static                         # 无需CDN静态资源目录
         |-- css                        
@@ -73,7 +72,7 @@ yo java-webapp
 
 ### Page
 
-创建一个业务模块，最终生成三个文件
+创建一个业务模块，最终生成3个文件
 
 举例：
 
@@ -81,20 +80,28 @@ yo java-webapp
 yo java-webapp:page mypage
 ```
 
-生成 admin/static/js/page/mypage.js
+生成 admin/static/js/app/mypage/main.js
 
 ```
-require(['../main'], function (main) {
-    require(['app/mypage']);
+define(function(require, exports, module) {
+    //code
 });
 ```
 
-生成 admin/static/js/app/mypage.js
+生成 admin/static/js/app/mypage/package.json
 
 ```
-define(['jquery'],function($) {
-
-});
+{
+    "family": "app",
+    "name": "mypage",
+    "version": "0.0.0",
+    "spm": {
+        "alias": {
+            
+        },
+        "output": ["main.js"]
+    }
+}
 ```
 
 生成 WEB-INF/template/ftl/admin/mypage/index.ftl
@@ -109,7 +116,9 @@ define(['jquery'],function($) {
     <p>这是页面内容</p>
 </@inc.body>
 <@inc.footer>
-    <script type="text/javascript" data-main="${static}/js/mypage" src="${static}/js/require.js"></script>
+    <script type="text/javascript">
+        seajs.use('${static}/js/app/mypage/main.js');
+    </script>
 </@inc.footer>
 ```
 ### Mock
