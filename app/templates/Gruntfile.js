@@ -117,7 +117,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         cwd: '.build/',
-                        src: ['<%= yeoman.app %>/**/*.js'],
+                        src: ['app/**/*.js'],
                         dest: '<%= yeoman.dist %>/',
                         ext: '.js'
                     }
@@ -142,9 +142,21 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         cwd: '<%= yeoman.dist %>/',
-                        src: ['<%= yeoman.app %>/**/*.js', '!<%= yeoman.app %>/**/*-debug.js'],
+                        src: ['app/**/*.js', '!app/**/*-debug.js'],
                         dest: '<%= yeoman.dist %>/',
                         ext: '.js'
+                    }
+                ]
+            }
+        },
+        copy: {
+            sea: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= yeoman.sea %>/seajs/',
+                        src: ['**'],
+                        dest: '<%= yeoman.dist %>/sea-modules/seajs/'
                     }
                 ]
             }
@@ -173,6 +185,6 @@ module.exports = function(grunt) {
     });*/
 
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('build', ['jshint','transport', 'concat', 'uglify','clean']);
+    grunt.registerTask('build', ['jshint','transport', 'concat', 'uglify','copy','clean']);
 
 };
