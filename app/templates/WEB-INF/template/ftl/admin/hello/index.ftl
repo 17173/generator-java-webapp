@@ -1,7 +1,7 @@
 <#import '/WEB-INF/template/ftl/admin/inc/inc.ftl' as inc />
 
 <@inc.header 'hello'>
-    <link rel="stylesheet" href="${jsRoot}/app/admin/hello/style.css">
+    
 </@inc.header>
 <@inc.body 'hello'>
     <div id="container">

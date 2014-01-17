@@ -1,7 +1,7 @@
 # generator-java-webapp  [![Build Status](https://secure.travis-ci.org/17173/generator-java-webapp.png?branch=master)](https://travis-ci.org/17173/generator-java-webapp)
 
 ```
-快速构建 java web 项目的前端脚手架（bootstrap+seajs+fed）
+快速构建 java web 项目的前端脚手架（bootstrap+seajs+fed），目前只适合后台的开发
 ```     
      
  **构建成功后的工程目录结构说明：**
@@ -10,15 +10,13 @@
 | -- WEB-INF
     |-- template                         # 模板文件
         |-- ftl                              # freemarker模版
-        |-- admin                    # 后台模版
-        |-- front                      # 前台模版
+            |-- admin/                    # 后台模版
+            |-- front/                      # 前台模版
 |-- scripts                               # 脚步资源目录
     |-- app/                              # 业务脚本
         |-- admin/                      # 后台业务
         |-- front/                       # 前台业务
-    |-- lib/
-    |-- sea-modules/               # sea 模块
-    |-- sea-config.js   	             # sea 配置，上线后无需引用
+    |-- sea-modules/               # 通过 spm 安装的 seajs 模块目录
 |-- styles/                              # 样式目录
 |-- images/                            # 图片目录 
 |-- fonts/                              # 字体目录
@@ -60,12 +58,12 @@ yo java-webapp [app-name]
 * [java-webapp:admin](#admin)
 * [java-webapp:front](#front)
 * [java-webapp:mock](#mock)
-
+* [java-webapp:fed](#fed)
 ### java-webapp
 
 按 java web 的目录规范，创建前端工程目录文件
 
-举例：
+**举例：**
 
 ```
 yo java-webapp
@@ -75,7 +73,7 @@ yo java-webapp
 
 创建一个后台业务模块，最终生成3个文件
 
-举例：
+**举例：**
 
 ```
 yo java-webapp:admin mypage
@@ -127,7 +125,7 @@ define(function(require, exports, module) {
 
 创建一个前台业务模块，最终生成2个文件，因前台的页面模板是可变的，所以不做业务对应 ftl 文件的生成
 
-举例：
+**举例：**
 
 ```
 yo java-webapp:front mypage
@@ -161,7 +159,7 @@ define(function(require, exports, module) {
 
 创建 mock 文件，采用 [fed](https://github.com/ijse/FED) 模拟的接口数据文件
 
-举例：
+**举例：**
 
 ```
 yo java-webapp:mock mypage
@@ -188,6 +186,37 @@ module.exports = {
     }
 
 };
+```
+### fed
+
+创建一个 fed 配置文件
+
+**举例：**
+
+```
+yo java-webapp:fed config
+```
+
+生成 config.json
+
+```
+{
+    "server": {
+        "port": "3000",
+        "path": {
+            "view": "",
+            "mock": "mock",
+            "public": ""
+        },
+        "globals": {
+            "baseUrl": "",
+            "basePath": "http://www.ijser.cn/"
+        }
+    },
+    "coffeescript": {
+        "debug": false
+    }
+}
 ```
 
 ## Testing

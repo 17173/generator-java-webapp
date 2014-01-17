@@ -6,14 +6,6 @@
     ],
     "dependencies": {},
     "devDependencies": {
-        "bootbox": "4.1.0",
-        "jquery.validation": "~1.11.1",
-        "bootstrap3-grid": "~0.0.6",
-        "bootstrap-daterangepicker": "~1.2.0",
-        "selectize": "~0.8.5",
-        "moment": "~2.4.0",
-        "select2": "~3.4.5",
-        "font-awesome": "~4.0.3",
-        "bootstrap": "~3.0.2"
+
     }
 }

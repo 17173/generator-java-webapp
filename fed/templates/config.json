@@ -1,0 +1,17 @@
+{
+    "server": {
+        "port": "3000",
+        "path": {
+            "view": "",
+            "mock": "mock",
+            "public": ""
+        },
+        "globals": {
+            "baseUrl": "",
+            "basePath": "http://www.ijser.cn/"
+        }
+    },
+    "coffeescript": {
+        "debug": false
+    }
+}
