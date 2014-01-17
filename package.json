@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "A generator for java webapp",
     "keywords": [
-        "yeoman-generator"
+        "yeoman-generator, java, webapp, seajs, fed, java-webapp, bootstrap"
     ],
     "homepage": "https://github.com/17173/generator-java-webapp",
     "bugs": "https://github.com/17173/generator-java-webapp/issues",
