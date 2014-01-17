@@ -1,7 +1,15 @@
 <#global ctx = 'http://localhost:3000'>
-<#global jsRoot = '${ctx}/scripts'>
-<#global cssRoot = '${ctx}/styles'>
-<#global imgRoot = '${ctx}/images'>
+<#global DEBUG = true>
+<#if DEBUG?? && DEBUG>
+    <#global jsRoot = '${ctx}/scripts'>
+    <#global cssRoot = '${ctx}/styles'>
+    <#global imgRoot = '${ctx}/images'>
+<#else>
+    <#global jsRoot = '${ctx}/dist'>
+    <#global cssRoot = '${ctx}/styles'>
+    <#global imgRoot = '${ctx}/images'>
+</#if>
+
 <#macro header title>
 <!DOCTYPE HTML>
 <html>
@@ -15,9 +23,7 @@
     <link rel="stylesheet" href="${cssRoot}/theme-colors.css" />
     <link rel="stylesheet" href="${cssRoot}/admin.css" />
     <#nested>
-    <script type="text/javascript">
-        window.SEA_BASE = '${jsRoot}/sea-modules/';
-    </script>
+    
 </head>
 </#macro>
 <#macro body menu>
@@ -53,7 +59,22 @@
 </#macro>
 <#macro footer>
     <script type="text/javascript" src="${jsRoot}/sea-modules/seajs/seajs/2.1.1/sea.js"></script>
-    <script type="text/javascript" src="${jsRoot}/sea-config.js"></script>
+    <script type="text/javascript" src="${jsRoot}/sea-modules/seajs/seajs-style/1.0.2/seajs-style.js"></script>
+    <script type="text/javascript">
+        <#if DEBUG?? && DEBUG>
+            seajs.config({
+                base: '${jsRoot}/sea-modules/',
+                alias: {
+                    "jquery": "jquery/jquery/1.10.1/jquery"
+                },
+                debug: true
+            });
+        <#else>
+            seajs.config({
+                base: '${jsRoot}'
+            }); 
+        </#if>
+    </script>
     <#nested>
 </body>
 </html>
