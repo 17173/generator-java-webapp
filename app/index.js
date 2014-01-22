@@ -73,7 +73,7 @@ JavaWebappGenerator.prototype.app = function app() {
 };
 
 JavaWebappGenerator.prototype.grunt = function grunt() {
-    this.template('package.json', 'package.json');
+    this.template('_package.json', 'package.json');
     this.copy('Gruntfile.js', 'Gruntfile.js');
 };
 
