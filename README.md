@@ -59,6 +59,7 @@ yo java-webapp [app-name]
 * [java-webapp:front](#front)
 * [java-webapp:mock](#mock)
 * [java-webapp:fed](#fed)
+
 ### java-webapp
 
 按 java web 的目录规范，创建前端工程目录文件
