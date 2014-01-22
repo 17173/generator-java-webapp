@@ -232,6 +232,6 @@ yo java-webapp:fed config
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
 
 
-
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/17173/generator-java-webapp/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 
