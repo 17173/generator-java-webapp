@@ -4,15 +4,15 @@
  * @param s
  * @returns {string}
  */
-var adminUrl = function(s) {
-    return 'WEB-INF/template/ftl/admin/' + s;
+var getFile = function(s) {
+    return 'WEB-INF/template/ftl/' + s + '/index';
 };
 module.exports = {
     "get /url": function(req, res) {
-        this.render.ftl(adminUrl('path'), {});
+        this.render.ftl(getFile('path'), {});
     },
     "post /url": function(req, res) {
-        this.render.ftl(adminUrl('path'), {});
+        this.render.ftl(getFile('path'), {});
     }
 
 };
