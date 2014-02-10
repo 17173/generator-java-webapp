@@ -12,19 +12,21 @@
         |-- ftl                              # freemarker模版
             |-- admin/                    # 后台模版
             |-- front/                      # 前台模版
-|-- scripts                               # 脚步资源目录
+|-- src                               # 开发的前端资源目录
     |-- app/                              # 业务脚本
+        |-- commmon/                     # 业务公共模块
         |-- admin/                      # 后台业务
         |-- front/                       # 前台业务
-    |-- sea-modules/               # 通过 spm 安装的 seajs 模块目录
-|-- styles/                              # 样式目录
-|-- images/                            # 图片目录 
-|-- fonts/                              # 字体目录
+    |-- images/                          # 图片
+    |-- css/                             # 样式
+    |-- fonts/                          # 字体
+    |-- js/                    # 非 cmd 模块的脚本，重构调用的
+|-- sea-modules/               # 通过 spm 安装的 seajs 模块目录
 |-- config.json                       # fed 配置文件
 |-- package.json
 |-- Gruntfile.js
 |-- mock/                             # 数据模拟
-|-- dist/                               # 最终压缩后的目录
+|-- dist/                               # 最终压缩上线后的目录
 |-- inc-global       # UI/UE推送的静态内容(正式环境将对本目录建立软链接，访问该目录实际访问的是上级同名目录)
 |-- inc-site         # UI/UE推送的静态内容(正式环境将对本目录建立软链接，访问该目录实际访问的是上级同名目录)
 
@@ -55,6 +57,7 @@ yo java-webapp [app-name]
 可用的生成器：
 
 * [java-webapp](#java-webapp)(aka [java-webapp:app](#java-webapp))
+* [java-webpp:page](#page)
 * [java-webapp:admin](#admin)
 * [java-webapp:front](#front)
 * [java-webapp:mock](#mock)
@@ -69,6 +72,57 @@ yo java-webapp [app-name]
 ```
 yo java-webapp
 ```
+### page
+
+自定义一个业务模块，最终生成3个文件, 用”/“，生成带目录的文件
+
+**举例：**
+
+```
+yo java-webapp:page myapp/login
+```
+
+生成 src/app/myapp/login/main.js
+
+```
+define(function(require, exports, module) {
+    //code
+});
+```
+
+生成 src/app/myapp/login/package.json
+
+```
+{
+    "family": "app",
+    "name": "login",
+    "version": "0.0.0",
+    "spm": {
+        "alias": {
+            
+        },
+        "output": ["main.js"]
+    }
+}
+```
+
+生成 WEB-INF/template/ftl/myapp/login/index.ftl
+
+```
+<#import '/WEB-INF/template/ftl/inc/inc.ftl' as inc />
+
+<@inc.header '页面标题'>
+
+</@inc.header>
+<@inc.body '页面菜单名'>
+    <p>这是页面内容</p>
+</@inc.body>
+<@inc.footer>
+    <script type="text/javascript">
+        seajs.use('${jsRoot}/app/myapp/login/main.js');
+    </script>
+</@inc.footer>
+```
 
 ### admin
 
@@ -80,7 +134,7 @@ yo java-webapp
 yo java-webapp:admin mypage
 ```
 
-生成 scripts/app/admin/mypage/main.js
+生成 src/app/admin/mypage/main.js
 
 ```
 define(function(require, exports, module) {
@@ -88,7 +142,7 @@ define(function(require, exports, module) {
 });
 ```
 
-生成 scripts/app/admin/mypage/package.json
+生成 src/app/admin/mypage/package.json
 
 ```
 {
@@ -132,7 +186,7 @@ define(function(require, exports, module) {
 yo java-webapp:front mypage
 ```
 
-生成 scripts/app/front/mypage/main.js
+生成 src/app/front/mypage/main.js
 
 ```
 define(function(require, exports, module) {
@@ -140,7 +194,7 @@ define(function(require, exports, module) {
 });
 ```
 
-生成 scripts/app/front/mypage/package.json
+生成 src/app/front/mypage/package.json
 
 ```
 {
@@ -175,15 +229,15 @@ yo java-webapp:mock mypage
  * @param s
  * @returns {string}
  */
-var adminUrl = function(s) {
-    return 'WEB-INF/template/ftl/admin/' + s;
+var getFile = function(s) {
+    return 'WEB-INF/template/ftl/' + s;
 };
 module.exports = {
     "get /url": function(req, res) {
-        this.render.ftl(adminUrl('path'), {});
+        this.render.ftl(getFile('path'), {});
     },
     "post /url": function(req, res) {
-        this.render.ftl(adminUrl('path'), {});
+        this.render.ftl(getFile('path'), {});
     }
 
 };
