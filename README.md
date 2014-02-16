@@ -17,10 +17,11 @@
         |-- commmon/                     # 业务公共模块
         |-- admin/                      # 后台业务
         |-- front/                       # 前台业务
-    |-- images/                          # 图片
+    |-- img/                        # 图片
     |-- css/                             # 样式
-    |-- fonts/                          # 字体
+    |-- font/                          # 字体
     |-- js/                    # 非 cmd 模块的脚本，重构调用的
+    |-- mov/                   # 存放视频，音频
 |-- sea-modules/               # 通过 spm 安装的 seajs 模块目录
 |-- config.json                       # fed 配置文件
 |-- package.json
@@ -210,6 +211,8 @@ define(function(require, exports, module) {
 }
 ```
 
+> **注：**  java-webapp:admin 和 java-webapp:front 其实就是 java-webapp:page 的子集，它们用在典型的有前台和后台的工程中，如你只是开发一个前台或后台的工程，可用 java-webapp:page 和 java-webapp:inc 自定义模块
+    
 ### Mock
 
 创建 mock 文件，采用 [fed](https://github.com/ijse/FED) 模拟的接口数据文件
