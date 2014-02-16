@@ -1,13 +1,13 @@
 <#global ctx = 'http://localhost:8080'>
 <#global DEBUG = true>
 <#if DEBUG?? && DEBUG>
-    <#global jsRoot = '${ctx}/scripts'>
-    <#global cssRoot = '${ctx}/styles'>
-    <#global imgRoot = '${ctx}/images'>
+    <#global jsRoot = '${ctx}/src'>
+    <#global cssRoot = '${ctx}/css'>
+    <#global imgRoot = '${ctx}/img'>
 <#else>
     <#global jsRoot = '${ctx}/dist'>
-    <#global cssRoot = '${ctx}/styles'>
-    <#global imgRoot = '${ctx}/images'>
+    <#global cssRoot = '${ctx}/css'>
+    <#global imgRoot = '${ctx}/img'>
 </#if>
 
 <#macro header title>
@@ -41,12 +41,12 @@
 </div><!--/.container-->
 </#macro>
 <#macro footer>
-    <script type="text/javascript" src="${jsRoot}/sea-modules/seajs/seajs/2.1.1/sea.js"></script>
-    <script type="text/javascript" src="${jsRoot}/sea-modules/seajs/seajs-style/1.0.2/seajs-style.js"></script>
+    <script type="text/javascript" src="${ctx}/sea-modules/seajs/seajs/2.1.1/sea.js"></script>
+    <script type="text/javascript" src="${ctx}/sea-modules/seajs/seajs-style/1.0.2/seajs-style.js"></script>
     <script type="text/javascript">
         <#if DEBUG?? && DEBUG>
             seajs.config({
-                base: '${jsRoot}/sea-modules/',
+                base: '${ctx}/sea-modules/',
                 alias: {
                     "jquery": "jquery/jquery/1.10.1/jquery"
                 },
