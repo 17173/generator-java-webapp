@@ -3,11 +3,11 @@
 <#if DEBUG?? && DEBUG>
     <#global jsRoot = '${ctx}/src'>
     <#global cssRoot = '${ctx}/src/css'>
-    <#global imgRoot = '${ctx}/src/images'>
+    <#global imgRoot = '${ctx}/src/img'>
 <#else>
     <#global jsRoot = '${ctx}/dist'>
     <#global cssRoot = '${ctx}/dist/css'>
-    <#global imgRoot = '${ctx}/dist/images'>
+    <#global imgRoot = '${ctx}/dist/img'>
 </#if>
 
 <#macro header title>
