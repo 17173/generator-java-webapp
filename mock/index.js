@@ -16,5 +16,4 @@ util.inherits(MockGenerator, yeoman.generators.NamedBase);
 
 MockGenerator.prototype.files = function files() {
   this.template('mock.js', path.join('mock/', this.name + '.js'));
-  this.template('common.js', path.join('mock/', 'common.js'));
 };
