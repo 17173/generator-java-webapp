@@ -1,4 +1,3 @@
-<#global ctx = 'http://localhost:3000'>
 <#global DEBUG = true>
 <#if DEBUG?? && DEBUG>
     <#global jsRoot = '${ctx}/src'>
