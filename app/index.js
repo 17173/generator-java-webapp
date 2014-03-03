@@ -68,7 +68,7 @@ JavaWebappGenerator.prototype.app = function app() {
     this.directory('WEB-INF','WEB-INF');
     this.directory('sea-modules','sea-modules');
 
-    this.template('config.json', 'config.json');
+    this.template('README.md', 'README.md');
 };
 
 JavaWebappGenerator.prototype.grunt = function grunt() {
@@ -76,12 +76,8 @@ JavaWebappGenerator.prototype.grunt = function grunt() {
     this.copy('Gruntfile.js', 'Gruntfile.js');
 };
 
-JavaWebappGenerator.prototype.bower = function bower() {
-    this.template('.bowerrc', '.bowerrc');
-    this.template('_bower.json', 'bower.json');
-};
-
 JavaWebappGenerator.prototype.configs = function configs() {
+    this.template('config.json', 'config.json');
     this.template('editorconfig', '.editorconfig');
     this.template('jshintrc', '.jshintrc');
 };

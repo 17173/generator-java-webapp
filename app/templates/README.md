@@ -8,7 +8,7 @@
 		
 2. 启动服务
 		
-		$> fed server -w -p 3000 config.json
+		$> fed server -w -p 8080 config.json
 		
 		
 		
