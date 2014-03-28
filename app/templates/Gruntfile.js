@@ -10,6 +10,7 @@ module.exports = function(grunt) {
     var style = transport.style.init(grunt);
     var text = transport.text.init(grunt);
     var script = transport.script.init(grunt);
+    var template = transport.template.init(grunt);
     // configurable paths
     var yeomanConfig = {
         app: 'src/app',
@@ -41,7 +42,7 @@ module.exports = function(grunt) {
                 version: '<%= pkg.version %>',
                 options: {
                     paths: '<%= yeoman.app %>/',
-                    outdir: './docs/api/'
+                    outdir: './docs'
                 }
             }
         },
@@ -49,12 +50,16 @@ module.exports = function(grunt) {
         transport: {
             options: {
                 paths: ['<%= yeoman.sea %>'],
-                alias: '<%= pkg.spm.alias %>',
+                /*handlebars: {
+                 id: 'handlebars'
+                 },*/
                 parsers: {
                     '.js' : [script.jsParser],
                     '.css' : [style.css2jsParser],
-                    '.html' : [text.html2jsParser]
-                }
+                    '.html' : [text.html2jsParser],
+                    '.handlebars': [template.handlebarsParser]
+                },
+                alias: '<%= pkg.spm.alias %>'
             },
 
             app: {
@@ -64,8 +69,9 @@ module.exports = function(grunt) {
 
                 files: [
                     {
+                        expand: true,
                         cwd: '<%= yeoman.app %>/',
-                        src: '**/*',
+                        src: ['**/*', '!**/package.json'],
                         filter: 'isFile',
                         dest: '.build/app'
                     }
@@ -75,11 +81,13 @@ module.exports = function(grunt) {
         concat: {
             options: {
                 paths: ['<%= yeoman.sea %>'],
-                include: 'relative'
+                include: 'all'
             },
             app: {
                 options: {
-                    include: 'all'
+                    // 不能用 style.css2js ,不然打包失败
+                    // https://github.com/spmjs/grunt-cmd-concat/issues/32
+                    css2js: transport.style.css2js
                 },
                 files: [
                     {
@@ -117,20 +125,13 @@ module.exports = function(grunt) {
                 ]
             }
         },
-        copy: {
-            sea: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: '<%= yeoman.sea %>/seajs/',
-                        src: ['**'],
-                        dest: '<%= yeoman.dist %>/sea-modules/seajs/'
-                    }
-                ]
-            }
-        },
         clean: {
             build: ['.build']
+        },
+        fed: {
+            server: {
+                config: 'config.json'
+            }
         },
         qunit: {
             all: ['test/index.html']
@@ -138,21 +139,22 @@ module.exports = function(grunt) {
     });
 
     /*grunt.registerTask('server', function (target) {
-        child = exec('fed server -w -p 3000 config.json', function(error, stdout, stderr) {
-            console.log('stdout: ' + stdout);
-            console.log('stderr: ' + stderr);
-            if (error !== null) {
-                console.log('exec error: ' + error);
-            } else {
-                grunt.task.run([
-                    'open',
-                    'watch'
-                ]);
-            }
-        });
-    });*/
+     child = exec('fed server -w -p 3000 config.json', function(error, stdout, stderr) {
+     console.log('stdout: ' + stdout);
+     console.log('stderr: ' + stderr);
+     if (error !== null) {
+     console.log('exec error: ' + error);
+     } else {
+     grunt.task.run([
+     'open',
+     'watch'
+     ]);
+     }
+     });
+     });*/
 
-    grunt.registerTask('default', ['watch']);
-    grunt.registerTask('build', ['jshint','transport', 'concat', 'uglify','copy','clean']);
+    grunt.registerTask('default', ['fed']);
+    grunt.registerTask('server', ['fed']);
+    grunt.registerTask('build', [/*'jshint',*/'cssmin', 'transport', 'concat', 'uglify','clean']);
 
 };

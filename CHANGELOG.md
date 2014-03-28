@@ -1,3 +1,12 @@
+### v1.0.3 (2014-3-28)
+
+* 主题改为 bootstrap3 默认主题
+* 只保留 hello 的例子
+* 去除 admin 和 front 子生产器，如需要，通过 page 及 inc 生成
+* sea配置，用单独文件方式引用
+* boostrap,seajs,jquery 引用线上 cdn 地址
+* 添加 grunt-fed，可用 grunt server ,运行服务
+
 ### v1.0.2 (2014-2-19)
 
 * ctx 全局变量， 在 mock 定义，而不在 inc.ftl 写死

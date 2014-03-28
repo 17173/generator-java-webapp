@@ -18,7 +18,7 @@
         }
     },
     "devDependencies": {
-        "fed": "~0.0.17",
+        "grunt-fed": "0.0.3",
         "grunt": "~0.4.1",
         "grunt-contrib-qunit": "0.1.x",
         "grunt-contrib-watch": "~0.4.0",
