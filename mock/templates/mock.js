@@ -1,14 +1,6 @@
-/**
- * 获取 ftl 文件路径
- *
- * @param s
- * @returns {string}
- */
-var getFile = function(s) {
-    return 'WEB-INF/template/ftl/' + s + '/index';
-};
 var common = require('./common');
 var store = common.store;
+var getFile = common.getFile;
 module.exports = {
     // mock 请求
     "post /url": function(req, res) {

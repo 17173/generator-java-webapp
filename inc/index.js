@@ -15,7 +15,7 @@ var PageGenerator = module.exports = function PageGenerator(args, options, confi
 util.inherits(PageGenerator, yeoman.generators.NamedBase);
 
 PageGenerator.prototype.files = function files() {
-    this.jsRoot = '${jsRoot}';
+    this.appRoot = '${appRoot}';
     // 可这样创建 admin/inc
     this.template('inc/footer.ftl', path.join('WEB-INF/template/ftl/', this.name + '/footer.ftl'));
     this.template('inc/header.ftl', path.join('WEB-INF/template/ftl/', this.name + '/header.ftl'));
