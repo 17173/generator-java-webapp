@@ -16,8 +16,9 @@ util.inherits(PageGenerator, yeoman.generators.NamedBase);
 
 PageGenerator.prototype.files = function files() {
     this.jsRoot = '${jsRoot}';
+    this.appRoot = '${appRoot}';
     // 可这样创建 admin/login
-    this.template('app.js', path.join('src/app/', this.name + '/main.js'));
+    this.template('app.js', path.join('src/app/', this.name + '/index.js'));
     this.template('package.json', path.join('src/app/', this.name + '/package.json'));
     this.template('page.ftl', path.join('WEB-INF/template/ftl/', this.name + '/index.ftl'));
 };
