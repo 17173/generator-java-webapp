@@ -10,13 +10,9 @@
 | -- WEB-INF
     |-- template                         # 模板文件
         |-- ftl                              # freemarker模版
-            |-- admin/                    # 后台模版
-            |-- front/                      # 前台模版
 |-- src                               # 开发的前端资源目录
     |-- app/                              # 业务脚本
         |-- commmon/                     # 业务公共模块
-        |-- admin/                      # 后台业务
-        |-- front/                       # 前台业务
     |-- img/                        # 图片
     |-- css/                             # 样式
     |-- font/                          # 字体
@@ -59,10 +55,10 @@ yo java-webapp [app-name]
 
 * [java-webapp](#java-webapp)(aka [java-webapp:app](#java-webapp))
 * [java-webpp:page](#page)
-* [java-webapp:admin](#admin)
-* [java-webapp:front](#front)
 * [java-webapp:mock](#mock)
 * [java-webapp:fed](#fed)
+* [java-webapp:js](#js)
+* [java-webapp:ftl](#ftl)
 
 ### java-webapp
 
@@ -125,94 +121,6 @@ define(function(require, exports, module) {
 </@inc.footer>
 ```
 
-### admin
-
-创建一个后台业务模块，最终生成3个文件
-
-**举例：**
-
-```
-yo java-webapp:admin mypage
-```
-
-生成 src/app/admin/mypage/main.js
-
-```
-define(function(require, exports, module) {
-    //code
-});
-```
-
-生成 src/app/admin/mypage/package.json
-
-```
-{
-    "family": "app",
-    "name": "mypage",
-    "version": "0.0.0",
-    "spm": {
-        "alias": {
-            
-        },
-        "output": ["main.js"]
-    }
-}
-```
-
-生成 WEB-INF/template/ftl/admin/mypage/index.ftl
-
-```
-<#import '/WEB-INF/template/ftl/admin/inc/inc.ftl' as inc />
-
-<@inc.header '页面标题'>
-
-</@inc.header>
-<@inc.body '页面菜单名'>
-    <p>这是页面内容</p>
-</@inc.body>
-<@inc.footer>
-    <script type="text/javascript">
-        seajs.use('${jsRoot}/app/admin/mypage/main.js');
-    </script>
-</@inc.footer>
-```
-
-### front
-
-创建一个前台业务模块，最终生成2个文件，因前台的页面模板是可变的，所以不做业务对应 ftl 文件的生成
-
-**举例：**
-
-```
-yo java-webapp:front mypage
-```
-
-生成 src/app/front/mypage/main.js
-
-```
-define(function(require, exports, module) {
-    //code
-});
-```
-
-生成 src/app/front/mypage/package.json
-
-```
-{
-    "family": "app",
-    "name": "mypage",
-    "version": "0.0.0",
-    "spm": {
-        "alias": {
-            
-        },
-        "output": ["main.js"]
-    }
-}
-```
-
-> **注：**  java-webapp:admin 和 java-webapp:front 其实就是 java-webapp:page 的子集，它们用在典型的有前台和后台的工程中，如你只是开发一个前台或后台的工程，可用 java-webapp:page 和 java-webapp:inc 自定义模块
-    
 ### Mock
 
 创建 mock 文件，采用 [fed](https://github.com/ijse/FED) 模拟的接口数据文件
@@ -226,21 +134,25 @@ yo java-webapp:mock mypage
 生成 mock/mypage.js
 
 ```
-/**
- * 获取后台 ftl 文件路径
- *
- * @param s
- * @returns {string}
- */
-var getFile = function(s) {
-    return 'WEB-INF/template/ftl/' + s;
-};
+var common = require('./common');
+var store = common.store;
+var getFile = common.getFile;
 module.exports = {
-    "get /url": function(req, res) {
-        this.render.ftl(getFile('path'), {});
-    },
+    // mock 请求
     "post /url": function(req, res) {
-        this.render.ftl(getFile('path'), {});
+        res.send({
+            "result": "success",
+            "messages": [],
+            "fieldErrors": {},
+            "errors": [],
+            "data": {
+
+            }
+        });
+    },
+    // mock freeMarker 文件
+    "get /url": function(req, res) {
+        this.render.ftl(getFile('path'), store);
     }
 
 };
@@ -260,7 +172,7 @@ yo java-webapp:fed config
 ```
 {
     "server": {
-        "port": "3000",
+        "port": "8080",
         "path": {
             "view": "",
             "mock": "mock",
@@ -268,13 +180,58 @@ yo java-webapp:fed config
         },
         "globals": {
             "baseUrl": "",
-            "basePath": "http://www.ijser.cn/"
+            "basePath": ""
         }
     },
     "coffeescript": {
         "debug": false
     }
 }
+```
+
+### js
+
+创建一个 js 文件
+
+**举例：**
+
+```
+yo java-webapp:js myapp
+```
+
+生成 myapp.js
+
+```
+define(function(require, exports, module) {
+    var $ = require('$');
+
+});
+```
+
+### ftl
+
+创建一个 ftl 文件
+
+**举例：**
+
+```
+yo java-webapp:ftl myapp
+```
+
+生成 myapp/index.ftl
+
+```
+<#import '/WEB-INF/template/ftl/inc/inc.ftl' as inc />
+
+<@inc.header '页面标题'>
+
+</@inc.header>
+<@inc.body ''>
+    <p>这是页面内容</p>
+</@inc.body>
+<@inc.footer>
+    
+</@inc.footer>
 ```
 
 ## Testing
