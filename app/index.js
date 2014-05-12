@@ -61,14 +61,9 @@ JavaWebappGenerator.prototype.askFor = function askFor() {
     }.bind(this));
 };
 
-JavaWebappGenerator.prototype.app = function app() {
-    this.directory('src','src');
-
-    this.directory('mock','mock');
+JavaWebappGenerator.prototype.fed = function app() {
+    this.directory('fed','fed');
     this.directory('WEB-INF','WEB-INF');
-    this.directory('sea-modules','sea-modules');
-
-    this.template('README.md', 'README.md');
 };
 
 JavaWebappGenerator.prototype.grunt = function grunt() {

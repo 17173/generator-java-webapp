@@ -13,13 +13,13 @@ module.exports = function(grunt) {
     var template = transport.template.init(grunt);
     // configurable paths
     var yeomanConfig = {
-        app: 'src/app',
+        app: 'js/app',
+        css: 'css',
         sea: 'sea-modules',
-        dist: 'dist'
+        dist: '../dist'
     };
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        cfg: grunt.file.readJSON('config.json'),
         yeoman: yeomanConfig,
         jshint: {
             options: {
@@ -42,7 +42,7 @@ module.exports = function(grunt) {
                 version: '<%= pkg.version %>',
                 options: {
                     paths: '<%= yeoman.app %>/',
-                    outdir: './docs'
+                    outdir: '../docs'
                 }
             }
         },
@@ -130,7 +130,7 @@ module.exports = function(grunt) {
         },
         fed: {
             server: {
-                config: 'config.json'
+                config: 'fed.json'
             }
         },
         qunit: {
@@ -155,6 +155,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['fed']);
     grunt.registerTask('server', ['fed']);
-    grunt.registerTask('build', [/*'jshint',*/'cssmin', 'transport', 'concat', 'uglify','clean']);
+    grunt.registerTask('build', [/*'jshint',*/, 'transport', 'concat', 'uglify','clean']);
 
 };
