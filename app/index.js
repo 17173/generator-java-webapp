@@ -63,16 +63,8 @@ JavaWebappGenerator.prototype.askFor = function askFor() {
 
 JavaWebappGenerator.prototype.fed = function app() {
     this.directory('fed','fed');
+    this.template('fed/_package.json', 'fed/package.json');
     this.directory('WEB-INF','WEB-INF');
 };
 
-JavaWebappGenerator.prototype.grunt = function grunt() {
-    this.template('_package.json', 'package.json');
-    this.copy('Gruntfile.js', 'Gruntfile.js');
-};
 
-JavaWebappGenerator.prototype.configs = function configs() {
-    this.template('config.json', 'config.json');
-    this.template('editorconfig', '.editorconfig');
-    this.template('jshintrc', '.jshintrc');
-};
