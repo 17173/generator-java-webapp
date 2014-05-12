@@ -18,6 +18,7 @@
         }
     },
     "devDependencies": {
+        "fed2": "*",
         "grunt-fed": "0.0.3",
         "grunt": "~0.4.1",
         "grunt-contrib-qunit": "0.1.x",
