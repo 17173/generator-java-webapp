@@ -1,0 +1,1 @@
+<#global DEBUG = true>
