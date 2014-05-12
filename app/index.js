@@ -63,7 +63,6 @@ JavaWebappGenerator.prototype.askFor = function askFor() {
 
 JavaWebappGenerator.prototype.fed = function app() {
     this.directory('fed','fed');
-    this.template('fed/_package.json', 'fed/package.json');
     this.directory('WEB-INF','WEB-INF');
 };
 
