@@ -2,11 +2,13 @@ var common = require('./common');
 var store = common.store;
 var getFile = common.getFile;
 module.exports = {
-    "get /": function() {
-        this.render.ftl(getFile('hello'), store);
+    "get /": function(req, res) {
+        //this.render.ftl(getFile('hello'), store);
+        res.redirect('/hello');
     },
-    "get /hello": function() {
-        this.render.ftl(getFile('hello'), store);
+    "get /:module": function(req, res) {
+        var module = req.param('module');
+        this.render.ftl(getFile(module), store);
     }
 
 };
