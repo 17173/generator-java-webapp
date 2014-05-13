@@ -1,0 +1,39 @@
+{
+  "name": "<%= _.slugify(name) %>",
+  "description": "<%= _.slugify(description) %>",
+  "version": "<%= _.slugify(version) %>",
+  "author": {
+    "name": "",
+    "email": ""
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt qunit"
+  },
+  "spm": {
+    "alias": {
+      "jquery": "jquery/jquery/1.10.1/jquery",
+      "base": "pandora/base/1.0.0/base",
+      "widget": "pandora/widget/1.0.0/widget",
+      "class": "pandora/class/1.0.0/class"
+    }
+  },
+  "devDependencies": {
+    "fed2": "*",
+    "grunt-fed": "0.0.3",
+    "grunt": "~0.4.1",
+    "grunt-contrib-qunit": "0.1.x",
+    "grunt-contrib-watch": "~0.4.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-cmd-concat": "~0.2.7",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-yuidoc": "~0.5.0",
+    "grunt-open": "~0.2.2",
+    "matchdep": "~0.3.0",
+    "grunt-cmd-transport": "~0.4.1"
+  }
+}
