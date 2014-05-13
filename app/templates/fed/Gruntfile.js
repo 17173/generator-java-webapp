@@ -42,7 +42,7 @@ module.exports = function(grunt) {
                 version: '<%= pkg.version %>',
                 options: {
                     paths: '<%= yeoman.app %>/',
-                    outdir: './docs'
+                    outdir: './doc'
                 }
             }
         },
