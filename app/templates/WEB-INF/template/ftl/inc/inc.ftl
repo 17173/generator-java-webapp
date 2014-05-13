@@ -1,9 +1,9 @@
 <#include 'inc-global.ftl'>
 <#if DEBUG?? && DEBUG>
-    <#global jsRoot = '${ctx}/src/js'>
-    <#global appRoot = '${ctx}/src/app'>
-    <#global cssRoot = '${ctx}/src/css'>
-    <#global imgRoot = '${ctx}/src/img'>
+    <#global jsRoot = '${ctx}/js'>
+    <#global appRoot = '${ctx}/js/app'>
+    <#global cssRoot = '${ctx}/css'>
+    <#global imgRoot = '${ctx}/img'>
 <#else>
     <#assign cdn = 'http://ue.17173cdn.com'>
     <#global jsRoot = '${ctx}/dist'>

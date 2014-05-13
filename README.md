@@ -6,28 +6,28 @@
      
  **构建成功后的工程目录结构说明：**
  
- ```
-| -- WEB-INF
-    |-- template                         # 模板文件
-        |-- ftl                              # freemarker模版
-|-- src                               # 开发的前端资源目录
-    |-- app/                              # 业务脚本
-        |-- commmon/                     # 业务公共模块
-    |-- img/                        # 图片
-    |-- css/                             # 样式
-    |-- font/                          # 字体
-    |-- js/                    # 非 cmd 模块的脚本，重构调用的
-    |-- mov/                   # 存放视频，音频
-|-- sea-modules/               # 通过 spm 安装的 seajs 模块目录
-|-- config.json                       # fed 配置文件
-|-- package.json
-|-- Gruntfile.js
-|-- mock/                             # 数据模拟
-|-- dist/                               # 最终压缩上线后的目录
-|-- inc-global       # UI/UE推送的静态内容(正式环境将对本目录建立软链接，访问该目录实际访问的是上级同名目录)
-|-- inc-site         # UI/UE推送的静态内容(正式环境将对本目录建立软链接，访问该目录实际访问的是上级同名目录)
+  |- fed/                        #前端源文件
+	  |- css                       #样式文件
+	  |- font                      #字体
+	  |- img                       #图片
+	  |- js                        #脚本文件，存放所有js文件
+	    |- app                     #seajs模块化文件
+	    |- sea-config.js           #seajs配置文件
+	  |- mov                       #视频，音频文件
+	  |- mock                      #mock文件
+	  |- node_modules
+	  |- sea-modules
+	  |- fed.json                  #fed 配置文件
+	  |- Gruntfile.js
+	  |- .jshintrc
+	  |- .editorconfig
+	  |- package.json
+	  |- README.md
+	  |- dist/                     #部署文件
+	  |- test/                     #单元测试
+    |- doc/                      #文档
+	|- WEB-INF/                    #java 模板文件
 
-```	
 
 ## Usage
 
