@@ -1,6 +1,6 @@
 {
     "server": {
-        "port": "3000",
+        "port": "8080",
         "path": {
             "view": "../",
             "mock": "mock",

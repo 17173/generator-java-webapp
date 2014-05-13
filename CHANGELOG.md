@@ -9,6 +9,7 @@
 * sea配置，用单独文件方式引用
 * boostrap,seajs,jquery 引用线上 cdn 地址
 * 添加 grunt-fed，可用 grunt server ,运行服务
+* 修改细节
 
 ### v1.0.2 (2014-2-19)
 
