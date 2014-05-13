@@ -16,7 +16,7 @@ module.exports = function(grunt) {
         app: 'js/app',
         css: 'css',
         sea: 'sea-modules',
-        dist: '../dist'
+        dist: 'dist'
     };
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -42,7 +42,7 @@ module.exports = function(grunt) {
                 version: '<%= pkg.version %>',
                 options: {
                     paths: '<%= yeoman.app %>/',
-                    outdir: '../docs'
+                    outdir: './docs'
                 }
             }
         },
@@ -137,21 +137,6 @@ module.exports = function(grunt) {
             all: ['test/index.html']
         }
     });
-
-    /*grunt.registerTask('server', function (target) {
-     child = exec('fed server -w -p 3000 config.json', function(error, stdout, stderr) {
-     console.log('stdout: ' + stdout);
-     console.log('stderr: ' + stderr);
-     if (error !== null) {
-     console.log('exec error: ' + error);
-     } else {
-     grunt.task.run([
-     'open',
-     'watch'
-     ]);
-     }
-     });
-     });*/
 
     grunt.registerTask('default', ['fed']);
     grunt.registerTask('server', ['fed']);
