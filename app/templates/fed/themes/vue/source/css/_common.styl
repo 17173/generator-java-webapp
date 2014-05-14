@@ -1,0 +1,101 @@
+@import "_settings"
+@import "_syntax"
+
+body
+    font-family $body-font
+    -webkit-font-smoothing antialiased
+    -moz-osx-font-smoothing grayscale
+    color $medium
+    margin 0
+
+a
+    text-decoration none
+    color $medium
+
+img
+    border none
+
+h1, h2, h3, h4, strong
+    font-weight 600
+    color $dark
+
+code, pre
+    font-family $code-font
+    font-size $code-font-size
+    background-color $codebg
+    -webkit-font-smoothing initial
+    -moz-osx-font-smoothing initial
+
+code
+    color #525252
+    padding 2px 6px
+    margin 0 2px
+    border 1px solid #e6e6e6
+    white-space nowrap
+
+em
+    color $light
+
+p
+    word-spacing 0.05em
+
+a.button
+    display inline-block
+    font-size 1.25em
+    color #fff !important
+    font-weight 400 !important
+    background-color $green
+    padding .5em 1.5em
+    border-radius 4px
+    text-shadow 0 1px 1px rgba(0,0,0,.2)
+    border-bottom 1px solid darken($green, 12%)
+    transition all .2s ease-out
+    &:hover
+        background-color lighten($green, 10%)
+
+.highlight
+    overflow-x auto
+    position relative
+    padding 0
+    background-color $codebg
+    padding .8em .8em .4em
+    box-shadow 0 1px 1px rgba(0,0,0,0.125)
+    line-height 1.1em
+    table, tr, td
+        width 100%
+        border-collapse collapse
+        padding 0
+        margin 0
+    pre
+        padding 1.2em 1.5em 
+        margin 0
+    .gutter
+        width 1.5em
+    .code
+        pre
+            padding-left .5em
+    &.html, &.js, &.bash, &.css
+        .code:after
+            position absolute
+            top 0
+            right 0
+            color #ccc
+            text-align right
+            font-size .75em
+            padding 5px 10px 0
+            line-height 15px
+            height 15px
+            font-weight 600
+    &.html .code:after
+        content 'HTML'
+    &.js .code:after
+        content 'JS'
+    &.bash .code:after
+        content 'Shell'
+    &.css .code:after
+        content 'CSS'
+
+#main
+    position relative
+    z-index 1
+    padding 0 60px 30px

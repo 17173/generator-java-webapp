@@ -3,3 +3,5 @@ node_modules
 sea-modules
 dist
 npm-debug.log
+debug.log
+db.json

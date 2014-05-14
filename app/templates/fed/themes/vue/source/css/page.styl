@@ -1,0 +1,199 @@
+@import "_common"
+@import "_demo"
+@import "_blog"
+
+$header-height = 40px
+
+#header
+    background-color #fff
+    box-shadow 0 0 4px rgba(0,0,0,.25)
+    padding 25px 60px
+
+#nav
+    list-style-type none
+    margin 0
+    padding 0
+    position absolute
+    right 60px
+    top 25px
+    height $header-height
+    line-height $header-height
+    .break
+        display none
+    li
+        display inline-block
+        margin 0 .6em
+.nav-link
+    padding-bottom 3px
+    &:hover, &.current
+        border-bottom 3px solid $green
+
+#logo
+    display inline-block
+    font-size 1.25em
+    line-height $header-height
+    color $dark
+    font-family $logo-font
+    img
+        vertical-align middle
+        margin-right 6px
+        width $header-height
+        height $header-height
+
+.sidebar
+    position absolute
+    top 0
+    left 60px
+    padding 2.2em 0 0 0
+    width 260px
+    margin-right 20px
+    .toggle
+        font-size 1.5em
+        cursor pointer
+        display none
+        color $light
+    h2
+        margin-top .2em
+    ul
+        list-style-type none
+        margin 0
+        padding 0
+    .sidebar-link
+        line-height 1.8em
+        color $light
+        &.current
+            font-weight 600
+            color $green
+        &:hover
+            border-bottom 2px solid $green
+
+.content
+    padding 2.2em 0
+    max-width 720px
+    margin 0 auto
+    &.with-sidebar
+        margin 0 0 0 280px
+    &.api
+        ul
+            font-size .9em
+            padding-left 1.25em
+            color $light
+    a.button
+        font-size 1.2em
+        margin .2em 0
+        width 180px
+        text-align center
+    span.light
+        color $light
+    h1
+        margin 0 0 1em
+    h2
+        margin 2em 0 .8em
+        padding-bottom .7em
+        border-bottom 1px solid $border
+    h3
+        //color $green
+        border-left 5px solid $green
+        margin 2em 0 .8em
+        padding-left .5em
+    figure, p, ul, ol
+        margin .8em 0 .8em .8em
+    p, ul, ol
+        line-height 1.6em
+    ul, ol
+        padding-left 1em
+    a
+        color $green
+        font-weight 600
+    blockquote
+        margin 0
+        p
+            margin-left 0
+    iframe
+        margin 1em 0
+    p.tip
+        padding 12px 24px 12px 30px
+        margin 2em 0 2em .8em
+        border-left 4px solid $green
+        background-color #f9f9f9
+        position relative
+        border-top-left-radius $radius
+        border-top-right-radius $radius
+        box-shadow 0 1px 1px rgba(0,0,0,0.125)
+        &:before
+            position absolute
+            top 50%
+            margin-top -17px
+            left -17px
+            background-color $green
+            color #fff
+            content "i"
+            width 30px
+            height 30px
+            border-radius 100%
+            text-align center
+            line-height 30px
+            font-weight bold
+            font-family Georgia
+
+@media screen and (min-width: 720px)
+    #main.fix-sidebar
+        .sidebar
+            position fixed
+
+@media screen and (max-width: 720px)
+    body
+        -webkit-text-size-adjust none
+        font-size 14px
+    #header
+        text-align center
+        padding 18px 0
+    #nav
+        position static
+        margin-top .4em
+        height 55px
+        line-height 2.2em
+        .break
+            display inline-block
+    .nav-link
+        padding-bottom 1px
+        &:hover, &.current
+            border-bottom 2px solid $green
+    #logo
+        display block
+        img
+            margin-right 0
+        span
+            display none
+    #main
+        padding 2em 1.4em 0
+    .highlight pre
+        padding 1.2em 1em
+    .sidebar
+        position absolute
+        background-color #fff
+        z-index 10
+        width 100%
+        top 0
+        left 0
+        text-align center
+        margin-right 0
+        padding 0
+        border-top 1px solid #eee
+        box-shadow 0 2px 2px rgba(0,0,0,.1)
+        .toggle
+            display block
+        .list
+            display none
+        &.open
+            padding-bottom 1em
+            .list
+                display block
+    #main.fix-sidebar
+        .sidebar
+            position fixed
+    .content
+        &.with-sidebar
+            margin-left 0
+        figure, p, ul, p.tip
+            margin-left 0
