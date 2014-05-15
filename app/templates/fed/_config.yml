@@ -3,16 +3,16 @@
 ## Source: https://github.com/tommy351/hexo/
 
 # Site
-title: webapp docs
+title: Vue.js
 subtitle:
-description: ""
-author: lynzz
+description: "Simple, Fast & Composable MVVM for building interative interfaces."
+author: Evan You
 email:
 language:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url:
+url: http://vuejs.org
 root: /
 permalink: :year/:month/:day/:title/
 tag_dir: tags
@@ -57,7 +57,7 @@ tag: 2
 ## Hexo uses Connect as a server
 ## You can customize the logger format as defined in
 ## http://www.senchalabs.org/connect/logger.html
-port: 3002
+port: 4000
 logger: false
 logger_format:
 
@@ -97,4 +97,4 @@ markdown:
 ## Docs: http://zespia.tw/hexo/docs/deployment.html
 deploy:
   type: github
-  repository: git@github.com:17173/xxx.git
+  repository: git@github.com:vuejs/vuejs.org.git
