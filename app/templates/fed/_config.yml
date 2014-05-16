@@ -21,7 +21,7 @@ category_dir: categories
 code_dir: downloads/code
 
 # Directory
-source_dir: source
+source_dir: doc
 public_dir: public
 
 # Writing
