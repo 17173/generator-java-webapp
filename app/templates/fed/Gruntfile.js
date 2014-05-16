@@ -13,8 +13,8 @@ module.exports = function(grunt) {
     var template = transport.template.init(grunt);
     // configurable paths
     var yeomanConfig = {
-        app: 'js/app',
-        css: 'css',
+        app: 'src/js/app',
+        css: 'src/css',
         sea: 'sea-modules',
         dist: 'dist'
     };
