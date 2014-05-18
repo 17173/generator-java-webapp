@@ -1,7 +1,7 @@
 {
-  "name": "<%= _.slugify(name) %>",
-  "description": "<%= _.slugify(description) %>",
-  "version": "<%= _.slugify(version) %>",
+  "name": "hexo",
+  "description": "",
+  "version": "2.5.6",
   "author": {
     "name": "",
     "email": ""
@@ -13,12 +13,7 @@
     "test": "grunt qunit"
   },
   "spm": {
-    "dependencies": {
-      "jquery": "jquery/jquery/1.10.1/jquery",
-      "base": "pandora/base/1.0.0/base",
-      "widget": "pandora/widget/1.0.0/widget",
-      "class": "pandora/class/1.0.0/class"
-    }
+    "alias": {}
   },
   "devDependencies": {
     "fed2": "*",
