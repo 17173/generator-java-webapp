@@ -1,0 +1,11 @@
+{
+  "source": "doc/content",
+  "output": "_site",
+  "theme": "doc/themes/spm",
+  "permalink": "{{directory}}/{{filename}}.html",
+  "writers": [
+    "nico.PageWriter",
+    "nico.FileWriter",
+    "nico.StaticWriter"
+  ]
+}
