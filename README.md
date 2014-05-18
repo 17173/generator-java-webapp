@@ -5,29 +5,31 @@
 ```     
      
  **构建成功后的工程目录结构说明：**
- 
-  |- fed/                        #前端源文件
-	  |- css                       #样式文件
-	  |- font                      #字体
-	  |- img                       #图片
-	  |- js                        #脚本文件，存放所有js文件
-	    |- app                     #seajs模块化文件
-	    |- sea-config.js           #seajs配置文件
-	  |- mov                       #视频，音频文件
-	  |- mock                      #mock文件
-	  |- node_modules
-	  |- sea-modules
-	  |- fed.json                  #fed 配置文件
-	  |- Gruntfile.js
-	  |- .jshintrc
-	  |- .editorconfig
-	  |- package.json
-	  |- README.md
-	  |- dist/                     #部署文件
-	  |- test/                     #单元测试
-    |- doc/                      #文档
-	|- WEB-INF/                    #java 模板文件
-
+``` 
+|- fed/                        #前端源文件
+  |- src/
+    |- css                     #样式文件
+    |- font                    #字体
+    |- img                     #图片
+    |- js                      #脚本文件，存放所有js文件
+      |- app                   #seajs模块化文件
+      |- sea-config.js         #seajs配置文件
+    |- mov                     #视频，音频文件
+  |- mock                      #mock文件
+  |- node_modules
+  |- sea-modules
+  |- fed.json                  #fed 配置文件
+  |- nico.json                 #nico 配置文件
+  |- Gruntfile.js
+  |- .jshintrc
+  |- .editorconfig
+  |- package.json
+  |- README.md
+  |- dist/                     #部署文件
+  |- test/                     #单元测试
+  |- doc/                      #文档
+|- WEB-INF/                    #java 模板文件
+```
 
 ## Usage
 
@@ -71,7 +73,7 @@ yo java-webapp
 ```
 ### page
 
-自定义一个业务模块，最终生成3个文件, 用”/“，生成带目录的文件
+自定义一个业务模块，最终生成2个文件, 用”/“，生成带目录的文件
 
 **举例：**
 
@@ -79,28 +81,12 @@ yo java-webapp
 yo java-webapp:page myapp/login
 ```
 
-生成 src/app/myapp/login/main.js
+生成 src/js/app/myapp/login/index.js
 
 ```
 define(function(require, exports, module) {
     //code
 });
-```
-
-生成 src/app/myapp/login/package.json
-
-```
-{
-    "family": "app",
-    "name": "login",
-    "version": "0.0.0",
-    "spm": {
-        "alias": {
-            
-        },
-        "output": ["main.js"]
-    }
-}
 ```
 
 生成 WEB-INF/template/ftl/myapp/login/index.ftl
@@ -116,7 +102,7 @@ define(function(require, exports, module) {
 </@inc.body>
 <@inc.footer>
     <script type="text/javascript">
-        seajs.use('${jsRoot}/app/myapp/login/main.js');
+        seajs.use('${appRoot}/myapp/login/index.js');
     </script>
 </@inc.footer>
 ```
@@ -199,7 +185,7 @@ yo java-webapp:fed config
 yo java-webapp:js myapp
 ```
 
-生成 myapp.js
+生成 src/js/app/myapp/index.js
 
 ```
 define(function(require, exports, module) {

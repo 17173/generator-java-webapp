@@ -26,8 +26,8 @@
     
 </head>
 </#macro>
-<#macro body menu>
-<body class="contrast-sea-blue fixed-header fixed-navigation">
+<#macro body menu="菜单名" cls="page">
+<body class="contrast-sea-blue fixed-header fixed-navigation ${page}">
 
 <#include 'header.ftl'>
 <div class="container">
