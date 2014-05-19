@@ -5,10 +5,10 @@
 
 -----
 
-hello world1
+this is index
 
 ````javascript
-seajs.use('src/js/app/index', function(index) {
-  console.log(index.now)
+seajs.use('src/js/app/common/now/index', function(index) {
+  console.log(index.date)
 });
 ````

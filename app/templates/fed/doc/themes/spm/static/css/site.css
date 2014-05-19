@@ -18,7 +18,7 @@ html {
 body.spmjs {
   background-color: #F9F9F8;
   text-rendering: optimizelegibility;
-  font-family:"Open Sans", "Lucida Grande", 'Hiragino Sans GB', Georgia, sans-serif;
+  font: 16px/1.62 "Open Sans","Helvetica Neue","Helvetica","Arial",sans-serif;
 }
 .spmjs a {
   color: #2EA3D0;
@@ -374,3 +374,20 @@ body.spmjs {
 .spmcss .sidebar-wrapper .sidebar-source:active {
   background-color: #4cb164;
 }
+
+.documentation-nav li {
+    border-right: 4px solid #eee;
+    text-transform: uppercase;
+    line-height: 2;
+}
+
+.documentation-nav li.current {
+    border-color: #00B9F0;
+    font-weight: bold;
+}
+.documentation-nav li a{
+    color: #2EA3D0;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
