@@ -1,9 +1,9 @@
 <#include 'inc-global.ftl'>
 <#if DEBUG?? && DEBUG>
-    <#global jsRoot = '${ctx}/js'>
-    <#global appRoot = '${ctx}/js/app'>
-    <#global cssRoot = '${ctx}/css'>
-    <#global imgRoot = '${ctx}/img'>
+    <#global jsRoot = '${ctx}/src/js'>
+    <#global appRoot = '${ctx}/src/js/app'>
+    <#global cssRoot = '${ctx}/src/css'>
+    <#global imgRoot = '${ctx}/src/img'>
 <#else>
     <#assign cdn = 'http://ue.17173cdn.com'>
     <#global jsRoot = '${ctx}/dist'>
@@ -19,15 +19,14 @@
     <title>${title!''}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" href="http://ue.17173cdn.com/a/lib/gallery/bootstrap/3.0.0/bootstrap.css" />
 
-    <link rel="stylesheet" href="${cssRoot}/style.css" />
+    <link rel="stylesheet" href="${cssRoot}/app.css" />
     <#nested>
     
 </head>
 </#macro>
 <#macro body menu="菜单名" cls="page">
-<body class="contrast-sea-blue fixed-header fixed-navigation ${page}">
+<body class="contrast-sea-blue fixed-header fixed-navigation ${cls}">
 
 <#include 'header.ftl'>
 <div class="container">
