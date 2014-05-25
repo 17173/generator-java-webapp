@@ -1,14 +1,10 @@
-# index
+# 开始
 
 - order: 1
-- title: index
 
 -----
 
-this is index
+文档首页
 
-````javascript
-seajs.use('src/js/app/common/now/index', function(index) {
-  console.log(index.date)
-});
-````
+-----
+

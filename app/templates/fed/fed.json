@@ -1,17 +1,18 @@
 {
-    "server": {
-        "port": "8080",
-        "path": {
-            "view": "../",
-            "mock": "mock",
-            "public": ""
-        },
-        "globals": {
-            "baseUrl": "",
-            "basePath": ""
-        }
+  "server": {
+    "port": "3001",
+    "path": {
+      "view": "../",
+      "mock": "mock",
+      "public": ""
     },
-    "coffeescript": {
-        "debug": false
+    "globals": {
+      "baseUrl": "",
+      "basePath": ""
     }
+  },
+  "watch": true,
+  "coffeescript": {
+    "debug": false
+  }
 }

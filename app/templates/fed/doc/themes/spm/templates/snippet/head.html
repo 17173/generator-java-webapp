@@ -23,11 +23,12 @@
 
 <script>
   (function() {
-  seajs.config({
+  /*seajs.config({
     base: "{{content_url('')}}"
-  });
+  });*/
 
   seajs.config({
+    base: '../',
     alias: {{deps|clean_alias|json_encode}}
   });
 })();
