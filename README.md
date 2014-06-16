@@ -3,31 +3,34 @@
 ```
 快速构建 java web 项目的前端脚手架（bootstrap+seajs+fed）
 ```     
-     
- **构建成功后的工程目录结构说明：**
- 
-  |- fed/                        #前端源文件
-	  |- css                       #样式文件
-	  |- font                      #字体
-	  |- img                       #图片
-	  |- js                        #脚本文件，存放所有js文件
-	    |- app                     #seajs模块化文件
-	    |- sea-config.js           #seajs配置文件
-	  |- mov                       #视频，音频文件
-	  |- mock                      #mock文件
-	  |- node_modules
-	  |- sea-modules
-	  |- fed.json                  #fed 配置文件
-	  |- Gruntfile.js
-	  |- .jshintrc
-	  |- .editorconfig
-	  |- package.json
-	  |- README.md
-	  |- dist/                     #部署文件
-	  |- test/                     #单元测试
-    |- doc/                      #文档
-	|- WEB-INF/                    #java 模板文件
 
+**构建成功后的工程目录结构说明：**
+
+```
+|- fed/                        #前端源文件
+  |- css                       #样式文件
+  |- font                      #字体
+  |- img                       #图片
+  |- less                      # 存放less文件
+  |- js                        #脚本文件，存放所有js文件
+    |- app                     #seajs模块化文件
+    |- sea-config.js           #seajs配置文件
+  |- mov                       #视频，音频文件
+  |- mock                      #mock文件
+  |- node_modules
+  |- sea-modules
+  |- fed.json                  #fed 配置文件
+  |- Gruntfile.js
+  |- .jshintrc
+  |- .editorconfig
+  |- package.json
+  |- README.md
+  |- dist/                     #部署文件
+  |- test/                     #单元测试
+  |- doc/                      #文档
+|- WEB-INF/                    #java 模板文件
+
+```
 
 ## Usage
 
