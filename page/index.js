@@ -19,6 +19,5 @@ PageGenerator.prototype.files = function files() {
     this.appRoot = '${appRoot}';
     // 可这样创建 admin/login
     this.template('app.js', path.join('js/app/', this.name + '/index.js'));
-    this.template('package.json', path.join('js/app/', this.name + '/package.json'));
-    this.template('page.ftl', path.join('WEB-INF/template/ftl/', this.name + '/index.ftl'));
+    this.template('page.ftl', path.join('../WEB-INF/template/ftl/', this.name + '/index.ftl'));
 };

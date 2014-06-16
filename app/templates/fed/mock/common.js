@@ -3,6 +3,6 @@ module.exports = {
         return 'WEB-INF/template/ftl/' + s + '/index';
     },
     store: {
-        ctx: 'http://localhost:8080'
+        ctx: 'http://localhost:3001'
     }
 }

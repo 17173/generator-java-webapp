@@ -20,6 +20,8 @@
 </@inc.body>
 <@inc.footer>
     <script type="text/javascript">
-        seajs.use('${appRoot}/hello/main.js');
+        seajs.use(['${appRoot}/common/global.js','${appRoot}/hello/main.js'], function() {
+
+        });
     </script>
 </@inc.footer>
