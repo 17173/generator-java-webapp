@@ -1,0 +1,17 @@
+{{#if attrs}}
+
+  {{#if attrs.type}}
+
+    {{> types}}
+
+  {{else}}
+
+    {{> notype}}
+
+  {{/if}}
+
+{{else}}
+
+  {{> notype}}
+
+{{/if}}

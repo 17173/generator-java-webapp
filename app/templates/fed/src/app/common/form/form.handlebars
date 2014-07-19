@@ -1,0 +1,12 @@
+<form class="form-horizontal" data-role="form" autocomplete="{{autocomplete}}"{{#if novalidate}} novalidate{{/if}}>
+  {{#each groups}}
+    <div class="form-group">
+      {{> groups}}
+    </div>
+  {{/each}}
+  {{#if buttons}}
+    <div class="form-group">
+      {{> buttons}}
+    </div>
+  {{/if}}
+</form>

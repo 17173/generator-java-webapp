@@ -1,0 +1,48 @@
+{{#isInTypes attrs.type 'button,submit,reset'}}
+  {{#showCol colspan}}
+    <div class="{{getColSpan colspan}}{{#if inline}} form-inline{{/if}}">
+  {{/showCol}}
+    <button class="btn {{#if cls}}{{cls}}{{else}}btn-default{{/if}}"{{> attrs}}>{{{value}}}</button>
+  {{#showCol colspan}}
+    </div>
+  {{/showCol}}
+{{else}}
+
+  {{#isInTypes attrs.type 'radio,checkbox'}}
+    <label class="{{attrs.type}}-inline">
+      <input{{> attrs}}> {{{label}}}
+    </label>
+  {{else}}
+    {{#if label}}
+      <label class="{{getColSpan colspan}} control-label">{{#if attrs}}{{#if attrs/required}}<i>*</i>{{/if}}{{/if}}{{{label}}}</label>
+      <div class="{{getColSpanRest colspan}}{{#if inline}} form-inline{{/if}}">
+    {{else}}
+      {{#showCol colspan}}
+        <div class="{{getColSpan colspan}}{{#if inline}} form-inline{{/if}}">
+      {{/showCol}}
+    {{/if}}
+
+      {{#isInTypes attrs.type 'multiline'}}
+        <textarea class="form-control"{{> attrs}}>{{{value}}}</textarea>
+      {{else}}
+        {{#isInTypes attrs.type 'hidden,text,password,file,email,number,range,date,datetime,color'}}
+          <input class="form-control"{{> attrs}}>
+        {{else}}
+          {{#isInTypes attrs.type 'select'}}
+            <select class="form-control"{{> attrs}}>{{#each options}}<option value={{value}}{{#if selected}} selected{{/if}}>{{text}}</option>{{/each}}</select>
+          {{else}}
+            <div class="form-control-static"{{> attrs}}>{{{value}}}</div>
+          {{/isInTypes}}
+        {{/isInTypes}}
+      {{/isInTypes}}
+
+    {{#if label}}
+      </div>
+    {{else}}
+      {{#showCol colspan}}
+        </div>
+      {{/showCol}}
+    {{/if}}
+  {{/isInTypes}}
+
+{{/isInTypes}}

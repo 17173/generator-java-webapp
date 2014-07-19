@@ -8,14 +8,15 @@
 
 ```
 |- fed/                        #前端源文件
-  |- css                       #样式文件
-  |- font                      #字体
-  |- img                       #图片
-  |- less                      # 存放less文件
-  |- js                        #脚本文件，存放所有js文件
+  |- src/
     |- app                     #seajs模块化文件
-    |- sea-config.js           #seajs配置文件
-  |- mov                       #视频，音频文件
+    |- css                     #样式文件
+    |- font                    #字体
+    |- img                     #图片
+    |- less                    # 存放less文件
+    |- js                      #脚本文件，存放所有非模块化文件
+      |- sea-config.js         #seajs配置文件
+    |- mov                     #视频，音频文件
   |- mock                      #mock文件
   |- node_modules
   |- sea-modules
@@ -82,7 +83,7 @@ yo java-webapp
 yo java-webapp:page myapp/login
 ```
 
-生成 src/app/myapp/login/main.js
+生成 src/app/myapp/login/index.js
 
 ```
 define(function(require, exports, module) {
@@ -90,21 +91,6 @@ define(function(require, exports, module) {
 });
 ```
 
-生成 src/app/myapp/login/package.json
-
-```
-{
-    "family": "app",
-    "name": "login",
-    "version": "0.0.0",
-    "spm": {
-        "alias": {
-            
-        },
-        "output": ["main.js"]
-    }
-}
-```
 
 生成 WEB-INF/template/ftl/myapp/login/index.ftl
 
@@ -119,7 +105,7 @@ define(function(require, exports, module) {
 </@inc.body>
 <@inc.footer>
     <script type="text/javascript">
-        seajs.use('${jsRoot}/app/myapp/login/main.js');
+        seajs.use('${appRoot}/myapp/login/index.js');
     </script>
 </@inc.footer>
 ```

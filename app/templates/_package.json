@@ -14,7 +14,6 @@
   },
   "spm": {
     "alias": {
-      "jquery": "jquery/jquery/1.10.1/jquery",
       "base": "pandora/base/1.0.0/base",
       "widget": "pandora/widget/1.0.0/widget",
       "class": "pandora/class/1.0.0/class"

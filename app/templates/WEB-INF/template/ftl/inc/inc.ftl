@@ -1,7 +1,7 @@
 <#include 'inc-global.ftl'>
 <#if DEBUG?? && DEBUG>
     <#global jsRoot = '${ctx}/src/js'>
-    <#global appRoot = '${ctx}/src/js/app'>
+    <#global appRoot = '${ctx}/sr/app'>
     <#global cssRoot = '${ctx}/src/css'>
     <#global imgRoot = '${ctx}/src/img'>
 <#else>

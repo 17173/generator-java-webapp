@@ -1,0 +1,32 @@
+{{#if groups}}
+
+  {{#if label}}
+    <label class="{{getColSpan colspan}} control-label">{{#if attrs}}{{#if attrs/required}}<i>*</i>{{/if}}{{/if}}{{{label}}}</label>
+    <div class="{{getColSpanRest colspan}}{{#if inline}} form-inline{{/if}}">
+  {{else}}
+    {{#showCol colspan}}
+      <div class="{{getColSpan colspan}}{{#if inline}} form-inline{{/if}}">
+    {{/showCol}}
+  {{/if}}
+
+  <div{{#if flex}} class="row"{{/if}}{{> attrs}}>
+
+    {{#each groups}}
+      {{> groups}}
+    {{/each}}
+
+  </div>
+
+  {{#if label}}
+    </div>
+  {{else}}
+    {{#showCol colspan}}
+      </div>
+    {{/showCol}}
+  {{/if}}
+
+{{else}}
+
+  {{> element}}
+
+{{/if}}
