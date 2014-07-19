@@ -20,7 +20,7 @@
 </@inc.body>
 <@inc.footer>
     <script type="text/javascript">
-        seajs.use(['${appRoot}/common/global.js','${appRoot}/hello/main.js'], function() {
+        seajs.use(['${appRoot}/hello/index.js'], function() {
 
         });
     </script>

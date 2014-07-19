@@ -1,0 +1,21 @@
+{
+  "name": "generator-java-webapp",
+  "version": "1.0.1",
+  "homepage": "https://github.com/17173/generator-java-webapp",
+  "authors": [
+    "lynzz <lynzz168@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "flat-ui-official": "~2.1.3",
+    "fontawesome": "~4.1.0",
+    "bootstrap": "~3.1.0"
+  }
+}
