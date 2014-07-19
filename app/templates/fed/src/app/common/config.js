@@ -2,7 +2,7 @@ define(function (require, exports, module) {
 
 var urlmap = require('./urlmap');
 
-var ctx = (window.CMS_USER_DATA.CTX || '') + '/',
+var ctx = (window.GLOBAL.CTX || '') + '/',
     reSkip = /^(https?:)?\/\/?/;
 
 module.exports = {
