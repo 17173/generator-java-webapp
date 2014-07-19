@@ -1,6 +1,7 @@
 *.idea
 node_modules
 sea-modules
+bower_components
 dist
 npm-debug.log
 _site
