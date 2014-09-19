@@ -1,6 +1,9 @@
 module.exports = {
   getFile: function(s) {
-    return 'WEB-INF/template/ftl/' + s + '/index';
+    return 'WEB-INF/template/ftl/admin/' + s + '/index';
+  },
+  getDocsFile: function(s) {
+    return 'fed/docs/' + s;
   },
   getJSON: function (s) {
     if (!/\.json$/.test(s)) {
@@ -22,6 +25,6 @@ module.exports = {
     };
   },
   store: {
-    ctx: 'http://localhost:3001'
+    ctx: 'http://127.0.0.1:3001'
   }
 }
