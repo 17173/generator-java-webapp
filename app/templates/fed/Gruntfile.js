@@ -147,15 +147,11 @@ module.exports = function(grunt) {
         dest: '_site/sea-modules'
       }
     },
-    nico: {
-      config:{}
-    },
     qunit: {
       all: ['test/index.html']
     }
   });
 
-  grunt.registerTask('doc', ['nico']);
   grunt.registerTask('default', ['fed']);
   grunt.registerTask('server', ['fed']);
   grunt.registerTask('build', [/*'jshint',*/, 'transport', 'concat', 'uglify','clean']);

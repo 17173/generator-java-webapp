@@ -1,4 +1,4 @@
-<#include 'global.ftl'>
+<#include "global.ftl">
 <#if DEBUG?? && DEBUG>
   <#global jsRoot = '${ctx}/fed/src/js'>
   <#global appRoot = '${ctx}/fed/src/app'>
@@ -31,31 +31,23 @@
   </head>
 </#macro>
 <#macro body menu="菜单名" cls="page">
-  <body class="contrast-sea-blue fixed-header fixed-navigation ${cls}">
-
-  <#include 'header.ftl'>
-    <div class="container">
-
-      <div class="row row-offcanvas row-offcanvas-right">
-
-        <div class="col-xs-12 col-sm-9">
+  <body class="${cls}">
+    <div class="wrapper">
+      <#include 'header.ftl'>
+      <#include 'nav.ftl'>
+      <section>
+        <div class="content-wrapper">
           <#nested>
-        </div><!--/span-->
-
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-          <#include 'nav.ftl'>
-        </div><!--/span-->
-      </div><!--/row-->
-
-      <hr>
-
-      <#include 'footer.ftl'>
-
-    </div><!--/.container-->
+        </div>
+      </section>
+    </div>
 
 </#macro>
 <#macro footer>
   <#include 'script.ftl'>
+    <script>
+      seajs.use(['${appRoot}/common/layout.js']);
+    </script>
     <#nested>
     </body>
     </html>
