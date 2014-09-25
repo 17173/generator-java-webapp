@@ -18,6 +18,7 @@
       |- sea-config.js         #seajs配置文件
     |- mov                     #视频，音频文件
   |- mock                      #mock文件
+  |- docs                      #基于bootstrap主题的文档及demo
   |- node_modules
   |- sea-modules
   |- fed.json                  #fed 配置文件
@@ -28,7 +29,6 @@
   |- README.md
   |- dist/                     #部署文件
   |- test/                     #单元测试
-  |- doc/                      #文档
 |- WEB-INF/                    #java 模板文件
 
 ```
@@ -58,7 +58,9 @@ yo java-webapp [app-name]
 可用的生成器：
 
 * [java-webapp](#java-webapp)(aka [java-webapp:app](#java-webapp))
-* [java-webpp:page](#page)
+* [java-webapp:page](#page)
+* [java-webapp:admin](#admin)
+* [java-webapp:front](#front)
 * [java-webapp:mock](#mock)
 * [java-webapp:fed](#fed)
 * [java-webapp:js](#js)
@@ -75,7 +77,7 @@ yo java-webapp
 ```
 ### page
 
-自定义一个业务模块，最终生成3个文件, 用”/“，生成带目录的文件
+自定义一个业务模块，最终生成2个文件, 用”/“，生成带目录的文件
 
 **举例：**
 
@@ -109,6 +111,81 @@ define(function(require, exports, module) {
     </script>
 </@inc.footer>
 ```
+### admin
+
+自定义一个后台业务模块，最终生成2个文件, 用”/“，生成带目录的文件
+
+**举例：**
+
+```
+yo java-webapp:admin myapp/login
+```
+
+生成 src/app/myapp/login/index.js
+
+```
+define(function(require, exports, module) {
+    'use strict';
+});
+```
+
+
+生成 WEB-INF/template/ftl/admin/myapp/login/index.ftl
+
+```
+<#import '/WEB-INF/template/ftl/admin/inc/inc.ftl' as inc />
+
+<@inc.header '页面标题'>
+
+</@inc.header>
+<@inc.body '页面菜单名'>
+    <p>这是页面内容</p>
+</@inc.body>
+<@inc.footer>
+    <script type="text/javascript">
+        seajs.use('${appRoot}/myapp/login/index.js');
+    </script>
+</@inc.footer>
+```
+### front
+
+自定义一个前台业务模块，最终生成2个文件, 用”/“，生成带目录的文件
+
+> 前台只是做预留，如用的场景多再做优化
+
+**举例：**
+
+```
+yo java-webapp:front myapp/login
+```
+
+生成 src/app/front/myapp/login/index.js
+
+```
+define(function(require, exports, module) {
+    'use strict';
+});
+```
+
+
+生成 WEB-INF/template/ftl/front/myapp/login/index.ftl
+
+```
+<#import '/WEB-INF/template/ftl/front/inc/inc.ftl' as inc />
+
+<@inc.header '页面标题'>
+
+</@inc.header>
+<@inc.body '页面菜单名'>
+    <p>这是页面内容</p>
+</@inc.body>
+<@inc.footer>
+    <script type="text/javascript">
+        seajs.use('${appRoot}/front/myapp/login/index.js');
+    </script>
+</@inc.footer>
+```
+
 
 ### Mock
 
