@@ -13,5 +13,5 @@ util.inherits(JsGenerator, yeoman.generators.NamedBase);
 
 JsGenerator.prototype.files = function files() {
   this.jsRoot = '${jsRoot}';
-  this.template('app.js', path.join('src/app/', this.name + '/index.js'));
+  this.template('app.js', path.join('src/app/', this.name + '.js'));
 };

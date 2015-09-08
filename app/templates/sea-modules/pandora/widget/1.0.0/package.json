@@ -1,0 +1,54 @@
+{
+  "name": "widget",
+  "version": "1.0.0",
+  "description": "widget base class, with events and AOP",
+  "keywords": [ "widget", "seajs", "modules" ],
+  "homepage": "https://github.com/pandorajs/widget",
+  "bugs": {
+    "url": "https://github.com/pandorajs/widget/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/pandorajs/widget/blob/master/LICENSE-MIT"
+    }
+  ],
+  "author": {
+    "name": "pandorajs",
+    "url": "https://github.com/pandorajs"
+  },
+  "main": "Gruntfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pandorajs/widget.git"
+  },
+  "scripts": {
+    "test": "grunt qunit"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-cmd-transport": "*",
+    "grunt-cmd-concat": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-yuidoc": "*",
+    "grunt-coveralls": "*",
+    "grunt-qunit-istanbul": "*",
+    "matchdep": "*"
+  },
+  "family": "pandora",
+  "spm": {
+    "output": [ "widget.js", "autorender.js" ],
+    "alias": {
+      "$": "$",
+      "base": "pandora/base/1.0.0/base"
+    }
+  }
+}

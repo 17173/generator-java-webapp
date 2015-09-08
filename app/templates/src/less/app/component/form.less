@@ -1,0 +1,151 @@
+.ue-form {
+  // max-width: 1099px;
+
+  .control-label {
+    &:after {
+      content: '\ff1a';
+      display: inline-block;
+      width: 0px;
+    }
+    &.checkbox-inline:after,
+    &.radio-inline:after {
+      display: none;
+    }
+  }
+  [disabled] {
+    visibility: hidden;
+
+    + .form-control-static {
+      visibility: hidden;
+    }
+  }
+
+  .help-block {
+    cursor: default;
+  }
+}
+
+.form-horizontal {
+  min-width: 320px;
+
+  .form-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .control-label {
+    padding-top: 0;
+    line-height: 34px;
+    // white-space: nowrap;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+
+    i {
+      position: absolute;
+      margin-left: -12px;
+      color: #c00;
+      font-style: normal;
+    }
+  }
+
+  .checkbox-inline {
+    padding-top: 0;
+    line-height: 34px;
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      float: none;
+    }
+  }
+}
+
+.help-block {
+  // margin-bottom: 0;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 15px;
+  margin: 4px;
+  line-height: 26px;
+  padding: 0 5px;
+  background: #fff;
+  &:empty {
+    display: none !important;
+  }
+}
+
+.form-inline {
+  min-height: 34px;
+  .form-group {
+    margin:0 4px 7px 0;
+  }
+  .form-control{ width: auto;}
+  .form-control.datepicker{ width: 186px; cursor: default;}
+  .form-control[type=number]{ width: 86px}
+  .form-control.input-url{ width: 86px}
+  .form-control-static{ display: inline-block;}
+  .help-block {
+    display: inline-block;
+    // margin-left: 5px;
+    position: static;
+    padding: 0;
+    vertical-align: middle;
+  }
+}
+
+.ue-form-static {
+  .form-group {
+    margin-bottom: 0;
+  }
+}
+
+.form-group-seperated {
+  padding-bottom: 15px;
+  border-bottom: 1px solid @gray-lighter;
+}
+
+.form-group-combined {
+  clear: both;
+  margin-bottom: 15px;
+  border-bottom: 1px dotted @gray-lighter;
+
+  > label,
+  > div {
+    margin-bottom: 3px;
+  }
+
+  .form-group-combined {
+    width: 85%;
+    margin-left: 15%;
+    margin-top: -3px;
+  }
+}
+
+.form-group-radio-tiled {
+  .radio-inline {
+    width: 20%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.form-buttons {
+  margin-top: 30px;
+  button {
+    margin-right: 5px;
+    padding-left: 36px;
+    padding-right: 36px;
+    &[disabled] {
+      visibility: visible;
+    }
+  }
+}
+
+.col-xs-0,
+.col-sm-0,
+.col-md-0,
+.col-lg-0 {
+  float: left;
+  width: 0;
+  margin-left: -5px;
+}

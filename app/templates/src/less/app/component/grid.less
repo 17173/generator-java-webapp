@@ -1,0 +1,74 @@
+// 整个：搜索+列表+分页
+.ue-datagrid {
+  position: relative;
+
+  .sort-container {
+    cursor: pointer;
+    .sort {
+      opacity: 0.5
+    }
+    .sort-descending {
+      position: relative;
+      left: -16px;
+    }
+  }
+  .grid-head {
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #eee;
+    &.empty {
+      border-bottom: 0;
+      padding-bottom: 0;
+      .form-inline {
+        min-height: 0;
+      }
+    }
+  }
+
+  .grid-body {
+    padding-top: 10px;
+    position: relative;
+    .grid-loading {
+      position: absolute;
+      top: 30px;
+    }
+  }
+
+  .grid-foot {
+    border-top: 1px dotted #eee;
+    clear: both;
+
+    &:before,
+    &:after{
+      content: ' ';
+      display: table;
+    }
+
+    .btn-group {
+      margin: 20px 0;
+    }
+  }
+
+  th {
+    white-space: nowrap;
+  }
+
+  td {
+    cursor: default;
+    word-break: break-all;
+    &:empty {
+      &:before {
+        content: '-'
+      }
+    }
+    a {
+      display: inline-block;
+    }
+  }
+
+  .form-group.pull-right {
+    margin-right: 0;
+  }
+  .fa {
+    font-size: 16px;
+  }
+}

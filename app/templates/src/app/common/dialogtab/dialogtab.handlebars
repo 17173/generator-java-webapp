@@ -1,0 +1,31 @@
+{{#if close}}
+<a class="dialog-close" href="javascript:" data-role="close">{{{close}}}</a>
+{{/if}}
+<div class="dialog-head" data-role="head">
+  {{#if title}}
+    <h3 class="dialog-title" data-role="title">{{{title}}}</h3>
+  {{/if}}
+  <ul class="nav nav-tabs" data-role="tabs">
+    {{#each tabs}}
+    <li><a href="#{{id}}" data-role="tab">{{{name}}}</a></li>
+    {{/each}}
+  </ul>
+</div>
+<div class="dialog-body" data-role="body">
+  <div class="dialog-content" data-role="content">{{{content}}}</div>
+  {{#if hasPanes}}
+  <div class="tab-content" data-role="panes">
+    {{#each tabs}}
+    <div class="tab-pane fade" id="{{id}}" data-remote="{{url}}" data-role="pane">{{{content}}}</div>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>
+{{#if submit}}
+<div class="dialog-foot" data-role="foot">
+  <a href="javascript:;" class="dialog-submit" data-role="submit">{{{submit}}}</a>
+  {{#if cancel}}
+  <a href="javascript:;" class="dialog-cancel" data-role="cancel">{{{cancel}}}</a>
+  {{/if}}
+</div>
+{{/if}}

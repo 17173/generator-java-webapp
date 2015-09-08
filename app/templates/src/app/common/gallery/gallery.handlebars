@@ -1,0 +1,29 @@
+{{#if gallery.length}}
+  <ul class="thumbnails"{{#if selectable}} data-selectable="{{selectable}}"{{/if}}>
+  {{#each gallery}}
+    <li class="thumbnail" title="{{description}}" data-id="{{id}}" data-index="{{@index}}" data-url="{{url}}">
+      <div class="pic">
+        {{{fthumb url "" ../thumbAffix}}}
+        {{#if type}}<span class="filetype badge">{{type}}</span>{{/if}}
+        {{#if width}}<span class="dimension">{{width}} &times; {{height}}</span>{{/if}}
+        {{#if createTime}}<span class="createtime">{{dateFormat createTime "yyyy-MM-dd"}}</span>{{/if}}
+      </div>
+      <div class="caption">
+        <h5 title="{{title}}">{{title}}</h5>
+        <div>
+        {{#with ../buttons}}
+          {{#each this}}
+            <a href="javascript:;" data-id="{{../../id}}" class="btn btn-default btn-sm{{#if class}} {{class}}{{/if}}" data-role="{{role}}">{{{text}}}</a>
+          {{/each}}
+        {{/with}}
+        </div>
+      </div>
+    </li>
+  {{/each}}
+  </ul>
+  {{#with pagination}}
+    {{> pagination}}
+  {{/with}}
+{{else}}
+  <p class="text-warning">抱歉，没有找到符合条件的信息。请重新搜索或者查看全部信息！</p>
+{{/if}}

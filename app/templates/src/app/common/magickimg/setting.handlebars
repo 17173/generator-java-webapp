@@ -1,0 +1,57 @@
+<div class="form-inline row">
+  {{#if hasWatermark}}
+    <div class="form-group col-sm-4">
+      按宽
+      <select class="form-control" name="width">
+        <option value="0"> --- </option>
+        <option value="240">240</option>
+        <option value="320">320</option>
+        <option value="480">480</option>
+        <option value="540">540</option>
+        <option value="640">640</option>
+        <option value="800">800</option>
+        <option value="854">854</option>
+        <option value="960">960</option>
+      </select>
+      像素生成缩略图
+    </div>
+
+    <div class="form-group col-sm-2">
+    {{#if hasLink}}
+      <label class="checkbox-inline">
+        <input type="checkbox" name="linkOriginal">
+        链接原图
+      </label>
+    {{/if}}
+    </div>
+
+    <div class="form-group col-sm-6">
+      在图片
+      <select class="form-control" name="gravity">
+        <option value="NorthWest">左上角</option>
+        <option value="North">上方</option>
+        <option value="NorthEast">右上角</option>
+        <option value="West">左侧</option>
+        <option value="Center">正中</option>
+        <option value="East">右侧</option>
+        <option value="SouthWest">左下角</option>
+        <option value="South">下方</option>
+        <option value="SouthEast" selected>右下角</option>
+      </select>
+      添加水印
+      <input type="hidden" name="watermark">
+    </div>
+  {{/if}}
+  {{#unless simplex}}
+  <div class="form-group col-sm-6">
+    标签：
+    <input type="text" size="20" maxlength="50" class="form-control" name="tags" value="{{tags}}">
+  </div>
+
+  <div class="form-group col-sm-6">
+    图片描述：
+    <input type="text" size="30" maxlength="100" class="form-control" name="remark" value="{{remark}}">
+  </div>
+  {{/unless}}
+
+</div>

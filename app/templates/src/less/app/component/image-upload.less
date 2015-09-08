@@ -1,0 +1,185 @@
+.image-upload {
+  -webkit-user-select: none;
+  position: relative;
+  height: 100%;
+  width: 890px;
+  min-height: 311px;
+
+  .select {
+    float: left;
+    margin-right: 10px;
+
+    input {
+      position: absolute;
+      visibility: hidden;
+    }
+
+    + button {
+      float: left;
+      margin-right: 10px;
+    }
+  }
+
+  .queue {
+    height: 262px;
+    margin-bottom: 10px;
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+
+  .queue:after {
+    content: '';
+    display: block;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+  }
+
+  .file {
+    border: 4px solid #ccc;
+    margin: 0 6px 6px 0;
+    width: 168px;
+    height: 128px;
+    float: left;
+    position: relative;
+    cursor: pointer;
+    vertical-align: middle;
+
+    .name,
+    .size {
+      display: none;
+    }
+
+    .dimens {
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.8);
+      font-size: 87.5%;
+      color: #666;
+      padding: 2px 3px 0;
+      display: none;
+    }
+
+    .remove {
+      position: absolute;
+      right: -3px;
+      top: -3px;
+      width: 21px;
+      text-align: center;
+      font-size: 21px;
+      font-weight: bold;
+      line-height: 1;
+      color: #fff;
+      background-color: #ccc;
+      cursor: pointer;
+      &:hover {
+        color: #666;
+      }
+    }
+
+    &:hover {
+      border-color: #adadad;
+
+      .remove,
+      .remove:hover {
+        background-color: #adadad;
+      }
+    }
+
+    &.active,
+    &.active:hover {
+      border-color: #2280d0;
+
+      .remove,
+      .remove:hover {
+        background-color: #2280d0;
+      }
+    }
+  }
+
+  .drag-active {
+    border: 4px dashed @brand-info;
+  }
+
+  .drop-active {
+    border: 4px dashed @brand-warning;
+  }
+
+  .progress {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    width: 0;
+    height: 30px;
+    line-height: 30px;
+    background: rgba(92, 184, 92, 0.8);
+    text-align: right;
+    border-radius: 0;
+    color: #fff;
+    overflow: visible;
+    text-shadow: 1px 1px 1px #808080;
+    &.wait,
+    &.done,
+    &.fail {
+      width: 160px !important;
+      text-align: center;
+    }
+    &.done {
+      background: rgba(34, 128, 208, 0.8);
+    }
+    &.fail {
+      background: rgba(210, 50, 45, 0.8);
+    }
+  }
+
+  .thumb {
+    width: 160px;
+    height: 120px;
+    background: #fee url('data:image/gif;base64,R0lGODlhEAAQAKIGAMLY8YSx5HOm4Mjc88/g9Ofw+v///wAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFCgAGACwAAAAAEAAQAAADMGi6RbUwGjKIXCAA016PgRBElAVlG/RdLOO0X9nK61W39qvqiwz5Ls/rRqrggsdkAgAh+QQFCgAGACwCAAAABwAFAAADD2hqELAmiFBIYY4MAutdCQAh+QQFCgAGACwGAAAABwAFAAADD1hU1kaDOKMYCGAGEeYFCQAh+QQFCgAGACwKAAIABQAHAAADEFhUZjSkKdZqBQG0IELDQAIAIfkEBQoABgAsCgAGAAUABwAAAxBoVlRKgyjmlAIBqCDCzUoCACH5BAUKAAYALAYACgAHAAUAAAMPaGpFtYYMAgJgLogA610JACH5BAUKAAYALAIACgAHAAUAAAMPCAHWFiI4o1ghZZJB5i0JACH5BAUKAAYALAAABgAFAAcAAAMQCAFmIaEp1motpDQySMNFAgA7') no-repeat 50% 50%;
+    canvas {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  .setting {
+    margin-bottom: 10px;
+    padding: 10px 10px 3px 10px;
+    background-color: #eee;
+    display: none;
+
+    .form-control {
+      display: inline-block;
+      width: 335px;
+      vertical-align: middle;
+    }
+
+    .form-group {
+      margin: 0 0 7px 0;
+    }
+
+    .checkbox-inline {
+      margin-top: 5px;
+    }
+
+    // input[type=checkbox] {
+    //   margin-top: 10px;
+    // }
+
+    .ue-tags {
+      display: inline-block;
+      width: 335px;
+
+      .form-control {
+        width: 100%;
+      }
+    }
+  }
+
+  + button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+  }
+}

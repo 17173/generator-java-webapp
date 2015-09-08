@@ -1,0 +1,145 @@
+/*!
+ * forked from bootstrap-theme.css
+ */
+
+body {
+  font-family: 'Microsoft Yahei';
+  padding-top: 70px;
+  overflow: scroll;
+  overflow-x: hidden;
+  // min-width: 1000px;
+}
+
+// .navbar-fixed-top {
+//   min-width: 1000px;
+// }
+
+.navbar-inverse {
+  background-color: #333;
+  font-size: 18px;
+}
+
+.navbar-header {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+@media (max-width: 900px) {
+  .main-nav {
+    span {
+      display: none;
+    }
+  }
+}
+
+.navbar-brand {
+  font-size: 35px;
+  font-weight: bold;
+  line-height: 39px;
+  span {
+    color: #2280d0;
+  }
+}
+
+.navbar-text {
+  line-height: 39px;
+}
+
+.navbar-nav {
+  > li {
+    > a {
+      line-height: 39px;
+    }
+  }
+  > .active {
+    > a {
+      background-color: #2280d0;
+    }
+  }
+}
+
+.navbar-fixed-top {
+  border-radius: 0;
+  border-color: #dcdcdc;
+  z-index: 403;
+
+  .username {
+    display: inline-block;
+    min-width: 72px;
+  }
+
+  .dropdown-menu {
+    min-width: 140px;
+  }
+}
+
+.nav-tabs {
+  margin-bottom: 20px;
+}
+
+
+/*
+ * Main content
+ */
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+
+.page-header {
+  margin-top: 0;
+  text-transform: capitalize;
+}
+
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  text-transform: capitalize;
+}
+
+
+/*.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+}
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}*/
+
+/*.form-horizontal .control-label {
+  min-width: 80px;
+}*/
+
+.list-group{
+  &.horizontal{
+    box-shadow: none;
+    .list-group-item{
+      float: left;
+      margin:0 10px 10px 0;
+    }
+    .list-group-item:first-child,
+    .list-group-item:last-child{
+      border-radius: 0;
+    }
+  }
+}
+
+#footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  clear: both;
+}

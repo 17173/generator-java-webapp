@@ -9,7 +9,7 @@ var JavaWebappGenerator = module.exports = function JavaWebappGenerator(args, op
 
   this.on('end', function () {
     //this.installDependencies({ skipInstall: options['skip-install'] });
-    var info = chalk.yellow.bold("\nI'm all done. Please running bower install & npm install for you to install the required dependencies.")
+    var info = chalk.yellow.bold("\nI'm all done. Please running spm install & npm install for you to install the required dependencies.")
     console.log(info);
   });
 
@@ -26,7 +26,7 @@ JavaWebappGenerator.prototype.askFor = function askFor() {
     '\n     _-----_' +
       '\n    |       |' +
       '\n    |' + chalk.red('--(o)--') + '|   .--------------------------.' +
-      '\n   `---------´  |    ' + chalk.yellow.bold('Welcome to yo java-webapp') + ',    |' +
+      '\n   `---------´  |    ' + chalk.yellow.bold('Welcome to yo java-webapp') + ', |' +
       '\n    ' + chalk.yellow('(') + ' _' + chalk.yellow('´U`') + '_ ' + chalk.yellow(')') + '   |   ' + chalk.yellow.bold('ladies and gentlemen!') + '  |' +  '\n    /___A___\\   \'__________________________\'' +
       '\n     ' + chalk.yellow('|  ~  |') +
       '\n   __' + chalk.yellow('\'.___.\'') + '__' +
@@ -54,7 +54,7 @@ JavaWebappGenerator.prototype.askFor = function askFor() {
   }, {
     name: 'version',
     message: 'Your project version',
-    default: '1.0.0'
+    default: '0.0.0'
   }];
 
   this.prompt(prompts, function (props) {
@@ -66,11 +66,22 @@ JavaWebappGenerator.prototype.askFor = function askFor() {
   }.bind(this));
 };
 
-JavaWebappGenerator.prototype.fed = function app() {
-  this.directory('fed','fed');
-  this.directory('WEB-INF','WEB-INF');
+JavaWebappGenerator.prototype.allfile = function allfile() {
+  this.spmAlias = '<%= pkg.spm.alias %>';
+  this.jsBanner = '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyymmdd") %> */\n';
+  this.buildVersion = '<%= grunt.template.today("yyyymmddHHMM") %>';
+  this.copyright = '<%= grunt.template.today("yyyy") %>-V<%= pkg.version %>';
 
-  this.template('_package.json', 'fed/package.json');
+  this.directory('mock','mock');
+  this.directory('WEB-INF','WEB-INF');
+  this.directory('src','src');
+
+  this.template('_package.json', 'package.json');
+  this.template('_gruntfile.js', 'Gruntfile.js');
+  this.template('README.md', 'README.md');
+  this.template('editorconfig', '.editorconfig');
+  this.template('jshintrc', '.jshintrc');
+  this.template('jshintignore', '.jshintignore');
 };
 
 

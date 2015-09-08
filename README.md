@@ -1,35 +1,48 @@
 # generator-java-webapp  [![Build Status](https://secure.travis-ci.org/17173/generator-java-webapp.png?branch=master)](https://travis-ci.org/17173/generator-java-webapp)
 
 ```
-快速构建 java web 项目的前端脚手架（bootstrap+seajs+fed）
-```     
+快速构建 java web 项目的后台前端脚手架（bootstrap+seajs+fed）
+```
+
+> 注：此脚手脚只适用 17173 内部使用, 外部人员慎用    
 
 **构建成功后的工程目录结构说明：**
 
 ```
-|- fed/                        #前端源文件
-  |- src/
-    |- app                     #seajs模块化文件
-    |- css                     #样式文件
-    |- font                    #字体
-    |- img                     #图片
-    |- less                    # 存放less文件
-    |- js                      #脚本文件，存放所有非模块化文件
-      |- sea-config.js         #seajs配置文件
-    |- mov                     #视频，音频文件
-  |- mock                      #mock文件
-  |- docs                      #基于bootstrap主题的文档及demo
-  |- node_modules
-  |- sea-modules
-  |- fed.json                  #fed 配置文件
-  |- Gruntfile.js
-  |- .jshintrc
-  |- .editorconfig
-  |- package.json
-  |- README.md
-  |- dist/                     #部署文件
-  |- test/                     #单元测试
-|- WEB-INF/                    #java 模板文件
+|- src/
+  |- app                     #seajs模块化文件
+    | - common               # 公共模块
+    | - mod1
+    | - ...
+  |- css                     #样式文件
+  |- font                    #字体
+  |- img                     #图片
+  |- less                    # 存放less文件
+    | - app                  # 业务样式
+      | - base               
+      | - component
+      | - layout
+      | - page
+      | - app.less
+      | - login.less
+    | - awesome              # font-awesome
+    | - bootstrap            # bootstrap
+  |- js                      #脚本文件，存放所有非模块化文件
+    |- sea-config.js         #seajs配置文件
+  |- mov                     #视频，音频文件
+|- mock                      #mock文件
+  | - _globals.json # 全局配置文件
+  | - _map  # mock mapping file
+  | - permission.js 权限 mock file
+|- node_modules
+|- sea-modules
+|- Gruntfile.js
+|- .jshintrc
+|- .editorconfig
+|- package.json
+|- README.md
+|- dist/                     #部署文件
+|- WEB-INF/                  #java 模板文件
 
 ```
 
@@ -39,6 +52,12 @@
 
 ```
 npm install -g generator-java-webapp
+```
+
+如已有安装过, 请执行 update
+
+```
+npm update generator-java-webapp -g
 ```
 
 创建一个 java web 项目目录，cd到目录下:
@@ -59,10 +78,7 @@ yo java-webapp [app-name]
 
 * [java-webapp](#java-webapp)(aka [java-webapp:app](#java-webapp))
 * [java-webapp:page](#page)
-* [java-webapp:admin](#admin)
-* [java-webapp:front](#front)
 * [java-webapp:mock](#mock)
-* [java-webapp:fed](#fed)
 * [java-webapp:js](#js)
 * [java-webapp:ftl](#ftl)
 
@@ -77,15 +93,15 @@ yo java-webapp
 ```
 ### page
 
-自定义一个业务模块，最终生成2个文件, 用”/“，生成带目录的文件
+自定义一个业务模块，最终生成3个文件, 用”/“，生成带目录的文件
 
 **举例：**
 
 ```
-yo java-webapp:page myapp/login
+yo java-webapp:page login
 ```
 
-生成 src/app/myapp/login/index.js
+生成 src/app/login/index.js
 
 ```
 define(function(require, exports, module) {
@@ -94,7 +110,7 @@ define(function(require, exports, module) {
 ```
 
 
-生成 WEB-INF/template/ftl/myapp/login/index.ftl
+生成 WEB-INF/template/ftl/admin/login/index.ftl
 
 ```
 <#import '/WEB-INF/template/ftl/inc/inc.ftl' as inc />
@@ -106,86 +122,22 @@ define(function(require, exports, module) {
     <p>这是页面内容</p>
 </@inc.body>
 <@inc.footer>
-    <script type="text/javascript">
-        seajs.use('${appRoot}/myapp/login/index.js');
-    </script>
-</@inc.footer>
-```
-### admin
-
-自定义一个后台业务模块，最终生成2个文件, 用”/“，生成带目录的文件
-
-**举例：**
-
-```
-yo java-webapp:admin myapp/login
-```
-
-生成 src/app/myapp/login/index.js
-
-```
-define(function(require, exports, module) {
-    'use strict';
-});
-```
-
-
-生成 WEB-INF/template/ftl/admin/myapp/login/index.ftl
-
-```
-<#import '/WEB-INF/template/ftl/admin/inc/inc.ftl' as inc />
-
-<@inc.header '页面标题'>
-
-</@inc.header>
-<@inc.body '页面菜单名'>
-    <p>这是页面内容</p>
-</@inc.body>
-<@inc.footer>
-    <script type="text/javascript">
-        seajs.use('${appRoot}/myapp/login/index.js');
-    </script>
-</@inc.footer>
-```
-### front
-
-自定义一个前台业务模块，最终生成2个文件, 用”/“，生成带目录的文件
-
-> 前台只是做预留，如用的场景多再做优化
-
-**举例：**
-
-```
-yo java-webapp:front myapp/login
-```
-
-生成 src/app/front/myapp/login/index.js
-
-```
-define(function(require, exports, module) {
-    'use strict';
-});
-```
-
-
-生成 WEB-INF/template/ftl/front/myapp/login/index.ftl
-
-```
-<#import '/WEB-INF/template/ftl/front/inc/inc.ftl' as inc />
-
-<@inc.header '页面标题'>
-
-</@inc.header>
-<@inc.body '页面菜单名'>
-    <p>这是页面内容</p>
-</@inc.body>
-<@inc.footer>
-    <script type="text/javascript">
-        seajs.use('${appRoot}/front/myapp/login/index.js');
+    <script>
+        seajs.use('login/index');
     </script>
 </@inc.footer>
 ```
 
+生成 mock/login.html.js
+
+```
+var permission = require('./permission');
+
+module.exports = function(req, res, next) {
+  res.render('template/ftl/admin/login/index.ftl', { menuList: permission.menuList, menuListJson: permission.menuListJson });
+};
+
+```
 
 ### Mock
 
@@ -200,59 +152,18 @@ yo java-webapp:mock mypage
 生成 mock/mypage.js
 
 ```
-var common = require('./common');
-var store = common.store;
-var getFile = common.getFile;
-module.exports = {
-    // mock 请求
-    "post /url": function(req, res) {
-        res.send({
-            "result": "success",
-            "messages": [],
-            "fieldErrors": {},
-            "errors": [],
-            "data": {
+module.exports = function(req, res, next) {
+  var data = {
+    result: 'success',
+    messages: [],
+    data: {
 
-            }
-        });
-    },
-    // mock freeMarker 文件
-    "get /url": function(req, res) {
-        this.render.ftl(getFile('path'), store);
     }
-
+  };
+  data = JSON.stringify(data);
+  res.end(data);
 };
-```
-### fed
 
-创建一个 fed 配置文件
-
-**举例：**
-
-```
-yo java-webapp:fed config
-```
-
-生成 config.json
-
-```
-{
-    "server": {
-        "port": "8080",
-        "path": {
-            "view": "",
-            "mock": "mock",
-            "public": ""
-        },
-        "globals": {
-            "baseUrl": "",
-            "basePath": ""
-        }
-    },
-    "coffeescript": {
-        "debug": false
-    }
-}
 ```
 
 ### js
@@ -269,7 +180,6 @@ yo java-webapp:js myapp
 
 ```
 define(function(require, exports, module) {
-    var $ = require('$');
 
 });
 ```
@@ -284,10 +194,10 @@ define(function(require, exports, module) {
 yo java-webapp:ftl myapp
 ```
 
-生成 myapp/index.ftl
+生成 myapp.ftl
 
 ```
-<#import '/WEB-INF/template/ftl/inc/inc.ftl' as inc />
+<#import '../inc/inc.ftl' as inc />
 
 <@inc.header '页面标题'>
 

@@ -1,0 +1,22 @@
+{{#if label}}
+  <label class="{{getColSpan colspan}} control-label">{{#if attrs}}{{#if attrs/required}}<i>*</i>{{/if}}{{/if}}{{{ellipsis label 7 ""}}}</label>
+  <div class="{{getColSpanRest colspan expand}}{{#if inline}} form-inline{{/if}}">
+{{else}}
+  {{#showCol colspan}}
+    <div class="{{getColSpan colspan expand}}{{#if inline}} form-inline{{/if}}">
+  {{/showCol}}
+{{/if}}
+
+{{#if attrs}}
+  <div class="form-control-static"{{> attrs}}>{{{value}}}</div>
+{{else}}
+  {{{value}}}
+{{/if}}
+
+{{#if label}}
+  </div>
+{{else}}
+  {{#showCol colspan}}
+    </div>
+  {{/showCol}}
+{{/if}}

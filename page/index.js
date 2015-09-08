@@ -1,7 +1,6 @@
 'use strict';
 var util = require('util');
 var path = require('path');
-var fs = require('fs');
 var yeoman = require('yeoman-generator');
 
 var PageGenerator = module.exports = function PageGenerator(args, options, config) {
@@ -15,9 +14,19 @@ var PageGenerator = module.exports = function PageGenerator(args, options, confi
 util.inherits(PageGenerator, yeoman.generators.NamedBase);
 
 PageGenerator.prototype.files = function files() {
-    this.jsRoot = '${jsRoot}';
-    this.appRoot = '${appRoot}';
-    // 可这样创建 admin/login
-    this.template('app.js', path.join('src/app/', this.name + '/index.js'));
-    this.template('page.ftl', path.join('../WEB-INF/template/ftl/', this.name + '/index.ftl'));
+  /*var name = this.name.split('/');
+  var path = ['..'];
+  var i = 1, len = name.length;
+  if (len > 1) {
+    for (i;i < len;i++) {
+      path.push('..');
+    }
+    this.incPath = path.join('/') + '/inc/inc.ftl';
+  } else {
+    this.incPath = '../inc/inc.ftl';
+  }*/
+
+  this.template('app.js', path.join('src/app/', this.name + '/index.js'));
+  this.template('page.ftl', path.join('WEB-INF/template/ftl/admin/', this.name + '/index.ftl'));
+  this.template('mock.js', path.join('mock/', this.name + '.html.js'));
 };
