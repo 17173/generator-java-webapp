@@ -1,0 +1,20 @@
+<div class="panel-heading" data-role="panel-heading">
+  {{#if buttons}}
+    <div class="panel-buttons">
+      {{#each buttons}}
+        <button class="btn" data-role="{{@key}}">{{this}}</button>
+      {{/each}}
+    </div>
+  {{else}}
+    {{#if foldable}}
+      <span class="caret pull-right"></span>
+    {{/if}}
+  {{/if}}
+  <h3 class="panel-title" data-role="panel-title">{{{title}}}</h3>
+</div>
+<div class="panel-body" data-role="panel-content">
+  {{{content}}}
+</div>
+{{#if footer}}
+  <div class="panel-footer" data-role="panel-footer">{{{footer}}}</div>
+{{/if}}

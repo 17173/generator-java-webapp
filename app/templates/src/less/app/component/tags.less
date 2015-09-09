@@ -1,0 +1,120 @@
+.ue-tags {
+  // overflow: auto;
+
+  .tags {
+    // float: left;
+    // display: inline-block;
+    // vertical-align: text-top;
+    padding: 3px 8px 0;
+    // height: 40px;
+    height: auto;
+    min-height: 34px;
+    .label {
+      color : #999;
+      font-weight : normal;
+      font-size : 14px;
+      position : absolute;
+      line-height:27px;
+      padding:0px 0px 0px 4px;
+    }
+  }
+
+  .tag {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 2px 6px;
+    margin: 0 3px 3px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    color: #ffffff;
+    cursor: pointer;
+    background: #1da7ee;
+    border: 1px solid #0073bb;
+    text-shadow: 0 1px 0 rgba(0, 51, 83, 0.3);
+    background-color: #1b9dec;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#1da7ee), to(#178ee9));
+    background-image: -webkit-linear-gradient(top, #1da7ee, #178ee9);
+    background-image: linear-gradient(to bottom, #1da7ee, #178ee9);
+    background-repeat: repeat-x;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), inset 0 1px rgba(255, 255, 255, 0.03);
+
+    &.active {
+      color: #ffffff;
+      background: #92c836;
+      border: 1px solid #00578d;
+      background-color: #0085d4;
+      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#008fd8), to(#0075cf));
+      background-image: -webkit-linear-gradient(top, #008fd8, #0075cf);
+      background-image: linear-gradient(to bottom, #008fd8, #0075cf);
+      background-repeat: repeat-x;
+    }
+
+  }
+
+  .input {
+    // float: left;
+    display: inline-block;
+    vertical-align: middle;
+    // width: 4px;
+    // min-width: 4px;
+    // input {
+      // position: absolute;
+      // z-index: 902;
+      width: 4px;
+      min-width: 4px;
+      max-width: 100%;
+      // width: 100%;
+      margin: 3px 0 0;
+      padding: 0;
+      border: none;
+      background: transparent;
+      outline: none;
+    // }
+  }
+}
+
+.ue-tags-guide {
+  padding: 3px 8px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: -1px;
+}
+
+.ue-suggest {
+  border: 1px solid #ccc;
+  background: #fff;
+  min-width: 100px;
+  max-height: 150px;
+  overflow: auto;
+  overflow-x: hidden;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    padding: 5px 10px;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:hover {
+      background-color: #ddd;
+    }
+
+    &.selected {
+      background-color: #eee;
+    }
+  }
+
+  .nomatch {
+    padding: 5px 10px;
+    background-color: #fcf8e3;
+  }
+}

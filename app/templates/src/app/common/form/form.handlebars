@@ -1,0 +1,16 @@
+<form class="form-{{layout}}" data-role="form" autocomplete="{{autocomplete}}"{{#if novalidate}} novalidate{{/if}}>
+  {{#each groups}}
+    {{#if hidden}}
+      {{> groups}}
+    {{else}}
+      <div class="{{#if class}}{{class}}{{else}}form-group{{/if}}"{{#if groups}}{{> attrs}}{{/if}}>
+        {{> groups}}
+      </div>
+    {{/if}}
+  {{/each}}
+  {{#if buttons}}
+    <div class="form-group form-buttons">
+      {{> buttons}}
+    </div>
+  {{/if}}
+</form>

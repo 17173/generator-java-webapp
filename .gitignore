@@ -4,3 +4,7 @@ temp/
 npm-debug.log
 bower_components
 .svn/
+app/templates/.build
+app/templates/node_modules
+app/templates/sea-modules
+app/templates/dist

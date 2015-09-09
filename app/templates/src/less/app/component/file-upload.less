@@ -1,0 +1,154 @@
+.file-upload {
+  -webkit-user-select: none;
+  position: relative;
+  height: 100%;
+  width: 728px;
+  min-height: 311px;
+
+  .select {
+    float: left;
+    margin-right: 10px;
+
+    input {
+      position: absolute;
+      // left: -9999px;
+      // top: -9999px;
+      visibility: hidden;
+    }
+
+    + button {
+      float: left;
+      margin-right: 10px;
+    }
+  }
+
+  .queue {
+    height: 267px;
+    margin: 0 -20px 10px;
+    overflow: auto;
+  }
+
+  .queue:after,
+  .file:after {
+    content: '';
+    display: block;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+  }
+
+  .file {
+    border-bottom: 1px solid #ccc;
+    padding: 8px 0;
+    position: relative;
+
+    .name,
+    .size,
+    .state{
+      float: left;
+    }
+    .name{
+      width: 40%;
+      text-indent: 15px;
+    }
+    .size {
+      float: left;
+      width: 13%;
+    }
+    .state{
+      width: 40%;
+    }
+
+    .dimens {
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.8);
+      font-size: 87.5%;
+      color: #666;
+      padding: 2px 3px 0;
+      display: none;
+    }
+
+    .remove {
+      position: absolute;
+      right: 10px;
+      top: 8px;
+      width: 21px;
+      text-align: center;
+      font-size: 21px;
+      font-weight: bold;
+      line-height: 1;
+      color: #333;
+      cursor: pointer;
+      &:hover {
+        color: #f30;
+      }
+    }
+
+    &.file-done{
+      .progress,
+      .remove{
+        display: none;
+      }
+    }
+
+    &.file-fail {
+      background: rgba(210, 50, 45, 0.8);
+      color: #fff;
+      .remove {
+        color: #fff;
+        &:hover {
+          color: #333;
+        }
+      }
+    }
+
+    .progress {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 36px;
+      line-height: 36px;
+      background: rgba(92, 184, 92, 0.8);
+      border-radius: 0;
+      color: #fff;
+      opacity: 0.6;
+      overflow: visible;
+      text-shadow: 1px 1px 1px #808080;
+      &.wait {
+        width: 5px !important;
+      }
+      &.fail {
+        display: none;
+      }
+      &.done {
+        display: none;
+        width: 100% !important;
+        background: rgba(34, 128, 208, 0.8);
+        & + .remove {
+          display: none;
+        }
+      }
+      &.fail {
+        background: rgba(210, 50, 45, 0.8);
+      }
+    }
+  }
+
+  .thumb {
+    width: 160px;
+    height: 120px;
+    background: #fee url('data:image/gif;base64,R0lGODlhEAAQAKIGAMLY8YSx5HOm4Mjc88/g9Ofw+v///wAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFCgAGACwAAAAAEAAQAAADMGi6RbUwGjKIXCAA016PgRBElAVlG/RdLOO0X9nK61W39qvqiwz5Ls/rRqrggsdkAgAh+QQFCgAGACwCAAAABwAFAAADD2hqELAmiFBIYY4MAutdCQAh+QQFCgAGACwGAAAABwAFAAADD1hU1kaDOKMYCGAGEeYFCQAh+QQFCgAGACwKAAIABQAHAAADEFhUZjSkKdZqBQG0IELDQAIAIfkEBQoABgAsCgAGAAUABwAAAxBoVlRKgyjmlAIBqCDCzUoCACH5BAUKAAYALAYACgAHAAUAAAMPaGpFtYYMAgJgLogA610JACH5BAUKAAYALAIACgAHAAUAAAMPCAHWFiI4o1ghZZJB5i0JACH5BAUKAAYALAAABgAFAAcAAAMQCAFmIaEp1motpDQySMNFAgA7') no-repeat 50% 50%;
+    canvas {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  + button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+  }
+}

@@ -1,0 +1,8 @@
+<button data-role="checkall" class="btn btn-default" type="button"><i class="fa fa-check-square-o"></i> <span>全选</span></button>
+<div class="selectors-box">
+  {{#each listData}}
+  <label title="{{label}}">
+    <input type="checkbox" {{#if checked}} checked="checked" {{/if}} value="{{value}}"  /> {{label}}
+  </label>
+  {{/each}}
+</div>

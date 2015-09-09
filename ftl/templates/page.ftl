@@ -1,4 +1,4 @@
-<#import '/WEB-INF/template/ftl/inc/inc.ftl' as inc />
+<#import '../inc/inc.ftl' as inc />
 
 <@inc.header '页面标题'>
 
@@ -7,5 +7,5 @@
     <p>这是页面内容</p>
 </@inc.body>
 <@inc.footer>
-    
+
 </@inc.footer>

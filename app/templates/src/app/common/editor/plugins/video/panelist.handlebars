@@ -1,0 +1,14 @@
+<ul data-role="listBox">
+  {{#each items}}
+  <li{{#if selected}} class="selected"{{/if}} data-role="item" data-index="{{@index}}">
+    <span class="name">{{src}}</span>
+    <span data-role="remove" title="删除" class="remove glyphicon glyphicon-remove"></span>
+  </li>
+  {{/each}}
+</ul>
+{{#if items.length}}
+<div class="action">
+  <div class="mce-btn"><button type="button" data-role="appendAll">全部插入</button></div>
+  <div class="mce-btn"><button type="button" data-role="removeAll">全部删除</button></div>
+</div>
+{{/if}}

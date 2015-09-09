@@ -1,0 +1,9 @@
+{{#if tags}}
+  <ul>
+  {{#each tags}}
+    {{#if this}}<li tabindex="-1" data-role="tag">{{this}}</li>{{/if}}
+  {{/each}}
+  </ul>
+{{else}}
+  <div class="nomatch">{{{nomatch}}}</div>
+{{/if}}

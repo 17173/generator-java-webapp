@@ -1,0 +1,3 @@
+src/app/common/ace/**/*.js
+src/app/common/editor/tinymce/**/*.js
+mock/**/*.js

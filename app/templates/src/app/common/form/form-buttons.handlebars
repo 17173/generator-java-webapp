@@ -1,0 +1,7 @@
+<div class="{{getColSpanOffset colspan}}">
+{{#each buttons}}
+  {{#if this}}
+    <button{{#unless attrs}} class="btn btn-default"{{else}}{{#unless attrs.class}} class="btn btn-default"{{/unless}}{{/unless}}{{> attrs}}>{{value}}</button>
+  {{/if}}
+{{/each}}
+</div>

@@ -1,0 +1,81 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: #eee;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  text-align: center;
+  flex: 3;
+  background: -webkit-radial-gradient(bottom center, circle, #444 30%, #333 60%);
+  display: flex;
+  flex-direction: column;
+
+  i {
+    flex: 1
+  }
+
+  span {
+    display: inline-block;
+    font-size: 60px;
+    font-weight: bold;
+    color: #fff;
+
+    &:nth-child(2) {
+      color: #3276b1;
+    }
+  }
+
+  small {
+    margin-left: 5px;
+    display: inline-block;
+    padding: 0 3px;
+    color: #fff;
+    background: #333;
+    border-radius: 3px;
+    vertical-align: top;
+  }
+
+}
+
+#container {
+  flex: 5;
+  background: -webkit-radial-gradient(top center, circle, #eee 50%, #666 100%);
+  display: flex;
+  flex-direction: column;
+
+  .login-form {
+    flex: 1;
+    margin: 50px auto 0;
+    width: 360px;
+  }
+
+  .ue-form {
+    max-width: none;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  footer {
+    text-align: center;
+    padding: 10px;
+    height: 120px;
+
+    p {
+      padding: 10px;
+      color: #999;
+    }
+  }
+}
+
+@import "component/dialog";
+@import "component/form";

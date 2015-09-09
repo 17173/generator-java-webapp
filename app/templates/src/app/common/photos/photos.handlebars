@@ -1,0 +1,12 @@
+<ul class="clearfix release-photo">
+  {{#each photos}}
+    <li class="release-photo-item" draggable="true" cms-draggable="top" cms-droppable="top" >
+      <div>
+        <span data-role="number"></span>
+        <span data-role="remove" class="pull-right glyphicon glyphicon-remove"></span>
+      </div>
+      <a target="_blank" href="{{imgUrl}}" ><img data-role="imgUrl" class="thumb-160x120" data-imgUrl="{{imgUrl}}" src="{{thumbUrl}}" alt="{{description}}"></a>
+      <textarea data-role="description" placeholder="图片描述" maxlength="200" class="release-photo-text" >{{description}}</textarea>
+    </li>
+  {{/each}}
+</ul>

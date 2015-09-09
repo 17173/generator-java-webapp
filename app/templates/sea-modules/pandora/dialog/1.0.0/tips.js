@@ -1,0 +1,2 @@
+/*! dialog-1.0.0 2014-09-25 17:33:32 */
+define("pandora/dialog/1.0.0/tips",["./dialog","pandora/overlay/1.0.0/overlay","$","pandora/widget/1.0.0/widget","pandora/base/1.0.0/base","pandora/class/1.0.0/class","pandora/events/1.0.0/events","pandora/locker/1.0.0/locker","./mask"],function(a,b,c){"use strict";var d=a("./dialog"),e=d.extend({defaults:{timeout:2,data:{close:""}},render:function(){var a=this,b=a.option("timeout");a.option("trigger")||a.hide(function(){this.destroy()}),e.superclass.render.apply(a),b&&window.setTimeout(function(){a.close()},1e3*b)}});c.exports=e});
