@@ -27,5 +27,5 @@ define(function(require, exports, module) {
         value: data.name || ''
       }
     }];
-  }
+  };
 });

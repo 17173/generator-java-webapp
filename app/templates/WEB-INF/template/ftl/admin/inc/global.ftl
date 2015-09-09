@@ -1,4 +1,4 @@
-<#global DEBUG = true>
+<#global DEBUG = false>
 
 <#if DEBUG?? && DEBUG>
   <#global seaRoot = '${ctx}/sea-modules/'>

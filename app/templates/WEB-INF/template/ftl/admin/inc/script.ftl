@@ -4,4 +4,4 @@
 <#else>
   <script src="${jsRoot}sea.js"></script>
 </#if>
-<script src="${jsRoot}sea-config.js?201508031546"></script>
+<script src="${jsRoot}sea-config.js?201509091551"></script>

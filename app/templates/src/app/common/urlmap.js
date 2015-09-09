@@ -24,5 +24,8 @@ define(function(require, exports, module) {
 
     deptList: 'dept/list.do',
     tagsList: 'tags/list.do',
+    imageSearch: 'image/search.do',
+    watermarkList: 'image/watermarkList.do',
+    imageUpload: 'image/upload.do'
   };
 });

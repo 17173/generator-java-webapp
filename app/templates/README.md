@@ -19,12 +19,16 @@
 
   > password: password
 
-4. 最后，工程目录下执行命令行
+4. 安装 JAVA
+
+  - \\10.5.17.41\software\public\Java\jdk-7u25-windows-x64.exe  
+
+5. 最后，工程目录下执行命令行
   - npm install
   - spm install
   - npm run dev
 
-5. 浏览器访问：http://127.0.0.1:3001
+6. 浏览器访问：http://127.0.0.1:3001
     
   > 访问开发环境
 

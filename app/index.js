@@ -79,9 +79,9 @@ JavaWebappGenerator.prototype.allfile = function allfile() {
   this.template('_package.json', 'package.json');
   this.template('_gruntfile.js', 'Gruntfile.js');
   this.template('README.md', 'README.md');
-  this.template('editorconfig', '.editorconfig');
-  this.template('jshintrc', '.jshintrc');
-  this.template('jshintignore', '.jshintignore');
+  this.template('.editorconfig', '.editorconfig');
+  this.template('.jshintrc', '.jshintrc');
+  this.template('.jshintignore', '.jshintignore');
 };
 
 

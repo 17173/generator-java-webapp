@@ -7,7 +7,6 @@ define(function(require, exports, module) {
   require('./autolink/plugin');
   require('./browse/plugin');
   require('./code/plugin');
-  require('./component/plugin');
   require('./contextmenu/plugin');
   require('./directionality/plugin');
   require('./fullscreen/plugin');
@@ -29,6 +28,4 @@ define(function(require, exports, module) {
   require('./video/plugin');
   require('./visualblocks/plugin');
   require('./visualchars/plugin');
-  require('./xiangsaiyu/plugin');
-  require('./vote/plugin');
 });

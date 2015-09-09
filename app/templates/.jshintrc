@@ -14,6 +14,7 @@
   "globals": {
     "define": true,
     "seajs": true,
+    "JSON": true,
     "tinymce": true,
     "ace": true
   },

@@ -7,8 +7,6 @@ define(function(require, exports, module) {
   var Panel = require('../../../panel/panel'),
     Search = require('../../../search/search');
 
-  var AddForm = require('../../../../component/instance/addform');
-
   var Grid = require('./grid');
 
   var DataSelect = Confirm.extend({
@@ -40,7 +38,7 @@ define(function(require, exports, module) {
             channelId: window.USER_DATA.CHANNEL_ID,
             dataType: 'gallery'
           },
-          buttons: [window.AUTH.isAuth('componentInstanceListAdd') ? {
+          buttons: [{
             colspan: null,
             'class': 'pull-right',
             value: '<i class="fa fa-plus"></i> 新建组件',
@@ -48,7 +46,7 @@ define(function(require, exports, module) {
               type: 'button',
               'data-role': 'add'
             }
-          }:undefined],
+          }],
           data: {
             groups: [{
               // label: '组件名称',
@@ -72,17 +70,7 @@ define(function(require, exports, module) {
         keepHistory: false,
         delegates: {
           'click [data-role=add]': function() {
-            new AddForm({
-              //dataType: 'gallery',
-              typeList: ['gallery'],
-              defaultSelect: 'gallery',
-              events: {
-                done: function() {
-                  self.search.refresh();
-                }
-              },
-              url: 'componentAdd'
-            });
+
           }
         },
         element: self.role('content'),

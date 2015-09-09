@@ -39,7 +39,7 @@ define({
     'textcolor',
     'video',
     'visualblocks',
-    'visualchars',
+    'visualchars'
   ],
   toolbar: [
     'preview code fullscreen visualblocks' +
