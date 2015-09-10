@@ -2,14 +2,14 @@
 
 ## 环境配置
 
-1. 安装 NODE
+### 安装 NODE
   - http://nodejs.org/dist/v0.10.26/x64/node-v0.10.26-x64.msi
 
-2. 安装 GRUNT
+### 安装 GRUNT
   - npm install grunt-cli -g
-  - npm config set registry http://10.5.121.139:8888
+  - npm config set registry https://registry.npm.taobao.org
 
-3. 安装 SPM
+### 安装 SPM
   - npm install spm@2.2.7 -g
   - spm config source:default.url http://10.5.121.139:3000
 
@@ -19,19 +19,23 @@
 
   > password: password
 
-4. 安装 JAVA
+### 安装 Git
+
+  * Windows https://git-for-windows.github.io/
+  * MAC/Linux https://git-scm.com/
+
+### 安装 JAVA
 
   - \\10.5.17.41\software\public\Java\jdk-7u25-windows-x64.exe  
 
-5. 最后，工程目录下执行命令行
+### 最后，工程目录下执行命令行
   - npm install
   - spm install
   - npm run dev
 
-6. 浏览器访问：http://127.0.0.1:3001
+### 浏览器访问：http://127.0.0.1:3001
     
-  > 访问开发环境
-
+  > 访问开发环境, 如要 livereload 功能，需要安装 chrome 插件 http://help.livereload.com/kb/general-use/browser-extensions
 
 ## 代码发布
 

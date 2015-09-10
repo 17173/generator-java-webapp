@@ -8,4 +8,5 @@ define(function(require, exports, module) {
   var List = require('../list');
 
   new List();
+  console.log('test22223333');
 });

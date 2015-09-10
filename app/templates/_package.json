@@ -10,7 +10,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "dev": "fed3 server -p 3001 -M mock --view-root WEB-INF",
+    "dev": "node server.js",
     "build": "grunt build"
   },
   "spm": {
@@ -59,6 +59,7 @@
     "grunt-contrib-uglify": "0.5.0",
     "grunt-contrib-watch": "*",
     "grunt-wrap-combo": "*",
+    "livereload": "^0.3.7",
     "matchdep": "*",
     "time-grunt": "~0.3.1"
   }

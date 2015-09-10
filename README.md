@@ -37,6 +37,7 @@
 |- node_modules
 |- sea-modules
 |- Gruntfile.js
+|- server.js
 |- .jshintrc
 |- .editorconfig
 |- package.json
@@ -210,11 +211,14 @@ yo java-webapp:ftl myapp
 </@inc.footer>
 ```
 
-## Testing
+## 特性
 
-## Contribute
+* 支持 less/stylus
+* 支持 livereload
+* 支持 freemarker
+* 采用 seajs 模块化
 
-## ChangeLog
+## 日志
 
 见 [CHANGELOG.md](https://github.com/17173/generator-java-webapp/blob/master/CHANGELOG.md)
 

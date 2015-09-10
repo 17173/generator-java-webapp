@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>后台系统 登录</title>
+<title>后台系统 - 登录</title>
 <link rel="stylesheet" href="${cssRoot}login.css">
 <script>
   window.USER_DATA = {
@@ -23,9 +23,7 @@
   <header>
     <i></i>
     <p>
-      <span>admin</span>
-      <span>login</span>
-      <small></small>
+      <#include '../inc/version.ftl'>
     </p>
   </header>
   <div id="container">
