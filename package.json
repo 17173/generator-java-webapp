@@ -1,6 +1,6 @@
 {
     "name": "generator-java-webapp",
-    "version": "2.0.5",
+    "version": "2.0.6",
     "description": "A generator for java webapp",
     "keywords": [
         "yeoman-generator, java, webapp, seajs, fed, java-webapp, bootstrap"
