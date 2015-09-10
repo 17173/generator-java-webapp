@@ -6,6 +6,7 @@ var spawn = require('child_process').spawn;
 var globalCfg = require('./mock/_globals.json');
 var ctx = globalCfg.ctx;
 var port = ctx.split(':')[2];
+var fed3 = process.platform === 'win32' ? 'fed3.cmd' : 'fed3';
 
 var server = livereload.createServer({
   exts: ['js', 'css', 'less', 'png', 'gif', 'jpg', 'ftl'],
@@ -17,22 +18,22 @@ var paths = function() {
   });
 }();
 
-var fed = spawn('fed3', [
+var child = spawn(fed3, [
   'server',
   '-p', port,
   '-M', 'Mock',
   '--view-root', 'WEB-INF'
 ]);
 
-fed.stdout.on('data', function (data) {
+child.stdout.on('data', function (data) {
   console.log('stdout: ' + data);
 });
 
-fed.stderr.on('data', function (data) {
+child.stderr.on('data', function (data) {
   console.log('stderr: ' + data);
 });
 
-fed.on('close', function (code) {
+child.on('close', function (code) {
   console.log('child process exited with code ' + code);
 });
 
