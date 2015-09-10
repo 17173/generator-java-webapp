@@ -3,9 +3,13 @@
 var livereload = require('livereload');
 var spawn = require('child_process').spawn;
 
+var globalCfg = require('./mock/_globals.json');
+var ctx = globalCfg.ctx;
+var port = ctx.split(':')[2];
+
 var server = livereload.createServer({
   exts: ['js', 'css', 'less', 'png', 'gif', 'jpg', 'ftl'],
-  originalPath: 'http://127.0.0.1:3001'
+  originalPath: globalCfg.ctx
 });
 var paths = function() {
   return ['mock', 'src', 'WEB-INF'].map(function(path) {
@@ -15,7 +19,7 @@ var paths = function() {
 
 var fed = spawn('fed3', [
   'server',
-  '-p', '3001',
+  '-p', port,
   '-M', 'Mock',
   '--view-root', 'WEB-INF'
 ]);
