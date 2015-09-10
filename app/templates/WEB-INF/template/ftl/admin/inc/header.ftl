@@ -2,7 +2,7 @@
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/">project <span>1.0.0</span></a>
+        <a class="navbar-brand" href="/"><#include 'version.ftl'></a>
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav main-nav" id="J_MainMenu">
@@ -33,7 +33,7 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="javascript:;" id="logoutHandle"><i class="fa fa-sign-out"></i> 退出</a></li>
+              <li><a href="/login.html" id="logoutHandle"><i class="fa fa-sign-out"></i> 退出</a></li>
             </ul>
           </li>
         </ul>

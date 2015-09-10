@@ -30,7 +30,7 @@ define(function(require, exports, module) {
       method: 'POST',
       enctype: XHR.ENC_APPLI,
       // validating on values change
-      eventType: 'blur',
+      eventType: 'change',
       data: {
         layout: 'horizontal',
         novalidate: true,

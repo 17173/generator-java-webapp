@@ -50,11 +50,11 @@ JavaWebappGenerator.prototype.askFor = function askFor() {
   }, {
     name: 'description',
     message: 'Your project description',
-    default: ''
+    default: 'backend system'
   }, {
     name: 'version',
     message: 'Your project version',
-    default: '0.0.0'
+    default: '1.0.0'
   }];
 
   this.prompt(prompts, function (props) {

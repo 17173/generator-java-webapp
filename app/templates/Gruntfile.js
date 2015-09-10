@@ -472,8 +472,15 @@ module.exports = function(grunt) {
       }
     },
 
-    jshint: configJSHint(),
+    livereload: {
+      files: [
+        'mock/**/*',
+        'src/**/*',
+        'WEB-INF/**/*'
+      ]
+    },
 
+    jshint: configJSHint(),
 
     uglify: configUglify(),
 

@@ -10,12 +10,14 @@ module.exports = function(grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   /**
-   * 注：如果只打单模块，有更改 urlmap 的话，必须打 channel 包
+   * 注：如果只打单模块，有更改 urlmap 的话，必须打 header 包
    * @type {Array}
    */
   var mods = [
     'common',
+    'header',
     'login',
+    'demo'
   ];
 
   var assets = [
@@ -50,26 +52,6 @@ module.exports = function(grunt) {
       'src/app/common/code/**/*.js',
       '!src/app/common/code/ace/**/*.js'
     ];
-
-    return cfg;
-  }
-
-  function configQUnit(presets) {
-    var cfg = presets || {};
-
-    cfg.options = {
-      '--web-security': 'no',
-      coverage: {
-        src: ['src/app/**/*.js'],
-        instrumentedFiles: 'temp/',
-        lcovReport: 'report/',
-        linesThresholdPct: 85
-      }
-    };
-
-    mods.forEach(function (mod) {
-      cfg[mod] = ['test/' + mod + '/**/*.html'];
-    });
 
     return cfg;
   }
@@ -173,7 +155,7 @@ module.exports = function(grunt) {
               '!editor/**/*.js',
               '!code/**/*.js'
             ],
-            dest: '../dist/app/' + mod + '/'
+            dest: 'dist/app/' + mod + '/'
           }]
         };
       } else {
@@ -184,7 +166,7 @@ module.exports = function(grunt) {
             src: [
               '**/*.js'
             ],
-            dest: '../dist/app/' + mod + '/'
+            dest: 'dist/app/' + mod + '/'
           }]
         };
       }
@@ -195,7 +177,7 @@ module.exports = function(grunt) {
         expand: true,
         cwd: '.build/app/common/editor/',
         src: ['**/*.js', '!tinymce/**/*.js'],
-        dest: '../dist/app/common/editor/'
+        dest: 'dist/app/common/editor/'
       }]
     };
 
@@ -204,7 +186,7 @@ module.exports = function(grunt) {
         expand: true,
         cwd: '.build/app/common/code/',
         src: ['**/*.js', '!ace/**/*.js'],
-        dest: '../dist/app/common/code/'
+        dest: 'dist/app/common/code/'
       }]
     };
 
@@ -234,26 +216,26 @@ module.exports = function(grunt) {
         cfg[mod] = {
           files: [{
             expand: true,
-            cwd: '../dist/app/' + mod + '/',
+            cwd: 'dist/app/' + mod + '/',
             src: [
               '**/*.js',
               '!**/*-debug*.js',
               '!editor/**/*.js',
               '!code/**/*.js'
             ],
-            dest: '../dist/app/' + mod + '/'
+            dest: 'dist/app/' + mod + '/'
           }]
         };
       } else {
         cfg[mod] = {
           files: [{
             expand: true,
-            cwd: '../dist/app/' + mod + '/',
+            cwd: 'dist/app/' + mod + '/',
             src: [
               '**/*.js',
               '!**/*-debug*.js'
             ],
-            dest: '../dist/app/' + mod + '/'
+            dest: 'dist/app/' + mod + '/'
           }]
         };
       }
@@ -263,9 +245,9 @@ module.exports = function(grunt) {
       cfg[asset] = {
         files: [{
           expand: true,
-          cwd: '../dist/' + asset + '/',
+          cwd: 'dist/' + asset + '/',
           src: ['**/*.js', '!**/*-debug*.js'],
-          dest: '../dist/' + asset + '/'
+          dest: 'dist/' + asset + '/'
         }]
       };
     });
@@ -273,18 +255,18 @@ module.exports = function(grunt) {
     cfg.editor = {
       files: [{
         expand: true,
-        cwd: '../dist/app/common/editor/',
+        cwd: 'dist/app/common/editor/',
         src: ['**/*.js', '!**/*-debug*.js'],
-        dest: '../dist/app/common/editor/'
+        dest: 'dist/app/common/editor/'
       }]
     };
 
     cfg.code = {
       files: [{
         expand: true,
-        cwd: '../dist/app/common/code/',
+        cwd: 'dist/app/common/code/',
         src: ['**/*.js', '!**/*-debug*.js'],
-        dest: '../dist/app/common/code/'
+        dest: 'dist/app/common/code/'
       }]
     };
 
@@ -303,11 +285,11 @@ module.exports = function(grunt) {
         cfg[mod] = {
           src: [
               '.build/app/' + mod + '/',
-              '../dist/app/' + mod + '/',
+              'dist/app/' + mod + '/',
               '!.build/app/' + mod + '/editor/',
-              '!../dist/app/' + mod + '/editor/',
+              '!dist/app/' + mod + '/editor/',
               '!.build/app/' + mod + '/code/',
-              '!../dist/app/' + mod + '/code/']
+              '!dist/app/' + mod + '/code/']
         };
         cfg[mod + '-after'] = {
           src: [
@@ -320,7 +302,7 @@ module.exports = function(grunt) {
         cfg[mod] = {
           src: [
               '.build/app/' + mod + '/',
-              '../dist/app/' + mod + '/']
+              'dist/app/' + mod + '/']
         };
         cfg[mod + '-after'] = {
           src: [
@@ -332,12 +314,12 @@ module.exports = function(grunt) {
 
     assets.forEach(function (asset) {
       cfg[asset] = {
-        src: ['../dist/' + asset + '/']
+        src: ['dist/' + asset + '/']
       };
     });
 
     cfg.editor = {
-      src: ['.build/app/common/editor/', '../dist/app/common/editor/']
+      src: ['.build/app/common/editor/', 'dist/app/common/editor/']
     };
 
     cfg['editor-after'] = {
@@ -345,23 +327,15 @@ module.exports = function(grunt) {
     };
 
     cfg.code = {
-      src: ['.build/app/common/code/', '../dist/app/common/code/']
+      src: ['.build/app/common/code/', 'dist/app/common/code/']
     };
 
     cfg['code-after'] = {
       src: ['.build/app/common/code/']
     };
 
-    cfg.design = {
-      src: ['src/app/page/design/less/*.css']
-    };
-
     cfg.build = {
       src: ['.build/']
-    };
-
-    cfg.outftl = {
-      src: ['../WEB-INF/template/ftl/out/']
     };
 
     return cfg;
@@ -390,10 +364,28 @@ module.exports = function(grunt) {
             '**/login.css',
             '!sea-seajs-text.js'
           ],
-          dest: '../dist/' + asset + '/'
+          dest: 'dist/' + asset + '/'
         }]
       };
     });
+
+    cfg['editor-core'] = {
+      files: [{
+        expand: true,
+        cwd: 'src/app/common/editor/tinymce/',
+        src: ['**/*'],
+        dest: 'dist/app/common/editor/tinymce/'
+      }]
+    };
+
+    cfg['code-core'] = {
+      files: [{
+        expand: true,
+        cwd: 'src/app/common/code/ace/',
+        src: ['**/*'],
+        dest: 'dist/app/common/code/ace/'
+      }]
+    };
 
     return cfg;
   }
@@ -407,9 +399,9 @@ module.exports = function(grunt) {
         return true;
       }
       var files = {};
-      files['../dist/' + asset + '/app.css'] = 'src/' + asset + '/app.less';
+      files['dist/' + asset + '/app.css'] = 'src/' + asset + '/app.less';
       files['src/' + asset + '/app.css'] = 'src/' + asset + '/app.less';
-      files['../dist/' + asset + '/login.css'] = 'src/' + asset + '/login.less';
+      files['dist/' + asset + '/login.css'] = 'src/' + asset + '/login.less';
       files['src/' + asset + '/login.css'] = 'src/' + asset + '/login.less';
       cfg[asset] = {
         options: {
@@ -432,8 +424,8 @@ module.exports = function(grunt) {
         return true;
       }
       cfg[asset] = {
-        src: ['../dist/js/sea-config.js'],
-        dest: '../dist/js/sea-config.js',
+        src: ['dist/js/sea-config.js'],
+        dest: 'dist/js/sea-config.js',
         options: {
           separator: '',
           // need a custom value to pass var
@@ -474,18 +466,21 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     watch: {
-      concat: {
-        files: ['src/app/**/*.js'],
-        tasks: ['build']
-      },
       css: {
         files: ['src/less/**/*.less'],
         tasks: ['less:css']
       }
     },
 
-    jshint: configJSHint(),
+    livereload: {
+      files: [
+        'mock/**/*',
+        'src/**/*',
+        'WEB-INF/**/*'
+      ]
+    },
 
+    jshint: configJSHint(),
 
     uglify: configUglify(),
 
@@ -503,29 +498,19 @@ module.exports = function(grunt) {
 
   });
 
-  // task for page design
-  grunt.registerTask('init-editor', [
-    'exec:editor',
-    'copy:editor'
-  ]);
-
   grunt.registerTask('build-editor', [
-    'copy:editor-core',
     'jshint:editor',
-    // 'clean:editor',
+    'clean:editor',
+    'copy:editor-core',
     'transport:editor',
     'concat:editor',
     'uglify:editor'
   ]);
 
-  grunt.registerTask('init-code', [
-    'copy:code'
-  ]);
-
   grunt.registerTask('build-code', [
-    'copy:code-core',
     'jshint:code',
-    // 'clean:code',
+    'clean:code',
+    'copy:code-core',
     'transport:code',
     'concat:code',
     'uglify:code'
@@ -564,16 +549,14 @@ module.exports = function(grunt) {
     return 'asset-' + asset;
   }));
 
-  grunt.registerTask('init', ['init-editor', 'init-code']);
-
   grunt.registerTask('clean-after', ['clean-mod-after']);
 
   grunt.registerTask('build-ftl', ['wrap:ftl']);
 
   grunt.registerTask('build-clean', ['clean:build']);
 
-  grunt.registerTask('build', ['build-clean','build-asset', 'build-mod', 'build-editor', 'build-code','wrap:worker','wrap:ftl']);
+  grunt.registerTask('build', ['build-clean','build-asset', 'build-mod', 'build-editor', 'build-code','wrap:ftl']);
 
-  grunt.registerTask('default', ['watch', 'exec:fed']);
+  grunt.registerTask('default', ['watch']);
 
 };
