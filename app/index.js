@@ -82,6 +82,7 @@ JavaWebappGenerator.prototype.allfile = function allfile() {
   this.template('.editorconfig', '.editorconfig');
   this.template('.jshintrc', '.jshintrc');
   this.template('.jshintignore', '.jshintignore');
+  this.template('server.js', 'server.js');
 };
 
 

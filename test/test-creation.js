@@ -37,6 +37,7 @@ describe('java-webapp generator', function () {
         var expected = [
             // add files you expect to exist here.
             '.jshintrc',
+            'server.js',
             '.editorconfig'
         ];
 
