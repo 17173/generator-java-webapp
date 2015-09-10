@@ -68,7 +68,7 @@ JavaWebappGenerator.prototype.askFor = function askFor() {
 
 JavaWebappGenerator.prototype.allfile = function allfile() {
   this.spmAlias = '<%= pkg.spm.alias %>';
-  this.jsBanner = '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyymmdd") %> */\n';
+  this.jsBanner = '<%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyymmdd") %>';
   this.buildVersion = '<%= grunt.template.today("yyyymmddHHMM") %>';
   this.copyright = '<%= grunt.template.today("yyyy") %>-V<%= pkg.version %>';
 

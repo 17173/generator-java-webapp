@@ -198,7 +198,7 @@ module.exports = function(grunt) {
 
     cfg.options = {
       // remove HH:MM:ss
-      banner: '<%= jsBanner %>',
+      banner: '/*! <%= jsBanner %> */',
       beautify: {
         'ascii_only': true
       },
