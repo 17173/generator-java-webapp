@@ -14,5 +14,17 @@ var FtlGenerator = module.exports = function FtlGenerator(args, options, config)
 util.inherits(FtlGenerator, yeoman.generators.NamedBase);
 
 FtlGenerator.prototype.files = function files() {
+  var name = this.name.split('/');
+  var curPath = ['..'];
+  var i = 1, len = name.length;
+
+  this.incPath = '../inc/inc.ftl';
+
+  if (len > 1) {
+    for (i;i < len;i++) {
+      curPath.push('..');
+    }
+    this.incPath = curPath.join('/') + '/inc/inc.ftl';
+  }
   this.template('page.ftl', path.join('WEB-INF/template/ftl/admin/', this.name + '.ftl'));
 };

@@ -1,4 +1,4 @@
-<#import '../inc/inc.ftl' as inc />
+<#import '<%= incPath %>' as inc />
 
 <@inc.header '页面标题'>
 
