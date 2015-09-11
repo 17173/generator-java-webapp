@@ -14,17 +14,20 @@ var PageGenerator = module.exports = function PageGenerator(args, options, confi
 util.inherits(PageGenerator, yeoman.generators.NamedBase);
 
 PageGenerator.prototype.files = function files() {
-  /*var name = this.name.split('/');
-  var path = ['..'];
+  var name = this.name.split('/');
+  var curPath = ['..'];
   var i = 1, len = name.length;
+
+  this.incPath = '../inc/inc.ftl';
+  this.permPath = './permission';
+
   if (len > 1) {
     for (i;i < len;i++) {
-      path.push('..');
+      curPath.push('..');
     }
-    this.incPath = path.join('/') + '/inc/inc.ftl';
-  } else {
-    this.incPath = '../inc/inc.ftl';
-  }*/
+    this.incPath = curPath.join('/') + '/inc/inc.ftl';
+    this.permPath = curPath.slice(1).join('/') + '/permission';
+  }
 
   this.template('app.js', path.join('src/app/', this.name + '/index.js'));
   this.template('page.ftl', path.join('WEB-INF/template/ftl/admin/', this.name + '/index.ftl'));
