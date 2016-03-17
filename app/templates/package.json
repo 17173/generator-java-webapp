@@ -78,7 +78,6 @@
     "livereload": "^0.3.7",
     "mockjs": "^1.0.1-beta2",
     "moment": "^2.11.2",
-    "spm-sea": "^1.0.1",
-    "livereload": "^0.3.7"
+    "spm-sea": "^1.0.1"
   }
 }

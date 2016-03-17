@@ -35,8 +35,8 @@
   | - _map  # mock mapping file
   | - permission.js 权限 mock file
 |- node_modules
-|- sea-modules
-|- Gruntfile.js
+|- spm_modules
+|- Gulpfile.js
 |- server.js
 |- .jshintrc
 |- .editorconfig
@@ -105,9 +105,10 @@ yo java-webapp:page login
 生成 src/app/login/index.js
 
 ```
-define(function(require, exports, module) {
-    //code
-});
+'use strict';
+
+//code
+
 ```
 
 
@@ -150,18 +151,22 @@ module.exports = function(req, res, next) {
 yo java-webapp:mock mypage
 ```
 
-生成 mock/mypage.js
+生成 mock/mypage.js, mockjs 规则见 [http://mockjs.com/](http://mockjs.com/)
 
 ```
+var Mock = require('mockjs');
+
 module.exports = function(req, res, next) {
   var data = {
     result: 'success',
     messages: [],
     data: {
-
+      id: '@id',
+      name: '@name'
+      'sex|0-1': 0
     }
   };
-  data = JSON.stringify(data);
+  data = JSON.stringify(Mock.mock(data));
   res.end(data);
 };
 
@@ -180,9 +185,10 @@ yo java-webapp:js myapp
 生成 myapp.js
 
 ```
-define(function(require, exports, module) {
+'use strict';
 
-});
+// code
+
 ```
 
 ### ftl

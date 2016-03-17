@@ -1,3 +1,5 @@
+var Mock = require('mockjs');
+
 module.exports = function(req, res, next) {
   var data = {
     result: 'success',
@@ -5,18 +7,12 @@ module.exports = function(req, res, next) {
     data: {
       pageNo:1,
       totalCount: 3,
-      listData: [{
-        id: '1',
-        name: 'UExxxx'
-      }, {
-        id: '2',
-        name: 'UI'
-      }, {
-        id: '3',
-        name: 'JAVA'
+      'listData|3-5': [{
+        id: '@id',
+        name: '@name'
       }]
     }
   };
-  data = JSON.stringify(data);
+  data = JSON.stringify(Mock.mock(data));
   res.end(data);
 };
