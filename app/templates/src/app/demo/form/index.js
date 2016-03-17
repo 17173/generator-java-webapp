@@ -1,4 +1,3 @@
-define(function(require, exports, module) {
   'use strict';
 
   /**
@@ -8,4 +7,3 @@ define(function(require, exports, module) {
   var Form = require('./form');
 
   new Form();
-});

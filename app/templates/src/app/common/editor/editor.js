@@ -1,9 +1,4 @@
-define(function(require, exports, module) {
-
   'use strict';
-
-  // mce 主文件
-  require('common/editor/tinymce/tinymce');
 
   // 定制的主题
   require('./theme/pandora');
@@ -48,7 +43,7 @@ define(function(require, exports, module) {
   /* global tinymce:true */
   module.exports = function(options) {
     var config = options.simpleMode ? simpleSet : settings;
-    config.sidebarList = options.sidebarList;
+    config.sidebarList = false;
     var editor = tinymce.EditorManager.createEditor(
       options.selector,
       config);
@@ -58,4 +53,3 @@ define(function(require, exports, module) {
     return editor;
   };
 
-});

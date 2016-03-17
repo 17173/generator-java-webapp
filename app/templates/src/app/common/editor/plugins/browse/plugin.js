@@ -1,8 +1,6 @@
-define(function(require, exports, module) {
-
   'use strict';
 
-  //var $ = require('$');
+  //var $ = require('jquery');
 
   var Dialog = require('./dialog');
 
@@ -94,7 +92,7 @@ define(function(require, exports, module) {
       });
 
       // 切换到对应侧栏
-      sidebar.slide('#sidebar-image');
+      //sidebar.slide('#sidebar-image');
     }
 
 
@@ -188,7 +186,7 @@ define(function(require, exports, module) {
     }
 
     // 确保 sidebar 就位
-    editor.on('load', function() {
+    /*editor.on('load', function() {
 
       sidebar = editor.sidebar.on({
         tab: function(e, tab, pane) {
@@ -205,7 +203,7 @@ define(function(require, exports, module) {
         }
       });
 
-    });
+    });*/
 
     editor.addButton('browse', {
       icon: 'browse',
@@ -215,4 +213,3 @@ define(function(require, exports, module) {
 
   });
 
-});

@@ -14,6 +14,7 @@
 </@inc.body>
 
 <@inc.footer>
+  <script src="${tinymceUrl}"></script>
   <script>
     seajs.use('demo/form/index');
   </script>

@@ -4,7 +4,6 @@
  * @module common/urlmap
  * @type {JSON}
  */
-define(function(require, exports, module) {
   'use strict';
 
   /**
@@ -28,4 +27,3 @@ define(function(require, exports, module) {
     watermarkList: 'image/watermarkList.do',
     imageUpload: 'image/upload.do'
   };
-});

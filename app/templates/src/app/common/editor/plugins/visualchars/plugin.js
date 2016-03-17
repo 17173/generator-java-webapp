@@ -1,5 +1,3 @@
-define(function (require, exports, module) {
-
 'use strict';
 
 /*global tinymce:true */
@@ -80,7 +78,5 @@ tinymce.PluginManager.add('visualchars', function(editor) {
 			toggleVisualChars(false);
 		}
 	});
-});
-
 });
 

@@ -1,9 +1,7 @@
-define(function(require, exports, module) {
-
   'use strict';
 
-  var Confirm = require('confirm'),
-    Tabs = require('tabs');
+  var Confirm = require('pandora-confirm'),
+    Tabs = require('pandora-tabs');
 
   /**
    * 弹窗图片库
@@ -69,4 +67,3 @@ define(function(require, exports, module) {
 
   module.exports = Dialog;
 
-});

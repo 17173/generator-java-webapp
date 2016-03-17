@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   'use strict';
 
   var Modifier = require('./modifier');
@@ -204,4 +202,3 @@ define(function(require, exports, module) {
 
   });
 
-});

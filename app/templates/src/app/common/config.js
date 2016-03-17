@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   'use strict';
 
   var urlmap = require('./urlmap');
@@ -31,4 +29,3 @@ define(function(require, exports, module) {
 
   };
 
-});

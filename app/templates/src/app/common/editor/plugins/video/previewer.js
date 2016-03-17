@@ -1,8 +1,6 @@
-define(function(require, exports, module) {
-
   'use strict';
 
-  var Widget = require('widget');
+  var Widget = require('pandora-widget');
 
   var maxWidth = 300,
     maxHeight = 300;
@@ -54,4 +52,3 @@ define(function(require, exports, module) {
 
   module.exports = Previewer;
 
-});

@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   /**
    * 带显示隐藏功能的 panel
    *
@@ -8,7 +6,7 @@ define(function(require, exports, module) {
 
   'use strict';
 
-  var Widget = require('widget');
+  var Widget = require('pandora-widget');
 
   /**
    * Panel
@@ -55,4 +53,3 @@ define(function(require, exports, module) {
 
   });
 
-});

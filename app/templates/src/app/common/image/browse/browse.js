@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   'use strict';
 
   var Gallery = require('../../gallery/gallery');
@@ -127,4 +125,3 @@ define(function(require, exports, module) {
 
   module.exports = Browse;
 
-});

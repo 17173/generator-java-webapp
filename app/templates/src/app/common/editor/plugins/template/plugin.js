@@ -1,5 +1,3 @@
-define(function (require, exports, module) {
-
 'use strict';
 
 /*global tinymce:true */
@@ -255,4 +253,3 @@ tinymce.PluginManager.add('template', function(editor) {
 	});
 });
 
-});

@@ -1,5 +1,3 @@
-define(function (require, exports, module) {
-
 'use strict';
 
 /*global tinymce:true */
@@ -40,4 +38,3 @@ tinymce.PluginManager.add('wordcount', function(editor) {
 
 });
 
-});

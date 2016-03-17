@@ -1,8 +1,6 @@
-define(function(require, exports, module) {
-
   'use strict';
 
-  var Tabs = require('tabs');
+  var Tabs = require('pandora-tabs');
 
   /*global tinymce:true */
   /*jshint maxdepth:4 */
@@ -397,4 +395,3 @@ define(function(require, exports, module) {
     self.resizeBy = resizeBy;
   });
 
-});

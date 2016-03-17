@@ -1,5 +1,3 @@
-define(function (require, exports, module) {
-
 'use strict';
 
 /*jshint maxparams:5 */
@@ -584,7 +582,5 @@ tinymce.PluginManager.add('searchreplace', function (editor) {
 			return rng;
 		}
 	};
-});
-
 });
 

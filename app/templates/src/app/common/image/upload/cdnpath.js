@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
 'use strict';
 
 function hashCode (str) {
@@ -22,4 +20,3 @@ module.exports = function (path) {
   return '//i' + getIndex(path) + '.17173cdn.com' + path;
 };
 
-});

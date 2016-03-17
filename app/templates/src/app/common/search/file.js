@@ -1,10 +1,10 @@
-define(function(require, exports, module) {
-
   'use strict';
 
   /**
    * 文件查询
    */
+
+  var $ = require('jquery');
 
   var io = require('../io');
   var SearchCore = require('./core');
@@ -21,7 +21,8 @@ define(function(require, exports, module) {
         'click [data-role=view]': 'view',
         'click [data-role=edit]': 'edit',
         'click [data-role=addFolder]': 'addFolder',
-        'click [data-role=uploadFile]': 'uploadFile'
+        'click [data-role=uploadFile]': 'uploadFile',
+        'click [data-column]': 'setSort'
       }
     },
 
@@ -39,6 +40,16 @@ define(function(require, exports, module) {
       this.renderGrid();
     },
 
+    // 设置排序
+    setSort: function(e) {
+      var $target = $(e.currentTarget);
+
+      this.setParam('sortColumn', $target.data('column'));
+      this.setParam('sortOrder', this.getParam('sortOrder') === 'asc' ? 'desc' : 'asc');
+      this.cellIndex = $target.closest('th').index() + 1;
+      this.refresh();
+    },
+
     renderGrid: function() {
       var template = this.option('tableTemplate');
 
@@ -51,6 +62,20 @@ define(function(require, exports, module) {
         var data = self.disposeData(this.data);
         var html = self.template(data);
         self.gridElement.html(html);
+
+        if (self.cellIndex) {
+          var $asc = self.$('.sort-ascending').eq([self.cellIndex -1]);
+          var $desc = self.$('.sort-descending').eq([self.cellIndex -1]);
+          if (self.getParam('sortOrder') === 'asc') {
+            $asc.addClass('active');
+            $desc.removeClass('active');
+          } else {
+            $asc.removeClass('active');
+            $desc.addClass('active');
+          }
+          self.sortTarget = null;
+        }
+
         self.fire('load', this.data);
       });
     },
@@ -85,4 +110,3 @@ define(function(require, exports, module) {
   });
 
   module.exports = FileSearch;
-});

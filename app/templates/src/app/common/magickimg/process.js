@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   /**
    * 魔图图片处理
    *
@@ -8,7 +6,7 @@ define(function(require, exports, module) {
 
   'use strict';
 
-  var Base = require('base');
+  var Base = require('pandora-base');
 
   var XHR = require('../xhr'),
     FormData = require('../form/data');
@@ -87,4 +85,3 @@ define(function(require, exports, module) {
 
   module.exports = Process;
 
-});

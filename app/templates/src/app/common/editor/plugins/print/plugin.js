@@ -1,5 +1,3 @@
-define(function (require, exports, module) {
-
 'use strict';
 
 /*global tinymce:true */
@@ -23,7 +21,5 @@ tinymce.PluginManager.add('print', function(editor) {
 		shortcut: 'Ctrl+P',
 		context: 'file'
 	});
-});
-
 });
 

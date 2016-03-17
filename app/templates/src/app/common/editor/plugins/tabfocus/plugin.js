@@ -1,5 +1,3 @@
-define(function (require, exports, module) {
-
 'use strict';
 
 /*global tinymce:true */
@@ -115,7 +113,5 @@ tinymce.PluginManager.add('tabfocus', function(editor) {
 	} else {
 		editor.on('keydown', tabHandler);
 	}
-});
-
 });
 

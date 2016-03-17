@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   /**
    * 文件上传，HTML5 ONLY
    *
@@ -8,7 +6,7 @@ define(function(require, exports, module) {
 
   'use strict';
 
-  var Widget = require('widget');
+  var Widget = require('pandora-widget');
 
   var TYPE_INVALID = '类型不符合要求',
     SIZE_EXCEED = '大小超出限制';
@@ -137,4 +135,3 @@ define(function(require, exports, module) {
 
   module.exports = Select;
 
-});

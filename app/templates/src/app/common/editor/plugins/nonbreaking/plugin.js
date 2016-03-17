@@ -1,5 +1,3 @@
-define(function (require, exports, module) {
-
 'use strict';
 
 /*global tinymce:true */
@@ -44,7 +42,5 @@ tinymce.PluginManager.add('nonbreaking', function(editor) {
 			}
 		});
 	}
-});
-
 });
 

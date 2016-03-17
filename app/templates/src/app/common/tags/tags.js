@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   /**
    * 标签输入管理
    *
@@ -8,8 +6,8 @@ define(function(require, exports, module) {
 
   'use strict';
 
-  var $ = require('$'),
-    Widget = require('widget');
+  var $ = require('jquery'),
+    Widget = require('pandora-widget');
 
   var KEYMAP = require('../keymap');
 
@@ -42,11 +40,11 @@ define(function(require, exports, module) {
       tagMaxlength: 50,
       // 分隔符
       delimiter: /[,，;；]/,
-      template: require('./tags.handlebars'),
-      suggest: {
+      template: require('./tags.handlebars')
+      /*suggest: {
         url: 'tagsList',
         key: 'tag'
-      }
+      }*/
     },
 
     setup: function() {
@@ -62,6 +60,7 @@ define(function(require, exports, module) {
       var self = this;
 
       self.field = $(self.option('field'));
+      self.initValue = self.field.val();
 
       if (self.field.length === 0) {
         throw new Error('field is required');
@@ -75,6 +74,7 @@ define(function(require, exports, module) {
 
       self.field.on('change', function() {
         self.data('tags', self.getTags(), true);
+        self.data('tags2', self.getTags2(), true);
         self.fire('change');
         self.render();
       }).hide();
@@ -163,7 +163,7 @@ define(function(require, exports, module) {
     },
 
     create: function(tags) {
-      var dataTags = this.data('tags');
+      var dataTags = this.data('tags') || [];
 
       tags.forEach(function(tag) {
         tag = tag.trim();
@@ -238,10 +238,18 @@ define(function(require, exports, module) {
         field.trigger('change');
       } else {
         field.val(value);
+        // 创建时，要重新 render 了一次
+        !this.initValue && field.trigger('change');
       }
+
+
+
     },
 
     getTags: function() {
+      if (!this.value()) {
+        return '';
+      }
       var tags = this.value().trim()
         .split(this.option('delimiter')),
         pureTags = [];
@@ -255,10 +263,25 @@ define(function(require, exports, module) {
       return pureTags;
     },
 
+    getTags2: function() {
+      var tags = this.getTags();
+
+      if (tags) {
+        return tags.map(function(tag) {
+          return {
+            text: tag
+          };
+        }, true);
+      } else {
+        return [];
+      }
+    },
+
     render: function() {
       this.data('placeholder',this.option('placeholder'));
+
       // hacks for chrome 36
-      this.data('tags2', this.data('tags').map(function(tag) {
+      this.data('tags') && this.data('tags2', this.data('tags').map(function(tag) {
         return {
           text: tag
         };
@@ -275,4 +298,3 @@ define(function(require, exports, module) {
 
   module.exports = Tags;
 
-});

@@ -1,12 +1,10 @@
-define(function(require, exports, module) {
-
   'use strict';
 
-  var $ = require('$'),
-    Widget = require('widget'),
+  var $ = require('jquery'),
+    Widget = require('pandora-widget'),
     moment = require('moment');
 
-  require('daterangepicker');
+  require('jquery-daterangepicker')($);
 
   var DateRange = Widget.extend({
 
@@ -79,7 +77,7 @@ define(function(require, exports, module) {
 
       self.element.daterangepicker({
         //minDate: moment().subtract(1, 'years'),
-        maxDate: moment(),
+        maxDate: self.option('maxDate') || moment(),
         startDate: self.option('startDate'),
         endDate: self.option('endDate'),
         opens: self.option('opens'),
@@ -98,6 +96,12 @@ define(function(require, exports, module) {
           firstDay: 0
         }
       }).on('apply.daterangepicker', function(ev, picker) {
+        var handleOk = self.option('handleOk')
+        if (typeof handleOk === 'function') {
+          if (!handleOk(picker, moment(+startTime.val()), moment(+endTime.val()) )) {
+            return false;
+          }
+        }
         var timestamp = picker.endDate.endOf('day').valueOf();
         if (self.option('isTJ')) {
           timestamp = timestamp - 999;
@@ -138,4 +142,3 @@ define(function(require, exports, module) {
 
   module.exports = DateRange;
 
-});

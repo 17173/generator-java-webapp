@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   /**
    * 上传
    *
@@ -43,4 +41,3 @@ define(function(require, exports, module) {
 
   module.exports = FileDialog;
 
-});

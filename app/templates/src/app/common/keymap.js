@@ -4,7 +4,6 @@
  * @module common/keymap
  * @type {JSON}
  */
-define(function(require, exports, module) {
   'use strict';
 
   /**
@@ -17,4 +16,3 @@ define(function(require, exports, module) {
     UP: 38,
     DOWN: 40
   };
-});

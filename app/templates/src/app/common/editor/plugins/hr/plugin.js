@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   'use strict';
 
   /*global tinymce:true */
@@ -27,4 +25,3 @@ define(function(require, exports, module) {
     });
   });
 
-});

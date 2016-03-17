@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   'use strict';
 
   var Modifier = require('./modifier'),
@@ -40,7 +38,7 @@ define(function(require, exports, module) {
       }
 
       // 切换到对应侧栏
-      sidebar.slide('#sidebar-video');
+      //sidebar.slide('#sidebar-video');
 
       // editor, imgElm
       new Modifier({
@@ -137,14 +135,14 @@ define(function(require, exports, module) {
     // 确保 sidebar 就位
     editor.on('load', function() {
 
-      sidebar = editor.sidebar.on({
+      /*sidebar = editor.sidebar.on({
         tab: function(e, tab, pane) {
           if (!paneList &&
             tab.prop('hash') === '#sidebar-video') {
             initPaneList(pane);
           }
         }
-      });
+      });*/
 
       editor.on('change nodechange', function(e) {
         if (paneList) {
@@ -267,4 +265,3 @@ define(function(require, exports, module) {
 
   });
 
-});

@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   'use strict';
 
   var ImageDialog = require('../../../image/dialog'),
@@ -44,4 +42,3 @@ define(function(require, exports, module) {
 
   module.exports = Dialog;
 
-});

@@ -1064,7 +1064,7 @@ define("tinymce/pasteplugin/WordFilter", [
 
 	WordFilter.isWordContent = isWordContent;
 
-	return WordFilter;
+	module.exports = WordFilter;
 });
 
 // Included from: js/tinymce/plugins/paste/classes/Quirks.js

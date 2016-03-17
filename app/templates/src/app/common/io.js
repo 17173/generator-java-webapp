@@ -1,9 +1,7 @@
-define(function(require, exports, module) {
-
   'use strict';
 
-  var $ = require('$'),
-    Alert = require('alert');
+  var $ = require('jquery'),
+    Alert = require('pandora-alert');
 
   var config = require('./config');
 
@@ -75,7 +73,7 @@ define(function(require, exports, module) {
           handleInput();
           break;
         case 'login':
-          var loginUrl = window.USER_DATA.IS_PASSPORT_LOGIN ? '/outlogin.html?' : '/login.html?';
+          var loginUrl = window.CMS_USER_DATA.IS_PASSPORT_LOGIN ? '/outlogin.html?' : '/login.html?';
           window.location.href = loginUrl + new Date().getTime();
           break;
         case 'error':
@@ -188,4 +186,3 @@ define(function(require, exports, module) {
     }
   };
 
-});

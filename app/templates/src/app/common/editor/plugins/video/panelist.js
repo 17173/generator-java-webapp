@@ -1,10 +1,8 @@
-define(function (require, exports, module) {
-
 'use strict';
 
-var $ = require('$');
-var Confirm = require('confirm');
-var Widget = require('widget');
+var $ = require('jquery');
+var Confirm = require('pandora-confirm');
+var Widget = require('pandora-widget');
 
 var matcher = {
     regexp: /<embed\s+[^>]*?src="(.+?)"[^>]*>/gim,
@@ -158,4 +156,3 @@ module.exports = Widget.extend({
 
 });
 
-});

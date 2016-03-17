@@ -1,8 +1,8 @@
-define(function(require, exports, module) {
-
   'use strict';
 
-  var $ = require('$');
+  var $ = require('jquery');
+  var Handlebars = require('handlebars')['default'];
+  var helpers = require('cms3-handlebars-helpers');
 
   var uniqueId = (function() {
     var ids = {};
@@ -230,10 +230,6 @@ define(function(require, exports, module) {
     uniqueId: uniqueId
   };
 
-  // 预注册 handlebars helper
-  var Handlebars = require('handlebars'),
-    helpers = require('handlebars-helpers');
-
   util.mixin(helpers, {
 
     fthumb: function(url, type, affix) {
@@ -263,4 +259,3 @@ define(function(require, exports, module) {
 
   module.exports = util;
 
-});

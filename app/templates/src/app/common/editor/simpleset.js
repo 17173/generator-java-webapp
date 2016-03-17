@@ -1,4 +1,4 @@
-define({
+module.exports = {
   // 语言包
   language: 'zh_CN',
   // 'toolbar_items_size': 'small',
@@ -9,11 +9,10 @@ define({
   theme: 'pandora',
   // 不显示菜单栏
   menubar: false,
-  contextmenu: 'link unlink image component vote pagebreak | inserttable tableprops row column deletetable',
+  contextmenu: 'link unlink image pagebreak | inserttable tableprops row column deletetable',
   // sidepanel: true,
   // 插件
   plugins: [
-    'sidebar',
     // 'dblclick',
     'anchor',
     'autolink',
@@ -83,5 +82,5 @@ define({
   'relative_urls': false,
   'ie7_compat': false,
   'schema' : 'html5',
-  'valid_children' : '+a[p|div|h1|h2|h3|h4|h5|h6|section|article|aside|header|nav|canvas],+body[style|script|span]'
-});
+  'valid_children' : '+a[p|div|h1|h2|h3|h4|h5|h6|section|article|aside|header|nav|canvas|figure],+body[style|script|span]'
+};

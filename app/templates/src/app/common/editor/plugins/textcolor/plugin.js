@@ -1,5 +1,3 @@
-define(function (require, exports, module) {
-
 'use strict';
 
 /*global tinymce:true */
@@ -158,7 +156,5 @@ tinymce.PluginManager.add('textcolor', function(editor) {
     },
     onclick: onButtonClick
   });
-});
-
 });
 

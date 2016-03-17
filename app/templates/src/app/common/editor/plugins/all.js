@@ -1,16 +1,11 @@
-define(function(require, exports, module) {
-
   'use strict';
 
-  require('./sidebar/plugin');
   require('./anchor/plugin');
   require('./autolink/plugin');
-  require('./browse/plugin');
   require('./code/plugin');
   require('./contextmenu/plugin');
   require('./directionality/plugin');
   require('./fullscreen/plugin');
-  require('./gallery/plugin');
   require('./hr/plugin');
   require('./image/plugin');
   require('./link/plugin');
@@ -28,4 +23,3 @@ define(function(require, exports, module) {
   require('./video/plugin');
   require('./visualblocks/plugin');
   require('./visualchars/plugin');
-});

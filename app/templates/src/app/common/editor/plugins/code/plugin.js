@@ -1,8 +1,6 @@
-define(function(require, exports, module) {
-
   'use strict';
 
-  var Confirm = require('confirm');
+  var Confirm = require('pandora-confirm');
 
   var CodeEditor = require('../../../code/editor');
 
@@ -75,51 +73,3 @@ define(function(require, exports, module) {
 
   });
 
-});
-
-/*
-  animatedScroll: false,
-  autoScrollEditorIntoView: undefined,
-  behavioursEnabled: true,
-  cursorStyle: "ace",
-  displayIndentGuides: true,
-  dragDelay: 150,
-  dragEnabled: true,
-  enableMultiselect: true,
-  fadeFoldWidgets: false,
-  firstLineNumber: 1,
-  fixedWidthGutter: undefined,
-  focusTimout: 0,
-  foldStyle: undefined,
-  fontFamily: undefined,
-  fontSize: 16,
-  hScrollBarAlwaysVisible: false,
-  highlightActiveLine: true,
-  highlightGutterLine: true,
-  highlightSelectedWord: true,
-  maxLines: Infinity,
-  mergeUndoDeltas: true,
-  minLines: undefined,
-  mode: "ace/mode/html",
-  newLineMode: "auto",
-  overwrite: false,
-  printMargin: 80,
-  printMarginColumn: 80,
-  readOnly: false,
-  scrollPastEnd: 0,
-  scrollSpeed: 2,
-  selectionStyle: "line",
-  showFoldWidgets: true,
-  showGutter: true,
-  showInvisibles: true,
-  showLineNumbers: true,
-  showPrintMargin: true,
-  tabSize: 4,
-  theme: "ace/theme/monokai",
-  tooltipFollowsMouse: true,
-  useSoftTabs: true,
-  useWorker: true,
-  vScrollBarAlwaysVisible: false,
-  wrap: "free",
-  wrapBehavioursEnabled: true,
-*/

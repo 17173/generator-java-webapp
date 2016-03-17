@@ -1,7 +1,6 @@
-define(function(require, exports, module) {
   'use strict';
 
-  var $ = require('$');
+  var $ = require('jquery');
 
   //var USER_DATA = window.USER_DATA;
 
@@ -31,4 +30,3 @@ define(function(require, exports, module) {
   });
 
 
-});

@@ -1,8 +1,6 @@
-define(function(require, exports, module) {
-
   'use strict';
 
-  var Confirm = require('confirm');
+  var Confirm = require('pandora-confirm');
 
   var FixedForm = require('../../../form/fixedform');
 
@@ -217,4 +215,3 @@ define(function(require, exports, module) {
 
   module.exports = Modifier;
 
-});

@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   /**
    * 表单提交
    *
@@ -8,7 +6,7 @@ define(function(require, exports, module) {
 
   'use strict';
 
-  var Class = require('class');
+  var Class = require('pandora-class');
 
   /**
    * Data
@@ -157,4 +155,3 @@ define(function(require, exports, module) {
 
   module.exports = Data;
 
-});

@@ -1,5 +1,3 @@
-define(function (require, exports, module) {
-
 'use strict';
 
 /*jshint loopfunc:true */
@@ -534,4 +532,3 @@ tinymce.PluginManager.add('noneditable', function(editor) {
 	});
 });
 
-});

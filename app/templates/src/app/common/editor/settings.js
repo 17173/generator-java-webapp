@@ -1,4 +1,4 @@
-define({
+module.exports = {
   // 语言包
   language: 'zh_CN',
   // 'toolbar_items_size': 'small',
@@ -9,11 +9,10 @@ define({
   theme: 'pandora',
   // 不显示菜单栏
   menubar: false,
-   contextmenu: 'link unlink image component vote pagebreak | inserttable tableprops row column deletetable',
+   contextmenu: 'link unlink image pagebreak | inserttable tableprops row column deletetable',
   // sidepanel: true,
   // 插件
   plugins: [
-    'sidebar',
     // 'dblclick',
     'anchor',
     'autolink',
@@ -22,7 +21,6 @@ define({
     'contextmenu',
     'directionality',
     'fullscreen',
-    'gallery',
     'hr',
     'image',
     'link',
@@ -46,17 +44,15 @@ define({
     ' | undo redo' +
     ' | searchreplace removeformat magic' +
     ' | formatselect table' +
-    ' | forecolor backcolor' +
+    ' | forecolor backcolor',
     ' | bold italic' +
-    ' | sidebar',
     // 锚点 链接 图片 媒体 | 分页符 表格
     'alignleft aligncenter alignright alignjustify' +
     ' | bullist numlist' +
     ' | anchor link hr pagebreak' +
-    ' | browse image video' +
-    ' | gallery'
+    ' | browse image video'
   ],
-  width: 930,
+  width: 940,
   height: 600,
   'block_formats': 'Paragraph=p;' +
   // 'Heading 1=h1;' +
@@ -76,7 +72,7 @@ define({
   // 分页符，来自CMS2.0
   // 'pagebreak_separator': '<hr 17173page />',
   // 'pagebreak_split_block': true,
-  'forced_root_block': 'p,span',
+  'forced_root_block': 'p',
   // 'object_resizing': 'table,img,div,object',
   'verify_html': false,
   // 允许空白标签、特殊标签、特殊属性
@@ -87,5 +83,5 @@ define({
   'relative_urls': false,
   'ie7_compat': false,
   'schema' : 'html5',
-  'valid_children' : '+a[p|div|h1|h2|h3|h4|h5|h6|section|article|aside|header|nav|canvas],+body[style|script|span]'
-});
+  'valid_children' : '+a[p|div|h1|h2|h3|h4|h5|h6|section|article|aside|header|nav|canvas|figure],+body[style|script|span]'
+};

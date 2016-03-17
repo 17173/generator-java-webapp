@@ -67,20 +67,16 @@ JavaWebappGenerator.prototype.askFor = function askFor() {
 };
 
 JavaWebappGenerator.prototype.allfile = function allfile() {
-  this.spmAlias = '<%= pkg.spm.alias %>';
-  this.jsBanner = '<%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyymmdd") %>';
-  this.buildVersion = '<%= grunt.template.today("yyyymmddHHMM") %>';
-  this.copyright = '<%= grunt.template.today("yyyy") %>-V<%= pkg.version %>';
-
   this.directory('mock','mock');
   this.directory('WEB-INF','WEB-INF');
   this.directory('src','src');
 
   this.template('_package.json', 'package.json');
-  this.template('_gruntfile.js', 'Gruntfile.js');
+  this.template('Gulpfile.js', 'Gulpfile.js');
   this.template('README.md', 'README.md');
   this.template('.editorconfig', '.editorconfig');
   this.template('.jshintrc', '.jshintrc');
+  this.template('.gitignore', '.gitignore');
   this.template('.jshintignore', '.jshintignore');
   this.template('server.js', 'server.js');
 };

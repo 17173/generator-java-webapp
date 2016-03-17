@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   /**
    * 表单提交
    *
@@ -8,7 +6,7 @@ define(function(require, exports, module) {
 
   'use strict';
 
-  var Validate = require('validate');
+  var Validate = require('pandora-validate');
 
   var XHR = require('../xhr');
 
@@ -216,4 +214,3 @@ define(function(require, exports, module) {
 
   module.exports = Form;
 
-});

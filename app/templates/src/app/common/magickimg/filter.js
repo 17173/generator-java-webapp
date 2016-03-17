@@ -1,5 +1,3 @@
-define(function (require, exports, module) {
-
 /**
  * 魔图图片处理
  *
@@ -64,4 +62,3 @@ module.exports = {
 
 };
 
-});

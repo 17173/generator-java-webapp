@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   /**
    * 文件上传，HTML5 ONLY
    *
@@ -8,7 +6,7 @@ define(function(require, exports, module) {
 
   'use strict';
 
-  var Widget = require('widget');
+  var Widget = require('pandora-widget');
 
   /**
    * Button
@@ -46,4 +44,3 @@ define(function(require, exports, module) {
 
   module.exports = Button;
 
-});

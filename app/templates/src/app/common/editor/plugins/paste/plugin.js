@@ -1,5 +1,3 @@
-define(function (require, exports, module) {
-
 'use strict';
 
 /**
@@ -117,4 +115,3 @@ tinymce.PluginManager.add('paste', function(editor) {
 
 });
 
-});

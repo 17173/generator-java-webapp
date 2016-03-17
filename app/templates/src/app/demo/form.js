@@ -1,11 +1,10 @@
-define(function(require, exports, module) {
   'use strict';
 
   /**
    * 弹窗表单
    */
 
-  var Tips = require('tips');
+  var Tips = require('pandora-tips');
 
   var io = require('../common/io');
   var DialogForm = require('../common/form/dialogform');
@@ -54,4 +53,3 @@ define(function(require, exports, module) {
   });
 
   module.exports = Form;
-});

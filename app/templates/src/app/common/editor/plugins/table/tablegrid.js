@@ -1,5 +1,3 @@
-define(function (require, exports, module) {
-
 'use strict';
 
 function getSpanVal(td, name) {
@@ -826,4 +824,3 @@ return function(editor, table) {
   });
 };
 
-});

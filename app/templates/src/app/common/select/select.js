@@ -1,8 +1,6 @@
-define(function(require, exports, module) {
-
   'use strict';
 
-  var Select = require('select');
+  var Select = require('pandora-select');
 
   var io = require('../io');
   var util = require('../util');
@@ -28,7 +26,7 @@ define(function(require, exports, module) {
         var params = self.option('params');
         var pageSize = self.option('pageSize') || 1000;
 
-        pageSize && util.mixin(params, {pageSize: pageSize});
+        util.mixin(params, {pageSize: pageSize});
 
         io.get(self.option('url'), params, function(data) {
           var model;
@@ -46,6 +44,47 @@ define(function(require, exports, module) {
           callback(model);
         });
       }
+    },
+
+    refresh: function() {
+      var self = this;
+
+      var optionLoad = self.option('load');
+
+      // 异步请求
+      if (optionLoad) {
+        optionLoad.call(self, function(data) {
+          self.clearValue();
+          self.option('model', null);
+          self.data('select', null);
+
+          self.option('model', data);
+
+          self.initAttrs();
+          self.setDataSelect();
+        });
+      } else {
+        self.initAttrs();
+        self.setDataSelect();
+      }
+    },
+
+    /**
+     * 清空值
+     */
+    clearValue: function() {
+      var self = this,
+        data = self.data('select'),
+        i, l;
+
+      for (i = 0, l = data.length; i < l; i++) {
+        data[i].selected = false;
+      }
+      self.data('hasSelected', false);
+      self.value = null;
+      self.text = null;
+      self.field.val('');
+      self.searchInput && self.searchInput.val('');
     },
 
     setup: function() {
@@ -71,4 +110,3 @@ define(function(require, exports, module) {
 
   module.exports = MySelect;
 
-});

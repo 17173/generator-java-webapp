@@ -1,5 +1,3 @@
-define(function (require, exports, module) {
-
 'use strict';
 
 /*global tinymce:true */
@@ -156,4 +154,3 @@ tinymce.PluginManager.add('autosave', function(editor) {
 	this.isEmpty = isEmpty;
 });
 
-});

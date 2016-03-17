@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   // TODO: grid 模块独立文件
 
   'use strict';
@@ -310,4 +308,3 @@ define(function(require, exports, module) {
     return parseInt((totalCount + pageSize - 1) / pageSize, 10);
   }
 
-});

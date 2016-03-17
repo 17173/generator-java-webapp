@@ -1,9 +1,7 @@
-define(function(require, exports, module) {
-
   'use strict';
 
-  var $ = require('$'),
-    Widget = require('widget');
+  var $ = require('jquery'),
+    Widget = require('pandora-widget');
 
   function getRealOffset(e, dropTarget) {
     var originalEvent = e.originalEvent,
@@ -170,4 +168,3 @@ define(function(require, exports, module) {
 
   module.exports = DragDrop;
 
-});

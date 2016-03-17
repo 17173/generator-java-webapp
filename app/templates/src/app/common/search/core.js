@@ -1,12 +1,10 @@
-define(function(require, exports, module) {
-
   'use strict';
 
-  var $ = require('$');
-  var Handlebars = require('handlebars');
-  var Widget = require('widget');
-  var Confirm = require('confirm');
-  var Tips = require('tips');
+  var $ = require('jquery');
+  var Handlebars = require('handlebars')['default'];
+  var Widget = require('pandora-widget');
+  var Confirm = require('pandora-confirm');
+  var Tips = require('pandora-tips');
 
   var util = require('../util');
   var io = require('../io');
@@ -33,6 +31,7 @@ define(function(require, exports, module) {
         startTimeName: 'startTime',
         endTimeName: 'endTime'
       },
+
       dateCfg2: {
         disabled: true
       },
@@ -69,6 +68,8 @@ define(function(require, exports, module) {
       keepHistory: true,
       // 列表请求地址
       url: null,
+      // 等待删除的加载
+      hasWaitingDelete: false,
       // 删除行请求地址
       delUrl: null,
       // 删除时的提示信息
@@ -168,6 +169,7 @@ define(function(require, exports, module) {
         }
 
         self.form = new Form(formCfg);
+        self.form.$parent = self;
         self.formElement = self.form.element;
         self.form.on('valid', function() {
           self.fire('formValid');
@@ -191,6 +193,7 @@ define(function(require, exports, module) {
       }
 
       this.gridElement.addClass('grid-body table-responsive');
+      this.gridElement.before('<div class="grid-info clearfix" data-role="gridInfo"></div>');
 
       this.initHelper();
       this.renderGrid();
@@ -201,6 +204,20 @@ define(function(require, exports, module) {
 
       e.stopPropagation();
 
+      var param = {};
+
+      param[self.option('delKey')] = e.currentTarget.dataset.id;
+      param = util.mixin(param, self.option('delParam'));
+
+      this.deleteRow(param, function() {
+        self.fire('deleteRow', e.currentTarget);
+      });
+
+    },
+
+    deleteRow: function(param, callback) {
+      var self = this;
+
       if (!self.option('delUrl')) {
         throw new Error('请设置 delUrl');
       }
@@ -208,18 +225,28 @@ define(function(require, exports, module) {
       new Confirm({
         content: self.option('delMsg')
       }).submit(function() {
-        var param = {};
-
-        param[self.option('delKey')] = e.currentTarget.dataset.id;
-        param = util.mixin(param, self.option('delParam'));
+        if (self.option('hasWaitingDelete')) {
+          self.waitingDelete = new Tips({
+            timeout: 0,
+            content: '<i class="fa fa-spinner"></i> 数据删除中...'
+          });
+        }
 
         io.post(self.option('delUrl'), param, function() {
 
-          self.fire('deleteRow', e.currentTarget);
+          typeof callback === 'function' && callback();
 
-          new Tips({
-            content: '删除成功！'
-          });
+          if (self.waitingDelete) {
+            self.waitingDelete.role('content').html('删除成功！');
+            window.setTimeout(function() {
+              self.waitingDelete.destroy();
+            }, 2000);
+          } else {
+            new Tips({
+              content: '删除成功！'
+            });
+          }
+
           // TODO: 改成 FORM SUBMIT
           self.setParam('pageNo', 1);
           self.refresh();
@@ -330,5 +357,4 @@ define(function(require, exports, module) {
 
   });
 
-  return Core;
-});
+  module.exports = Core;

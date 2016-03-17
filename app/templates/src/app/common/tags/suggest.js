@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   /**
    * 标签输入管理
    *
@@ -8,9 +6,9 @@ define(function(require, exports, module) {
 
   'use strict';
 
-  var $ = require('$'),
-    Overlay = require('overlay'),
-    Locker = require('locker');
+  var $ = require('jquery'),
+    Overlay = require('pandora-overlay'),
+    Locker = require('pandora-locker');
 
   var io = require('../io'),
     KEYMAP = require('../keymap');
@@ -208,4 +206,3 @@ define(function(require, exports, module) {
 
   module.exports = Suggest;
 
-});

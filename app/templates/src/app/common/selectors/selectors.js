@@ -1,10 +1,8 @@
-define(function(require, exports, module) {
-
   'use strict';
 
-  var Widget = require('widget'),
+  var Widget = require('pandora-widget'),
     io = require('../../common/io'),
-    $ = require('$');
+    $ = require('jquery');
 
   var Selectors = Widget.extend({
     defaults: {
@@ -102,4 +100,3 @@ define(function(require, exports, module) {
 
   module.exports = Selectors;
 
-});

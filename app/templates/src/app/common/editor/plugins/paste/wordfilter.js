@@ -1,5 +1,3 @@
-define(function (require, exports, module) {
-
 'use strict';
 
 /**
@@ -385,6 +383,5 @@ function WordFilter(editor) {
 
 WordFilter.isWordContent = isWordContent;
 
-return WordFilter;
+module.exports = WordFilter;
 
-});

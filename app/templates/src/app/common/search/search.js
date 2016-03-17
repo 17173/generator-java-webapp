@@ -1,8 +1,6 @@
-define(function(require, exports, module) {
-
   'use strict';
 
-  var Alert = require('alert');
+  var Alert = require('pandora-alert');
 
   var config = require('../config');
 
@@ -53,9 +51,11 @@ define(function(require, exports, module) {
         tableClass: 'table table-striped table-hover',
         templates: {
           buttonBarTemplate: buttonBarTemplate,
-          sortableHeaderTemplate: '<th width="{{width}}">{{title}}<div class="sort-container pull-right"><span class="fa fa-sort-asc sort sort-ascending"></span><span class="fa fa-sort-desc sort sort-descending"></span></div></th>',
+          loadingOverlayTemplate: '<div class="grid-loading" data-role="gridLoading"><i class="fa fa-spinner fa-spin"></i> 数据加载中...</div>',
+          sortableHeaderTemplate: '<th width="{{width}}">{{title}}<div class="sort-container"><span class="fa fa-sort-asc sort sort-ascending"></span><span class="fa fa-sort-desc sort sort-descending"></span></div></th>',
           emptyTemplate: '<p class="text-warning">抱歉，没有找到符合条件的信息。</p>'
         },
+        showLoadingOverlay: false,
         sortOrder: 'desc',
         sortable: [],
         cellTemplates: [],
@@ -73,6 +73,7 @@ define(function(require, exports, module) {
     },
 
     refresh: function () {
+      this.role('gridLoading') && this.role('gridLoading').remove();
       this.gridElement.simplePagingGrid('refresh', this.url);
     },
 
@@ -119,7 +120,7 @@ define(function(require, exports, module) {
           new Alert({
             content: msg || 'session过期，请重新登录'
           }).submit(function() {
-            var loginUrl = window.USER_DATA.IS_PASSPORT_LOGIN ? '/outlogin.html?' : '/login.html?';
+            var loginUrl = window.CMS_USER_DATA.IS_PASSPORT_LOGIN ? '/outlogin.html?' : '/login.html?';
             window.location.href = loginUrl + new Date().getTime();
           });
         };
@@ -161,7 +162,9 @@ define(function(require, exports, module) {
       gridCfg.parseData = function(data) {
         if (data && data.listData) {
           data.listData.forEach(function(item, index) {
-            item['rowIndex'] = index + 1;
+            item.rowIndex = index + 1;
+            // 表格行记录数
+            item.__id = (data.pageNo - 1) * data.pageSize + index + 1;
             if (self.option('hasAuth')) {
               item['hasAuth'] = data.authIds ? data.authIds.indexOf(item.id) > -1 : false;
             }
@@ -209,6 +212,5 @@ define(function(require, exports, module) {
 
   });
 
-  return Search;
+  module.exports = Search;
 
-});

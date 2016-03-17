@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   /**
    * 表单提交
    *
@@ -53,4 +51,3 @@ define(function(require, exports, module) {
 
   module.exports = FixedForm;
 
-});

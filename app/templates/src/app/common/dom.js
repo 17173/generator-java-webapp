@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   'use strict';
 
   var Dom = function(node) {
@@ -152,4 +150,3 @@ define(function(require, exports, module) {
 
   module.exports = dom;
 
-});

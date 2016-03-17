@@ -1,9 +1,7 @@
-define(function(require, exports, module) {
-
   'use strict';
 
-  var Tips = require('tips'),
-    Select = require('select');
+  var Tips = require('pandora-tips'),
+    Select = require('pandora-select');
 
   var util = require('../util'),
     DialogTab = require('../dialogtab/dialogtab');
@@ -384,4 +382,3 @@ define(function(require, exports, module) {
 
   module.exports = Dialog;
 
-});

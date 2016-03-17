@@ -1,4 +1,3 @@
-define(function(require, exports, module) {
     /**
      * 处理网络图片
      */
@@ -162,4 +161,3 @@ define(function(require, exports, module) {
         isMotu: isMotu
     };
 
-});

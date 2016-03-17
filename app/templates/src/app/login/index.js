@@ -1,8 +1,7 @@
-define(function(require, exports, module) {
 
   'use strict';
 
-  var Alert = require('alert');
+  var Alert = require('pandora-alert');
 
   var FixedForm = require('../common/form/fixedform');
 
@@ -74,4 +73,3 @@ define(function(require, exports, module) {
     });
   }
 
-});

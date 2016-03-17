@@ -1,13 +1,11 @@
-define(function(require, exports, module) {
-
   /**
    * 组图图片列表
    */
 
   'use strict';
 
-  var $ = require('$');
-  var Widget = require('widget');
+  var $ = require('jquery');
+  var Widget = require('pandora-widget');
 
   var util = require('../util'),
     DragDrop = require('../dragdrop/dragdrop');
@@ -79,6 +77,7 @@ define(function(require, exports, module) {
       var photos = this.option('data').photos = this.getData();
 
       this.uneq(photos, list, 'imgUrl');
+      photos.sort(compare);
       this.render();
     },
 
@@ -104,6 +103,7 @@ define(function(require, exports, module) {
       this.$('.release-photo-item').each(function(i, v) {
         v = $(v);
         datas.push({
+          name: v.data('title'),
           description: v.find('[data-role=description]').val(),
           imgUrl: v.find('[data-role=imgUrl]').attr('data-imgUrl'),
           thumbUrl: v.find('[data-role=imgUrl]').attr('src'),
@@ -176,6 +176,34 @@ define(function(require, exports, module) {
 
   });
 
+  function normalCompare(a, b) {
+    return (a < b) ? -1 : (a > b) ? 1 : 0;
+  }
+
+  function preprocess(str) {
+    return str.replace(/\d+/g, function(digits) {
+      while (digits.length < 20) {
+        digits = '0' + digits;
+      }
+      return digits;
+    });
+  }
+
+  function alphanumCompare(a, b) {
+    var pre1 = preprocess(a);
+    var pre2 = preprocess(b);
+    var result = normalCompare(pre1, pre2);
+    return result;
+  }
+
+  function compare(a, b) {
+    a = a.name && a.name.toLocaleLowerCase();
+    b = b.name && b.name.toLocaleLowerCase();
+    if (typeof a == 'string' && typeof b == 'string') {
+      return alphanumCompare(a, b);
+    }
+    return normalCompare(a, b);
+  }
+
   module.exports = Photo;
 
-});

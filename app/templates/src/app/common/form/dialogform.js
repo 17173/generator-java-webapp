@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   /**
    * 表单提交
    *
@@ -8,7 +6,7 @@ define(function(require, exports, module) {
 
   'use strict';
 
-  var Confirm = require('confirm');
+  var Confirm = require('pandora-confirm');
 
   var util = require('../util');
 
@@ -71,4 +69,3 @@ define(function(require, exports, module) {
 
   module.exports = DialogForm;
 
-});

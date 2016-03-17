@@ -1,5 +1,3 @@
-define(function (require, exports, module) {
-
 /**
  * 标签输入管理
  *
@@ -8,8 +6,8 @@ define(function (require, exports, module) {
 
 'use strict';
 
-var $ = require('$'),
-    Widget = require('widget');
+var $ = require('jquery'),
+    Widget = require('pandora-widget');
 
 var util = require('../util'),
     KEYMAP = require('../keymap');
@@ -211,4 +209,3 @@ function getStringWidth (sibling, value) {
 
 module.exports = Input;
 
-});

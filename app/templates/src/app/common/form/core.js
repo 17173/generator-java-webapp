@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   /**
    * 表单提交
    *
@@ -8,7 +6,7 @@ define(function(require, exports, module) {
 
   'use strict';
 
-  var Widget = require('widget');
+  var Widget = require('pandora-widget');
 
   var isChrome36 = navigator.userAgent.indexOf('Chrome/36.') > 0;
 
@@ -235,4 +233,3 @@ define(function(require, exports, module) {
 
   });
 
-});

@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   /**
    * 上传
    *
@@ -8,8 +6,8 @@ define(function(require, exports, module) {
 
   'use strict';
 
-  var Widget = require('widget'),
-    Tips = require('tips');
+  var Widget = require('pandora-widget'),
+    Tips = require('pandora-tips');
 
   var util = require('../util');
 
@@ -158,4 +156,3 @@ define(function(require, exports, module) {
 
   module.exports = Upload;
 
-});

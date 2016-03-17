@@ -1,5 +1,3 @@
-define(function (require, exports, module) {
-
 /**
  * 魔图图片处理
  *
@@ -8,8 +6,8 @@ define(function (require, exports, module) {
 
 'use strict';
 
-var Widget = require('widget'),
-    Select = require('select');
+var Widget = require('pandora-widget'),
+    Select = require('pandora-select');
 
 var io = require('../io'),
     Tags = require('../tags/tags');
@@ -203,4 +201,3 @@ var Setting = Widget.extend({
 
 module.exports = Setting;
 
-});

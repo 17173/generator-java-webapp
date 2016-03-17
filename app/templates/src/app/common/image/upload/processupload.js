@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   /**
    * 图片上传
    *
@@ -266,4 +264,3 @@ define(function(require, exports, module) {
 
   module.exports = ProcessUpload;
 
-});

@@ -1,5 +1,3 @@
-define(function (require, exports, module) {
-
 'use strict';
 
 /*global tinymce:true */
@@ -734,7 +732,5 @@ tinymce.PluginManager.add('lists', function (editor) {
       }
     }
   });
-});
-
 });
 

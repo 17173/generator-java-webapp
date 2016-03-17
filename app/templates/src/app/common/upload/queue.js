@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   /**
    * 文件上传，HTML5 ONLY
    *
@@ -8,7 +6,7 @@ define(function(require, exports, module) {
 
   'use strict';
 
-  var Widget = require('widget');
+  var Widget = require('pandora-widget');
 
   var DragDrop = require('../dragdrop/dragdrop'),
     dom = require('../dom');
@@ -209,4 +207,3 @@ define(function(require, exports, module) {
 
   module.exports = Queue;
 
-});

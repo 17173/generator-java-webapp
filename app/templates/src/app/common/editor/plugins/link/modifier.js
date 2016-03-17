@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   'use strict';
 
   var DialogForm = require('../../../form/dialogform');
@@ -131,4 +129,3 @@ define(function(require, exports, module) {
 
   module.exports = Modifier;
 
-});

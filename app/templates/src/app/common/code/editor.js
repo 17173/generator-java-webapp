@@ -1,11 +1,7 @@
-define(function(require, exports, module) {
-
   'use strict';
 
-  var $ = require('$'),
-    Widget = require('widget');
-
-  require('common/code/ace/ace');
+  var $ = require('jquery'),
+    Widget = require('pandora-widget');
 
   /* global ace:true */
   var Editor = module.exports = Widget.extend({
@@ -92,8 +88,8 @@ define(function(require, exports, module) {
           editor.focus();
         });
       }
+      this.fire('initEditor');
     }
 
   });
 
-});

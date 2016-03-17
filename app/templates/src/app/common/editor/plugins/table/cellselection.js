@@ -1,5 +1,3 @@
-define(function (require, exports, module) {
-
 'use strict';
 
 var TableGrid = require('./tablegrid');
@@ -153,4 +151,3 @@ return function(editor) {
   };
 };
 
-});

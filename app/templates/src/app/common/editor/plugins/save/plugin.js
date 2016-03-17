@@ -1,5 +1,3 @@
-define(function (require, exports, module) {
-
 'use strict';
 
 /*global tinymce:true */
@@ -86,7 +84,5 @@ tinymce.PluginManager.add('save', function(editor) {
 	});
 
 	editor.addShortcut('ctrl+s', '', 'mceSave');
-});
-
 });
 

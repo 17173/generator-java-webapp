@@ -1,5 +1,3 @@
-define(function(require, exports, module) {
-
   /**
    * XMLHttpRequest
    *
@@ -8,7 +6,7 @@ define(function(require, exports, module) {
 
   'use strict';
 
-  var Base = require('base');
+  var Base = require('pandora-base');
 
   var util = require('./util'),
     config = require('./config');
@@ -114,4 +112,3 @@ define(function(require, exports, module) {
 
   module.exports = XHR;
 
-});
