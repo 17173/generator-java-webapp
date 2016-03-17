@@ -7,7 +7,6 @@
 
 ### 安装 SPM
   - npm install spm -g
-  - spm config source:default.url http://10.5.121.139:3001
 
 ### 安装 Git
 
