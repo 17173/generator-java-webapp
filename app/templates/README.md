@@ -1,21 +1,8 @@
 # 开始
 
 ## 环境配置
-
-### 安装 NODE
-  - https://nodejs.org/en/download/
-
-### 安装 SPM
-  - npm install spm -g
-
-### 安装 Git
-
-  * Windows https://git-for-windows.github.io/
-  * MAC/Linux https://git-scm.com/
-
-### 安装 JAVA
-
-  - \\10.5.17.41\software\public\Java\jdk-7u25-windows-x64.exe  
+ 
+需要 java jdk, nodejs, git, spm
 
 ### 最后，工程目录下执行命令行
   - npm install
