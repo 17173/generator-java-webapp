@@ -4,6 +4,8 @@
 快速构建 java web 项目的后台前端脚手架（bootstrap+seajs+fed）
 ```
 
+**发现平时子生成器并用不上，已改用 [tomato-cli](https://github.com/lynzz/tomato-cli)，能更方便的更新模板**
+
 > 注：此脚手脚只适用 17173 内部使用, 外部人员慎用    
 
 **构建成功后的工程目录结构说明：**
